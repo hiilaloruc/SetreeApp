@@ -1,5 +1,5 @@
 //
-//  TitleHeaderTableViewCell.swift
+//  CollectionTableViewCell.swift
 //  SetreeApp
 //
 //  Created by HilalOruc on 8.02.2023.

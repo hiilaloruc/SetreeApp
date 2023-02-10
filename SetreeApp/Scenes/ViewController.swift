@@ -18,3 +18,9 @@ class ViewController: UIViewController {
 
 }
 
+extension UIViewController { // REMOVE  TEXT FROM BACK BUTTON ON NAVIGATION
+    open override func awakeAfter(using coder: NSCoder) -> Any? {
+        navigationItem.backButtonDisplayMode = .minimal
+        return super.awakeAfter(using: coder)
+    }
+}

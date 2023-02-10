@@ -21,11 +21,22 @@ class CollectionsDetailViewController: UIViewController {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        //tableView.register(TitleHeaderTableViewCell.self, forCellReuseIdentifier: "TitleHeaderTableViewCell")
-        tableView.register(UINib(nibName: "TitleHeaderTableViewCell", bundle: nil), forCellReuseIdentifier: "TitleHeaderTableViewCell")
+        tableView.register(UINib(nibName: "CollectionTableViewCell", bundle: nil), forCellReuseIdentifier: "CollectionTableViewCell")
+        tableView.separatorStyle = .none
 
+        let customPlusButton = plusBtnView.init(frame: .init(x: 0, y: 0, width: 44, height: 44))
+        customPlusButton.tappedPlusBtn = { [weak self] in
+           print("jj: tappedPlusBtn handling..")
+           /* guard let self = self else { return }
+                if let vc = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "CollectionsDetailViewController") as? CollectionsDetailViewController{
+                    vc.title = cell.titleLabel.text //update later if needed
+                    vc.collectionId = 11
+                    self.navigationController?.pushViewController(vc, animated: true)
+               
+                }*/
+            }
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: customPlusButton)
     }
-
 
 }
 extension CollectionsDetailViewController: UITableViewDelegate, UITableViewDataSource {
@@ -56,10 +67,8 @@ extension CollectionsDetailViewController: UITableViewDelegate, UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TitleHeaderTableViewCell", for: indexPath) as! CollectionTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CollectionTableViewCell", for: indexPath) as! CollectionTableViewCell
 
-        
-        
         return cell
     }
     

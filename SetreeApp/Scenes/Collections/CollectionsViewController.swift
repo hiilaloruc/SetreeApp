@@ -6,9 +6,8 @@
 //
 
 import UIKit
-
 class CollectionsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
-
+    
     @IBOutlet weak var collectionsView: UICollectionView!
     @IBOutlet weak var plusButton: UIView!
     
@@ -22,7 +21,6 @@ class CollectionsViewController: UIViewController, UICollectionViewDelegate, UIC
         self.plusButton.addGestureRecognizer(tapGestureRecognizer)
 
     }
-
     
     @objc func plusButtonTapped(_ sender: UITapGestureRecognizer) {
         print("jj: + clicked..")
@@ -38,16 +36,13 @@ class CollectionsViewController: UIViewController, UICollectionViewDelegate, UIC
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell =  collectionView.dequeueReusableCell(withReuseIdentifier: "cellCollection", for: indexPath) as! CollectionsCardViewCell
-        cell.bgColor = UIColor(named: colorsArr[indexPath.row%colorsArr.count])!
-        
-        
+        cell.bgColor = UIColor(named: collectionCardColorsArr[indexPath.row%collectionCardColorsArr.count])!
         
         cell.tappedCell = { [weak self] in
             guard let self = self else { return }
                 if let vc = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "CollectionsDetailViewController") as? CollectionsDetailViewController{
                     vc.title = cell.titleLabel.text //update later if needed
                     vc.collectionId = 11
-                    
                     self.navigationController?.pushViewController(vc, animated: true)
                
                 }

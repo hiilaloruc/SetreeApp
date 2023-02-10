@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E2115F44299674150080FE30 /* plusBtnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2115F43299674150080FE30 /* plusBtnView.swift */; };
+		E2115F46299674240080FE30 /* plusBtnView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2115F45299674240080FE30 /* plusBtnView.xib */; };
+		E2115F4929967EA80080FE30 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2115F4829967EA80080FE30 /* BaseView.swift */; };
+		E2115F4E2996802A0080FE30 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2115F4D2996802A0080FE30 /* Fonts.swift */; };
+		E2115F502996803F0080FE30 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2115F4F2996803F0080FE30 /* Colors.swift */; };
+		E2115F57299684200080FE30 /* SF-UI-Display-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E2115F52299684200080FE30 /* SF-UI-Display-Regular.ttf */; };
+		E2115F58299684200080FE30 /* SF-UI-Display-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E2115F53299684200080FE30 /* SF-UI-Display-Semibold.ttf */; };
+		E2115F59299684200080FE30 /* SF-UI-Display-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E2115F54299684200080FE30 /* SF-UI-Display-Light.ttf */; };
+		E2115F5A299684200080FE30 /* SF-UI-Display-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E2115F55299684200080FE30 /* SF-UI-Display-Bold.ttf */; };
+		E2115F5B299684200080FE30 /* SF-UI-Display-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E2115F56299684200080FE30 /* SF-UI-Display-Medium.ttf */; };
+		E2115F5E29968DF10080FE30 /* SocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2115F5D29968DF10080FE30 /* SocialViewController.swift */; };
+		E2115F63299698040080FE30 /* SocialFriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2115F62299698040080FE30 /* SocialFriendsTableViewCell.swift */; };
+		E2115F652996D22B0080FE30 /* UserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2115F642996D22B0080FE30 /* UserDetailViewController.swift */; };
+		E21359292996E80C00D14929 /* FollowersSliderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21359282996E80C00D14929 /* FollowersSliderCollectionViewCell.swift */; };
 		E299DDD1298D48BE004AF932 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E299DDD0298D48BE004AF932 /* AppDelegate.swift */; };
 		E299DDD3298D48BE004AF932 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E299DDD2298D48BE004AF932 /* SceneDelegate.swift */; };
 		E299DDD5298D48BE004AF932 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E299DDD4298D48BE004AF932 /* ViewController.swift */; };
@@ -18,10 +32,24 @@
 		E2BAA7C1298DA5FB00D2AC5F /* CollectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BAA7C0298DA5FB00D2AC5F /* CollectionsViewController.swift */; };
 		E2F1E6652992DFFC006D4BD6 /* CollectionsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F1E6642992DFFC006D4BD6 /* CollectionsDetailViewController.swift */; };
 		E2F1E66C2992F96B006D4BD6 /* CollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F1E66A2992F96B006D4BD6 /* CollectionTableViewCell.swift */; };
-		E2F1E66D2992F96C006D4BD6 /* TitleHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2F1E66B2992F96B006D4BD6 /* TitleHeaderTableViewCell.xib */; };
+		E2F1E66D2992F96C006D4BD6 /* CollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2F1E66B2992F96B006D4BD6 /* CollectionTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E2115F43299674150080FE30 /* plusBtnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = plusBtnView.swift; sourceTree = "<group>"; };
+		E2115F45299674240080FE30 /* plusBtnView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = plusBtnView.xib; sourceTree = "<group>"; };
+		E2115F4829967EA80080FE30 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		E2115F4D2996802A0080FE30 /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		E2115F4F2996803F0080FE30 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		E2115F52299684200080FE30 /* SF-UI-Display-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Display-Regular.ttf"; sourceTree = "<group>"; };
+		E2115F53299684200080FE30 /* SF-UI-Display-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Display-Semibold.ttf"; sourceTree = "<group>"; };
+		E2115F54299684200080FE30 /* SF-UI-Display-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Display-Light.ttf"; sourceTree = "<group>"; };
+		E2115F55299684200080FE30 /* SF-UI-Display-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Display-Bold.ttf"; sourceTree = "<group>"; };
+		E2115F56299684200080FE30 /* SF-UI-Display-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Display-Medium.ttf"; sourceTree = "<group>"; };
+		E2115F5D29968DF10080FE30 /* SocialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialViewController.swift; sourceTree = "<group>"; };
+		E2115F62299698040080FE30 /* SocialFriendsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialFriendsTableViewCell.swift; sourceTree = "<group>"; };
+		E2115F642996D22B0080FE30 /* UserDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewController.swift; sourceTree = "<group>"; };
+		E21359282996E80C00D14929 /* FollowersSliderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersSliderCollectionViewCell.swift; sourceTree = "<group>"; };
 		E299DDCD298D48BE004AF932 /* SetreeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SetreeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E299DDD0298D48BE004AF932 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E299DDD2298D48BE004AF932 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -35,7 +63,7 @@
 		E2BAA7C0298DA5FB00D2AC5F /* CollectionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsViewController.swift; sourceTree = "<group>"; };
 		E2F1E6642992DFFC006D4BD6 /* CollectionsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsDetailViewController.swift; sourceTree = "<group>"; };
 		E2F1E66A2992F96B006D4BD6 /* CollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionTableViewCell.swift; sourceTree = "<group>"; };
-		E2F1E66B2992F96B006D4BD6 /* TitleHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleHeaderTableViewCell.xib; sourceTree = "<group>"; };
+		E2F1E66B2992F96B006D4BD6 /* CollectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +77,78 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E2115F4729967E920080FE30 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				E2115F4C299680150080FE30 /* Constants */,
+				E2115F4B29967FA80080FE30 /* UI */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		E2115F4A29967F670080FE30 /* plusBtnView */ = {
+			isa = PBXGroup;
+			children = (
+				E2115F43299674150080FE30 /* plusBtnView.swift */,
+				E2115F45299674240080FE30 /* plusBtnView.xib */,
+			);
+			path = plusBtnView;
+			sourceTree = "<group>";
+		};
+		E2115F4B29967FA80080FE30 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				E2115F4829967EA80080FE30 /* BaseView.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		E2115F4C299680150080FE30 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				E2115F4D2996802A0080FE30 /* Fonts.swift */,
+				E2115F4F2996803F0080FE30 /* Colors.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		E2115F51299684200080FE30 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				E2115F52299684200080FE30 /* SF-UI-Display-Regular.ttf */,
+				E2115F53299684200080FE30 /* SF-UI-Display-Semibold.ttf */,
+				E2115F54299684200080FE30 /* SF-UI-Display-Light.ttf */,
+				E2115F55299684200080FE30 /* SF-UI-Display-Bold.ttf */,
+				E2115F56299684200080FE30 /* SF-UI-Display-Medium.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		E2115F5F299697D50080FE30 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E2115F61299697E20080FE30 /* Cell */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E2115F60299697D90080FE30 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E2115F642996D22B0080FE30 /* UserDetailViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		E2115F61299697E20080FE30 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				E2115F62299698040080FE30 /* SocialFriendsTableViewCell.swift */,
+				E21359282996E80C00D14929 /* FollowersSliderCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		E299DDC4298D48BE004AF932 = {
 			isa = PBXGroup;
 			children = (
@@ -68,8 +168,8 @@
 		E299DDCF298D48BE004AF932 /* SetreeApp */ = {
 			isa = PBXGroup;
 			children = (
-				E2BAA7B3298D8D6800D2AC5F /* Components */,
 				E2BAA7BC298D9B8E00D2AC5F /* Assets */,
+				E2BAA7B3298D8D6800D2AC5F /* Components */,
 				E2BAA7BB298D9B7900D2AC5F /* Supporting File */,
 				E2BAA7BA298D9B4C00D2AC5F /* Scenes */,
 				E299DDDE298D48C4004AF932 /* Info.plist */,
@@ -84,18 +184,10 @@
 			path = Goals;
 			sourceTree = "<group>";
 		};
-		E2BAA7AF298D8C3C00D2AC5F /* Collections */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Collections;
-			path = "CustomComponentsü";
-			sourceTree = "<group>";
-		};
 		E2BAA7B3298D8D6800D2AC5F /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				E2BAA7AF298D8C3C00D2AC5F /* Collections */,
+				E2115F4A29967F670080FE30 /* plusBtnView */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -103,7 +195,9 @@
 		E2BAA7BA298D9B4C00D2AC5F /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				E2115F4729967E920080FE30 /* Core */,
 				E2F1E6622992DE39006D4BD6 /* Social */,
+				E2115F5D29968DF10080FE30 /* SocialViewController.swift */,
 				E2B1B8D4298FE64600470F5D /* Goals */,
 				E2BAA7BF298DA5CE00D2AC5F /* Collections */,
 				E299DDD6298D48BE004AF932 /* Main.storyboard */,
@@ -126,6 +220,7 @@
 		E2BAA7BC298D9B8E00D2AC5F /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				E2115F51299684200080FE30 /* Fonts */,
 				E299DDD9298D48C4004AF932 /* Assets.xcassets */,
 			);
 			path = Assets;
@@ -144,6 +239,8 @@
 		E2F1E6622992DE39006D4BD6 /* Social */ = {
 			isa = PBXGroup;
 			children = (
+				E2115F60299697D90080FE30 /* ViewController */,
+				E2115F5F299697D50080FE30 /* View */,
 			);
 			path = Social;
 			sourceTree = "<group>";
@@ -185,7 +282,7 @@
 			isa = PBXGroup;
 			children = (
 				E2F1E66A2992F96B006D4BD6 /* CollectionTableViewCell.swift */,
-				E2F1E66B2992F96B006D4BD6 /* TitleHeaderTableViewCell.xib */,
+				E2F1E66B2992F96B006D4BD6 /* CollectionTableViewCell.xib */,
 			);
 			path = Header;
 			sourceTree = "<group>";
@@ -249,9 +346,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				E299DDDD298D48C4004AF932 /* LaunchScreen.storyboard in Resources */,
+				E2115F46299674240080FE30 /* plusBtnView.xib in Resources */,
+				E2115F58299684200080FE30 /* SF-UI-Display-Semibold.ttf in Resources */,
 				E299DDDA298D48C4004AF932 /* Assets.xcassets in Resources */,
 				E299DDD8298D48BE004AF932 /* Main.storyboard in Resources */,
-				E2F1E66D2992F96C006D4BD6 /* TitleHeaderTableViewCell.xib in Resources */,
+				E2F1E66D2992F96C006D4BD6 /* CollectionTableViewCell.xib in Resources */,
+				E2115F57299684200080FE30 /* SF-UI-Display-Regular.ttf in Resources */,
+				E2115F5B299684200080FE30 /* SF-UI-Display-Medium.ttf in Resources */,
+				E2115F59299684200080FE30 /* SF-UI-Display-Light.ttf in Resources */,
+				E2115F5A299684200080FE30 /* SF-UI-Display-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,11 +366,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2B1B8D3298FE21700470F5D /* GlobalVariables.swift in Sources */,
+				E2115F502996803F0080FE30 /* Colors.swift in Sources */,
+				E2115F5E29968DF10080FE30 /* SocialViewController.swift in Sources */,
 				E2BAA7C1298DA5FB00D2AC5F /* CollectionsViewController.swift in Sources */,
+				E2115F44299674150080FE30 /* plusBtnView.swift in Sources */,
 				E299DDD5298D48BE004AF932 /* ViewController.swift in Sources */,
+				E2115F63299698040080FE30 /* SocialFriendsTableViewCell.swift in Sources */,
 				E2BAA7BE298D9C5300D2AC5F /* CollectionsCardViewCell.swift in Sources */,
 				E299DDD1298D48BE004AF932 /* AppDelegate.swift in Sources */,
+				E21359292996E80C00D14929 /* FollowersSliderCollectionViewCell.swift in Sources */,
 				E2F1E6652992DFFC006D4BD6 /* CollectionsDetailViewController.swift in Sources */,
+				E2115F4929967EA80080FE30 /* BaseView.swift in Sources */,
+				E2115F652996D22B0080FE30 /* UserDetailViewController.swift in Sources */,
+				E2115F4E2996802A0080FE30 /* Fonts.swift in Sources */,
 				E299DDD3298D48BE004AF932 /* SceneDelegate.swift in Sources */,
 				E2F1E66C2992F96B006D4BD6 /* CollectionTableViewCell.swift in Sources */,
 			);
