@@ -1,14 +1,13 @@
 //
-//  UserDetailViewController.swift
+//  UserViewController.swift
 //  SetreeApp
 //
-//  Created by HilalOruc on 10.02.2023.
+//  Created by HilalOruc on 11.02.2023.
 //
 
 import UIKit
 
-class UserDetailViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
-    
+class UserViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource {
     @IBOutlet weak var userImageView : UIImageView!
     @IBOutlet weak var nameLabel : UILabel!
     @IBOutlet weak var listCountLabel : UILabel!
@@ -17,10 +16,12 @@ class UserDetailViewController: UIViewController, UICollectionViewDelegate, UICo
     @IBOutlet weak var topContainerView: UIView!
     @IBOutlet weak var followersSliderCollectionView: UICollectionView!
     @IBOutlet weak var userListsCollectionView: UICollectionView!
+    @IBOutlet weak var lastCollectionHeight: NSLayoutConstraint!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     
     internal var isFollowing: Bool = false
-    
+    internal var userId: Int = 112
     
     
     override func viewDidLoad() {
@@ -31,7 +32,7 @@ class UserDetailViewController: UIViewController, UICollectionViewDelegate, UICo
         userListsCollectionView.delegate = self
         userListsCollectionView.dataSource = self
         initUI()
-
+        self.view.layoutIfNeeded()
     }
     
     func initUI(){
@@ -40,6 +41,12 @@ class UserDetailViewController: UIViewController, UICollectionViewDelegate, UICo
         followButton.layer.borderColor = UIColor.mainReddishColor.cgColor
         followButton.layer.cornerRadius = 20
         followButton.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+    }
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.lastCollectionHeight.constant = self.userListsCollectionView.contentSize.height
+        self.scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: self.userListsCollectionView.contentSize.height + 480)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -52,8 +59,22 @@ class UserDetailViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        
+        
         if collectionView == self.followersSliderCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FollowersSliderCollectionViewCell", for: indexPath) as! FollowersSliderCollectionViewCell
+            
+            cell.tappedCell = { [weak self] in
+                guard let self = self else { return }
+                    if let vc = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "UserViewController") as? UserViewController{
+                        print("jj: asdadadadadd2")
+                        vc.userId = 113
+                        self.navigationController?.pushViewController(vc, animated: true)
+                   
+                    }
+                }
+            
             return cell
         }
         else{

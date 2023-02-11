@@ -39,7 +39,7 @@ extension SocialViewController : UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SocialFriendsTableViewCell", for: indexPath) as! SocialFriendsTableViewCell
         cell.tappedUser = { [weak self] in
             guard let self = self else { return }
-                if let vc = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "UserDetailViewController") as? UserDetailViewController{
+                if let vc = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "UserViewController") as? UserViewController{
                     
                     self.navigationController?.pushViewController(vc, animated: true)
                

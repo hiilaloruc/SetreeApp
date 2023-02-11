@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		37D4240C7420013E070A97C0 /* Pods_SetreeApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4ACAF1FBFD3BD98B3F91121D /* Pods_SetreeApp.framework */; };
 		E2115F44299674150080FE30 /* plusBtnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2115F43299674150080FE30 /* plusBtnView.swift */; };
 		E2115F46299674240080FE30 /* plusBtnView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2115F45299674240080FE30 /* plusBtnView.xib */; };
 		E2115F4929967EA80080FE30 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2115F4829967EA80080FE30 /* BaseView.swift */; };
@@ -19,8 +20,9 @@
 		E2115F5B299684200080FE30 /* SF-UI-Display-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E2115F56299684200080FE30 /* SF-UI-Display-Medium.ttf */; };
 		E2115F5E29968DF10080FE30 /* SocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2115F5D29968DF10080FE30 /* SocialViewController.swift */; };
 		E2115F63299698040080FE30 /* SocialFriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2115F62299698040080FE30 /* SocialFriendsTableViewCell.swift */; };
-		E2115F652996D22B0080FE30 /* UserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2115F642996D22B0080FE30 /* UserDetailViewController.swift */; };
 		E21359292996E80C00D14929 /* FollowersSliderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21359282996E80C00D14929 /* FollowersSliderCollectionViewCell.swift */; };
+		E24FCB082997D5BB00361EF0 /* WheelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24FCB072997D5BB00361EF0 /* WheelViewController.swift */; };
+		E24FCB0D2997D5EE00361EF0 /* WheelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24FCB0C2997D5EE00361EF0 /* WheelView.swift */; };
 		E299DDD1298D48BE004AF932 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E299DDD0298D48BE004AF932 /* AppDelegate.swift */; };
 		E299DDD3298D48BE004AF932 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E299DDD2298D48BE004AF932 /* SceneDelegate.swift */; };
 		E299DDD5298D48BE004AF932 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E299DDD4298D48BE004AF932 /* ViewController.swift */; };
@@ -28,14 +30,23 @@
 		E299DDDA298D48C4004AF932 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E299DDD9298D48C4004AF932 /* Assets.xcassets */; };
 		E299DDDD298D48C4004AF932 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E299DDDB298D48C4004AF932 /* LaunchScreen.storyboard */; };
 		E2B1B8D3298FE21700470F5D /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B1B8D2298FE21700470F5D /* GlobalVariables.swift */; };
+		E2B60E9C2996F42C000858D0 /* ProfilHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B60E9A2996F42C000858D0 /* ProfilHeaderTableViewCell.swift */; };
+		E2B60E9D2996F42C000858D0 /* ProfilHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2B60E9B2996F42C000858D0 /* ProfilHeaderTableViewCell.xib */; };
+		E2B60EA32996F7A6000858D0 /* FollowersSliderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B60EA12996F7A6000858D0 /* FollowersSliderTableViewCell.swift */; };
+		E2B60EA42996F7A6000858D0 /* FollowersSliderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2B60EA22996F7A6000858D0 /* FollowersSliderTableViewCell.xib */; };
+		E2B60EA82996FAAE000858D0 /* CollectionListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B60EA62996FAAE000858D0 /* CollectionListTableViewCell.swift */; };
+		E2B60EA92996FAAE000858D0 /* CollectionListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2B60EA72996FAAE000858D0 /* CollectionListTableViewCell.xib */; };
 		E2BAA7BE298D9C5300D2AC5F /* CollectionsCardViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BAA7BD298D9C5300D2AC5F /* CollectionsCardViewCell.swift */; };
 		E2BAA7C1298DA5FB00D2AC5F /* CollectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BAA7C0298DA5FB00D2AC5F /* CollectionsViewController.swift */; };
+		E2E260E0299712F4005D2B54 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E260DF299712F4005D2B54 /* UserViewController.swift */; };
 		E2F1E6652992DFFC006D4BD6 /* CollectionsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F1E6642992DFFC006D4BD6 /* CollectionsDetailViewController.swift */; };
 		E2F1E66C2992F96B006D4BD6 /* CollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F1E66A2992F96B006D4BD6 /* CollectionTableViewCell.swift */; };
 		E2F1E66D2992F96C006D4BD6 /* CollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2F1E66B2992F96B006D4BD6 /* CollectionTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4ACAF1FBFD3BD98B3F91121D /* Pods_SetreeApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SetreeApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E6F8A3CEBFC532656265F86 /* Pods-SetreeApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SetreeApp.debug.xcconfig"; path = "Target Support Files/Pods-SetreeApp/Pods-SetreeApp.debug.xcconfig"; sourceTree = "<group>"; };
 		E2115F43299674150080FE30 /* plusBtnView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = plusBtnView.swift; sourceTree = "<group>"; };
 		E2115F45299674240080FE30 /* plusBtnView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = plusBtnView.xib; sourceTree = "<group>"; };
 		E2115F4829967EA80080FE30 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
@@ -48,8 +59,9 @@
 		E2115F56299684200080FE30 /* SF-UI-Display-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Display-Medium.ttf"; sourceTree = "<group>"; };
 		E2115F5D29968DF10080FE30 /* SocialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialViewController.swift; sourceTree = "<group>"; };
 		E2115F62299698040080FE30 /* SocialFriendsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialFriendsTableViewCell.swift; sourceTree = "<group>"; };
-		E2115F642996D22B0080FE30 /* UserDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewController.swift; sourceTree = "<group>"; };
 		E21359282996E80C00D14929 /* FollowersSliderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersSliderCollectionViewCell.swift; sourceTree = "<group>"; };
+		E24FCB072997D5BB00361EF0 /* WheelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WheelViewController.swift; sourceTree = "<group>"; };
+		E24FCB0C2997D5EE00361EF0 /* WheelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WheelView.swift; sourceTree = "<group>"; };
 		E299DDCD298D48BE004AF932 /* SetreeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SetreeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E299DDD0298D48BE004AF932 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E299DDD2298D48BE004AF932 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,11 +71,19 @@
 		E299DDDC298D48C4004AF932 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E299DDDE298D48C4004AF932 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2B1B8D2298FE21700470F5D /* GlobalVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
+		E2B60E9A2996F42C000858D0 /* ProfilHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilHeaderTableViewCell.swift; sourceTree = "<group>"; };
+		E2B60E9B2996F42C000858D0 /* ProfilHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfilHeaderTableViewCell.xib; sourceTree = "<group>"; };
+		E2B60EA12996F7A6000858D0 /* FollowersSliderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersSliderTableViewCell.swift; sourceTree = "<group>"; };
+		E2B60EA22996F7A6000858D0 /* FollowersSliderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FollowersSliderTableViewCell.xib; sourceTree = "<group>"; };
+		E2B60EA62996FAAE000858D0 /* CollectionListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionListTableViewCell.swift; sourceTree = "<group>"; };
+		E2B60EA72996FAAE000858D0 /* CollectionListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionListTableViewCell.xib; sourceTree = "<group>"; };
 		E2BAA7BD298D9C5300D2AC5F /* CollectionsCardViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsCardViewCell.swift; sourceTree = "<group>"; };
 		E2BAA7C0298DA5FB00D2AC5F /* CollectionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsViewController.swift; sourceTree = "<group>"; };
+		E2E260DF299712F4005D2B54 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		E2F1E6642992DFFC006D4BD6 /* CollectionsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsDetailViewController.swift; sourceTree = "<group>"; };
 		E2F1E66A2992F96B006D4BD6 /* CollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionTableViewCell.swift; sourceTree = "<group>"; };
 		E2F1E66B2992F96B006D4BD6 /* CollectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionTableViewCell.xib; sourceTree = "<group>"; };
+		FC3284BDC75D12D278957BAB /* Pods-SetreeApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SetreeApp.release.xcconfig"; path = "Target Support Files/Pods-SetreeApp/Pods-SetreeApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,12 +91,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37D4240C7420013E070A97C0 /* Pods_SetreeApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4CFF8A59979E9772ADAA6261 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6E6F8A3CEBFC532656265F86 /* Pods-SetreeApp.debug.xcconfig */,
+				FC3284BDC75D12D278957BAB /* Pods-SetreeApp.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		D5B5AD1E01AF97F882720FA7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4ACAF1FBFD3BD98B3F91121D /* Pods_SetreeApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E2115F4729967E920080FE30 /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -135,7 +173,7 @@
 		E2115F60299697D90080FE30 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				E2115F642996D22B0080FE30 /* UserDetailViewController.swift */,
+				E2E260DF299712F4005D2B54 /* UserViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -143,10 +181,30 @@
 		E2115F61299697E20080FE30 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				E2B60EA52996FA8B000858D0 /* CollectionList */,
+				E2B60EA02996F774000858D0 /* FollowerSlider */,
+				E2B60E992996F413000858D0 /* Header */,
 				E2115F62299698040080FE30 /* SocialFriendsTableViewCell.swift */,
 				E21359282996E80C00D14929 /* FollowersSliderCollectionViewCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		E24FCB062997D5AD00361EF0 /* Wheel */ = {
+			isa = PBXGroup;
+			children = (
+				E24FCB092997D5BE00361EF0 /* View */,
+				E24FCB072997D5BB00361EF0 /* WheelViewController.swift */,
+			);
+			path = Wheel;
+			sourceTree = "<group>";
+		};
+		E24FCB092997D5BE00361EF0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E24FCB0C2997D5EE00361EF0 /* WheelView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		E299DDC4298D48BE004AF932 = {
@@ -154,6 +212,8 @@
 			children = (
 				E299DDCF298D48BE004AF932 /* SetreeApp */,
 				E299DDCE298D48BE004AF932 /* Products */,
+				4CFF8A59979E9772ADAA6261 /* Pods */,
+				D5B5AD1E01AF97F882720FA7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -184,6 +244,33 @@
 			path = Goals;
 			sourceTree = "<group>";
 		};
+		E2B60E992996F413000858D0 /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				E2B60E9A2996F42C000858D0 /* ProfilHeaderTableViewCell.swift */,
+				E2B60E9B2996F42C000858D0 /* ProfilHeaderTableViewCell.xib */,
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
+		E2B60EA02996F774000858D0 /* FollowerSlider */ = {
+			isa = PBXGroup;
+			children = (
+				E2B60EA12996F7A6000858D0 /* FollowersSliderTableViewCell.swift */,
+				E2B60EA22996F7A6000858D0 /* FollowersSliderTableViewCell.xib */,
+			);
+			path = FollowerSlider;
+			sourceTree = "<group>";
+		};
+		E2B60EA52996FA8B000858D0 /* CollectionList */ = {
+			isa = PBXGroup;
+			children = (
+				E2B60EA62996FAAE000858D0 /* CollectionListTableViewCell.swift */,
+				E2B60EA72996FAAE000858D0 /* CollectionListTableViewCell.xib */,
+			);
+			path = CollectionList;
+			sourceTree = "<group>";
+		};
 		E2BAA7B3298D8D6800D2AC5F /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -195,6 +282,7 @@
 		E2BAA7BA298D9B4C00D2AC5F /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				E24FCB062997D5AD00361EF0 /* Wheel */,
 				E2115F4729967E920080FE30 /* Core */,
 				E2F1E6622992DE39006D4BD6 /* Social */,
 				E2115F5D29968DF10080FE30 /* SocialViewController.swift */,
@@ -294,9 +382,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E299DDE1298D48C4004AF932 /* Build configuration list for PBXNativeTarget "SetreeApp" */;
 			buildPhases = (
+				5410ED12CC0A4952BFA1ABD2 /* [CP] Check Pods Manifest.lock */,
 				E299DDC9298D48BE004AF932 /* Sources */,
 				E299DDCA298D48BE004AF932 /* Frameworks */,
 				E299DDCB298D48BE004AF932 /* Resources */,
+				FE6FE5B88574C93F789841B8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -351,7 +441,10 @@
 				E299DDDA298D48C4004AF932 /* Assets.xcassets in Resources */,
 				E299DDD8298D48BE004AF932 /* Main.storyboard in Resources */,
 				E2F1E66D2992F96C006D4BD6 /* CollectionTableViewCell.xib in Resources */,
+				E2B60EA92996FAAE000858D0 /* CollectionListTableViewCell.xib in Resources */,
+				E2B60E9D2996F42C000858D0 /* ProfilHeaderTableViewCell.xib in Resources */,
 				E2115F57299684200080FE30 /* SF-UI-Display-Regular.ttf in Resources */,
+				E2B60EA42996F7A6000858D0 /* FollowersSliderTableViewCell.xib in Resources */,
 				E2115F5B299684200080FE30 /* SF-UI-Display-Medium.ttf in Resources */,
 				E2115F59299684200080FE30 /* SF-UI-Display-Light.ttf in Resources */,
 				E2115F5A299684200080FE30 /* SF-UI-Display-Bold.ttf in Resources */,
@@ -360,24 +453,71 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		5410ED12CC0A4952BFA1ABD2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SetreeApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FE6FE5B88574C93F789841B8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SetreeApp/Pods-SetreeApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SetreeApp/Pods-SetreeApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SetreeApp/Pods-SetreeApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E299DDC9298D48BE004AF932 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E24FCB0D2997D5EE00361EF0 /* WheelView.swift in Sources */,
 				E2B1B8D3298FE21700470F5D /* GlobalVariables.swift in Sources */,
+				E2B60EA82996FAAE000858D0 /* CollectionListTableViewCell.swift in Sources */,
 				E2115F502996803F0080FE30 /* Colors.swift in Sources */,
 				E2115F5E29968DF10080FE30 /* SocialViewController.swift in Sources */,
 				E2BAA7C1298DA5FB00D2AC5F /* CollectionsViewController.swift in Sources */,
 				E2115F44299674150080FE30 /* plusBtnView.swift in Sources */,
 				E299DDD5298D48BE004AF932 /* ViewController.swift in Sources */,
+				E2E260E0299712F4005D2B54 /* UserViewController.swift in Sources */,
 				E2115F63299698040080FE30 /* SocialFriendsTableViewCell.swift in Sources */,
 				E2BAA7BE298D9C5300D2AC5F /* CollectionsCardViewCell.swift in Sources */,
 				E299DDD1298D48BE004AF932 /* AppDelegate.swift in Sources */,
 				E21359292996E80C00D14929 /* FollowersSliderCollectionViewCell.swift in Sources */,
+				E24FCB082997D5BB00361EF0 /* WheelViewController.swift in Sources */,
 				E2F1E6652992DFFC006D4BD6 /* CollectionsDetailViewController.swift in Sources */,
 				E2115F4929967EA80080FE30 /* BaseView.swift in Sources */,
-				E2115F652996D22B0080FE30 /* UserDetailViewController.swift in Sources */,
+				E2B60EA32996F7A6000858D0 /* FollowersSliderTableViewCell.swift in Sources */,
+				E2B60E9C2996F42C000858D0 /* ProfilHeaderTableViewCell.swift in Sources */,
 				E2115F4E2996802A0080FE30 /* Fonts.swift in Sources */,
 				E299DDD3298D48BE004AF932 /* SceneDelegate.swift in Sources */,
 				E2F1E66C2992F96B006D4BD6 /* CollectionTableViewCell.swift in Sources */,
@@ -522,6 +662,7 @@
 		};
 		E299DDE2298D48C4004AF932 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E6F8A3CEBFC532656265F86 /* Pods-SetreeApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -550,6 +691,7 @@
 		};
 		E299DDE3298D48C4004AF932 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FC3284BDC75D12D278957BAB /* Pods-SetreeApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
