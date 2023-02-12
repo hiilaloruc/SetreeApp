@@ -12,7 +12,7 @@ class UserViewController: UIViewController, UICollectionViewDelegate,UICollectio
     @IBOutlet weak var nameLabel : UILabel!
     @IBOutlet weak var listCountLabel : UILabel!
     @IBOutlet weak var followerCountLabel : UILabel!
-    @IBOutlet weak var followButton : UIButton!
+    @IBOutlet weak var followButton : UIButtonX!
     @IBOutlet weak var topContainerView: UIView!
     @IBOutlet weak var followersSliderCollectionView: UICollectionView!
     @IBOutlet weak var userListsCollectionView: UICollectionView!
@@ -20,7 +20,7 @@ class UserViewController: UIViewController, UICollectionViewDelegate,UICollectio
     @IBOutlet weak var scrollView: UIScrollView!
     
     
-    internal var isFollowing: Bool = false
+    internal var isFollowed: Bool = true
     internal var userId: Int = 112
     
     
@@ -28,19 +28,20 @@ class UserViewController: UIViewController, UICollectionViewDelegate,UICollectio
         super.viewDidLoad()
         followersSliderCollectionView.delegate = self
         followersSliderCollectionView.dataSource = self
-        
         userListsCollectionView.delegate = self
         userListsCollectionView.dataSource = self
+        
         initUI()
         self.view.layoutIfNeeded()
     }
     
     func initUI(){
+        followButton.tintColor = UIColor.mainRoyalBlueColor
         followersSliderCollectionView.showsHorizontalScrollIndicator = false
-        followButton.layer.borderWidth = 1
-        followButton.layer.borderColor = UIColor.mainReddishColor.cgColor
+     /*   followButton.layer.borderWidth = 1
+        followButton.layer.borderColor = UIColor.mainRoyalBlueColor.cgColor
         followButton.layer.cornerRadius = 20
-        followButton.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        followButton.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .bold)*/
     }
     
     
@@ -49,6 +50,22 @@ class UserViewController: UIViewController, UICollectionViewDelegate,UICollectio
         self.scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: self.userListsCollectionView.contentSize.height + 480)
     }
     
+    @IBAction func followButtonClicked(_ sender: Any) {
+        print("jj: clicked follow Current: \(isFollowed)")
+        
+        if isFollowed {
+            followButton.tintColor = UIColor.white
+            followButton.setTitleColor(UIColor.mainRoyalBlueColor, for: .normal)
+            followButton.setTitle("Follow", for: .normal)
+        } else {
+            followButton.tintColor = UIColor.mainRoyalBlueColor
+            followButton.setTitleColor(.white, for: .normal)
+            followButton.setTitle("Following", for: .normal)
+        }
+        isFollowed.toggle()
+        
+        
+    }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.followersSliderCollectionView {
             return 11

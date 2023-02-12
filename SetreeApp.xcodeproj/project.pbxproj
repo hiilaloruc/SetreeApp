@@ -38,6 +38,7 @@
 		E2B60EA92996FAAE000858D0 /* CollectionListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2B60EA72996FAAE000858D0 /* CollectionListTableViewCell.xib */; };
 		E2BAA7BE298D9C5300D2AC5F /* CollectionsCardViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BAA7BD298D9C5300D2AC5F /* CollectionsCardViewCell.swift */; };
 		E2BAA7C1298DA5FB00D2AC5F /* CollectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BAA7C0298DA5FB00D2AC5F /* CollectionsViewController.swift */; };
+		E2D25C212999129700A2AE3A /* UIButtonX.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D25C202999129700A2AE3A /* UIButtonX.swift */; };
 		E2E260E0299712F4005D2B54 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E260DF299712F4005D2B54 /* UserViewController.swift */; };
 		E2F1E6652992DFFC006D4BD6 /* CollectionsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F1E6642992DFFC006D4BD6 /* CollectionsDetailViewController.swift */; };
 		E2F1E66C2992F96B006D4BD6 /* CollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F1E66A2992F96B006D4BD6 /* CollectionTableViewCell.swift */; };
@@ -79,6 +80,7 @@
 		E2B60EA72996FAAE000858D0 /* CollectionListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionListTableViewCell.xib; sourceTree = "<group>"; };
 		E2BAA7BD298D9C5300D2AC5F /* CollectionsCardViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsCardViewCell.swift; sourceTree = "<group>"; };
 		E2BAA7C0298DA5FB00D2AC5F /* CollectionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsViewController.swift; sourceTree = "<group>"; };
+		E2D25C202999129700A2AE3A /* UIButtonX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonX.swift; sourceTree = "<group>"; };
 		E2E260DF299712F4005D2B54 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		E2F1E6642992DFFC006D4BD6 /* CollectionsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsDetailViewController.swift; sourceTree = "<group>"; };
 		E2F1E66A2992F96B006D4BD6 /* CollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionTableViewCell.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				E2115F4829967EA80080FE30 /* BaseView.swift */,
+				E2D25C202999129700A2AE3A /* UIButtonX.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -502,6 +505,7 @@
 			files = (
 				E24FCB0D2997D5EE00361EF0 /* WheelView.swift in Sources */,
 				E2B1B8D3298FE21700470F5D /* GlobalVariables.swift in Sources */,
+				E2D25C212999129700A2AE3A /* UIButtonX.swift in Sources */,
 				E2B60EA82996FAAE000858D0 /* CollectionListTableViewCell.swift in Sources */,
 				E2115F502996803F0080FE30 /* Colors.swift in Sources */,
 				E2115F5E29968DF10080FE30 /* SocialViewController.swift in Sources */,

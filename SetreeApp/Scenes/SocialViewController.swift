@@ -13,11 +13,12 @@ class SocialViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
         
-        textField.attributedPlaceholder = NSAttributedString(string: "Search friends..", attributes: [NSAttributedString.Key.foregroundColor: UIColor.tooMuchLightRed])
+        textField.attributedPlaceholder = NSAttributedString(string: "Search friends..", attributes: [NSAttributedString.Key.foregroundColor: UIColor.tooMuchLightRoyalBlueColor])
         
     }
     
@@ -45,6 +46,19 @@ extension SocialViewController : UITableViewDelegate, UITableViewDataSource {
                
                 }
             }
+        
+        cell.tappedFollow = {
+            if cell.isFollowed {
+                cell.followButton.tintColor = UIColor.white
+                cell.followButton.setTitleColor(UIColor.mainRoyalBlueColor, for: .normal)
+                cell.followButton.setTitle("Follow", for: .normal)
+            } else {
+                cell.followButton.tintColor = UIColor.mainRoyalBlueColor
+                cell.followButton.setTitleColor(.white, for: .normal)
+                cell.followButton.setTitle("Following", for: .normal)
+            }
+            cell.isFollowed.toggle()
+        }
         return cell
     }
     

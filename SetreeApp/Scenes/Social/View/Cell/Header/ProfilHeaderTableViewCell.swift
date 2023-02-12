@@ -23,7 +23,7 @@ class ProfilHeaderTableViewCell: UITableViewCell {
     }
     func initalUI(){
             followButton.layer.borderWidth = 1
-            followButton.layer.borderColor = UIColor.mainReddishColor.cgColor
+            followButton.layer.borderColor = UIColor.mainRoyalBlueColor.cgColor
             followButton.layer.cornerRadius = 20
             followButton.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .bold)
     }

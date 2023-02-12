@@ -33,7 +33,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" name="mainReddishColor"/>
+                    <color key="backgroundColor" name="mainRoyalBlueColor"/>
                     <constraints>
                         <constraint firstItem="LSV-kd-jXW" firstAttribute="top" secondItem="pUQ-Nz-M8j" secondAttribute="top" constant="-4" id="BFo-ul-xVE"/>
                         <constraint firstAttribute="height" constant="44" id="byu-0w-Euu"/>
@@ -59,8 +59,8 @@
         </view>
     </objects>
     <resources>
-        <namedColor name="mainReddishColor">
-            <color red="0.9309999942779541" green="0.52999997138977051" blue="0.51800000667572021" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        <namedColor name="mainRoyalBlueColor">
+            <color red="0.53725490196078429" green="0.61568627450980395" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

@@ -34,13 +34,13 @@ class WheelViewController: UIViewController {
             index: 3,
             content: .label("4"),
             area: .flex(1),
-            fillColor: Color(UIColor.softTurquoise)
+            fillColor: Color(UIColor.softGreen)
         ),
         PartData(
             index: 4,
             content: .label("5"),
             area: .flex(1),
-            fillColor: Color(UIColor.verySoftRed)
+            fillColor: Color(UIColor.mainRoyalBlueColor)
         ),
         PartData(
             index: 5,

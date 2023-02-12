@@ -11,12 +11,17 @@ extension UIColor {
     @nonobjc class var tooMuchLightRed: UIColor { //for placeholder
         UIColor(red: 255/255, green: 191/255, blue: 192/255, alpha: 1.0) /* #ffbfc0 */
     }
-
-    @nonobjc class var mainReddishColor: UIColor {
+    @nonobjc class var mainRoyalBlueColor: UIColor {
+        return UIColor(red: 137/255, green: 157/255, blue: 255/255, alpha: 1.0) /* #899dff */
+    }
+    @nonobjc class var tooMuchLightRoyalBlueColor: UIColor {
+        return UIColor(red: 239/255, green: 241/255, blue: 255/255, alpha: 1.0) /* #eff1ff */
+    }
+    @nonobjc class var oldReddishColor : UIColor{
         return UIColor(red: 254/255, green: 128/255, blue: 128/255, alpha: 1.0) /* #fe8080 */
     }
     @nonobjc class var softOrange: UIColor {
-        return UIColor(red: 248/255, green: 167/255, blue: 112/255, alpha: 1.0) /* #f8a770 */
+        return UIColor(red: 244/255, green: 193/255, blue: 129/255, alpha: 1.0) /* #f4c181 */
     }
     @nonobjc class var softDarkblue: UIColor {
         return UIColor(red: 248/255, green: 160/255, blue: 64/255, alpha: 1.0) /* #f8a040 */
@@ -25,10 +30,16 @@ extension UIColor {
         return UIColor(red: 199/255, green: 178/255, blue: 213/255, alpha: 1.0) /* #c7b2d5 */
     }
     @nonobjc class var softPink: UIColor {
-        return UIColor(red: 231/255, green: 187/255, blue: 215/255, alpha: 1.0) /* #e7bbd7 */
+        return UIColor(red: 255/255, green: 159/255, blue: 159/255, alpha: 1.0) /* #ff9f9f */
+    }
+    @nonobjc class var softYellow: UIColor {
+        return UIColor(red: 251/255, green: 246/255, blue: 144/255, alpha: 1.0) /* #fbf690 */
     }
     @nonobjc class var softTurquoise: UIColor {
         return UIColor(red: 111/255, green: 223/255, blue: 229/255, alpha: 1.0) /* #6fdfe5 */
+    }
+    @nonobjc class var softGreen: UIColor {
+        return UIColor(red: 154/255, green: 227/255, blue: 151/255, alpha: 1.0) /* #9ae397 */
     }
     @nonobjc class var verySoftRed: UIColor {
         return UIColor(red: 242/255, green: 123/255, blue: 111/255, alpha: 1.0) /* #f27b6f */
