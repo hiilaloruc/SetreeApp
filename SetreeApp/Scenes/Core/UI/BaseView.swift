@@ -30,3 +30,11 @@ class BaseView: UIView {
         return view
     }
 }
+
+
+func setCornerRadius(_ view: UIView, topLeft: CGFloat, topRight: CGFloat, bottomLeft: CGFloat, bottomRight: CGFloat) {
+    let path = UIBezierPath(roundedRect: view.bounds, byRoundingCorners: [.topLeft, .topRight, .bottomLeft, .bottomRight], cornerRadii: CGSize(width: topLeft, height: 0.0))
+    let maskLayer = CAShapeLayer()
+    maskLayer.path = path.cgPath
+    view.layer.mask = maskLayer
+}

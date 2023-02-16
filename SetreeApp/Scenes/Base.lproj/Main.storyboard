@@ -617,18 +617,61 @@
         <!--Goals-->
         <scene sceneID="uOg-Zn-VvR">
             <objects>
-                <viewController id="Pbc-vE-RkH" sceneMemberID="viewController">
+                <viewController id="Pbc-vE-RkH" customClass="GoalsNewViewController" customModule="SetreeApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7Dm-NB-4Vs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="MWd-0r-F9o">
+                                <rect key="frame" x="0.0" y="88" width="375" height="641"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="qb0-39-1id"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="MWd-0r-F9o" firstAttribute="leading" secondItem="qb0-39-1id" secondAttribute="leading" id="6Ye-Z6-mLx"/>
+                            <constraint firstItem="qb0-39-1id" firstAttribute="trailing" secondItem="MWd-0r-F9o" secondAttribute="trailing" id="Kmu-XY-yJc"/>
+                            <constraint firstItem="MWd-0r-F9o" firstAttribute="top" secondItem="qb0-39-1id" secondAttribute="top" id="Tdw-dw-fhw"/>
+                            <constraint firstItem="qb0-39-1id" firstAttribute="bottom" secondItem="MWd-0r-F9o" secondAttribute="bottom" id="hO1-ih-SEB"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Goals" id="lxK-oj-IF6"/>
+                    <navigationItem key="navigationItem" title="Goals" id="lxK-oj-IF6">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="7a5-DB-mq0">
+                            <view key="customView" contentMode="scaleToFill" id="nOk-RG-zX8">
+                                <rect key="frame" x="315" y="6" width="44" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t3Q-oU-JNi">
+                                        <rect key="frame" x="7.3333333333333339" y="-4" width="29.333333333333329" height="36"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="45"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" name="mainRoyalBlueColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="Ttw-4u-t1T"/>
+                                    <constraint firstItem="t3Q-oU-JNi" firstAttribute="centerX" secondItem="nOk-RG-zX8" secondAttribute="centerX" id="U8N-pH-p7P"/>
+                                    <constraint firstItem="t3Q-oU-JNi" firstAttribute="top" secondItem="nOk-RG-zX8" secondAttribute="top" constant="-4" id="rhl-xm-X4a"/>
+                                    <constraint firstAttribute="bottom" secondItem="t3Q-oU-JNi" secondAttribute="bottom" id="w3A-RX-fNH"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="22"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="MWd-0r-F9o" id="mKX-n1-cBn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c0h-Ry-Xvs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-119" y="743"/>
+            <point key="canvasLocation" x="-119.2" y="742.61083743842369"/>
         </scene>
         <!--Collections-->
         <scene sceneID="Kki-iT-0qN">
@@ -813,7 +856,7 @@
                                     <constraint firstAttribute="height" constant="300" id="obY-jX-0MW"/>
                                 </constraints>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="rA1-qD-h3s">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="rA1-qD-h3s">
                                 <rect key="frame" x="0.0" y="264" width="375" height="548"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <userDefinedRuntimeAttributes>

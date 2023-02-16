@@ -21,6 +21,11 @@
 		E2115F5E29968DF10080FE30 /* SocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2115F5D29968DF10080FE30 /* SocialViewController.swift */; };
 		E2115F63299698040080FE30 /* SocialFriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2115F62299698040080FE30 /* SocialFriendsTableViewCell.swift */; };
 		E21359292996E80C00D14929 /* FollowersSliderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21359282996E80C00D14929 /* FollowersSliderCollectionViewCell.swift */; };
+		E2411DC1299E998B00DED118 /* GoalsNewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2411DC0299E998B00DED118 /* GoalsNewViewController.swift */; };
+		E2411DC6299E9A7300DED118 /* GoalCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2411DC4299E9A7300DED118 /* GoalCardTableViewCell.swift */; };
+		E2411DC7299E9A7300DED118 /* GoalCardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2411DC5299E9A7300DED118 /* GoalCardTableViewCell.xib */; };
+		E2411DCE299E9C8D00DED118 /* SingleGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2411DCD299E9C8D00DED118 /* SingleGoalView.swift */; };
+		E2411DD0299E9C9E00DED118 /* SingleGoalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2411DCF299E9C9E00DED118 /* SingleGoalView.xib */; };
 		E24FCB082997D5BB00361EF0 /* WheelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24FCB072997D5BB00361EF0 /* WheelViewController.swift */; };
 		E24FCB0D2997D5EE00361EF0 /* WheelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24FCB0C2997D5EE00361EF0 /* WheelView.swift */; };
 		E299DDD1298D48BE004AF932 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E299DDD0298D48BE004AF932 /* AppDelegate.swift */; };
@@ -61,6 +66,11 @@
 		E2115F5D29968DF10080FE30 /* SocialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialViewController.swift; sourceTree = "<group>"; };
 		E2115F62299698040080FE30 /* SocialFriendsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialFriendsTableViewCell.swift; sourceTree = "<group>"; };
 		E21359282996E80C00D14929 /* FollowersSliderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersSliderCollectionViewCell.swift; sourceTree = "<group>"; };
+		E2411DC0299E998B00DED118 /* GoalsNewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsNewViewController.swift; sourceTree = "<group>"; };
+		E2411DC4299E9A7300DED118 /* GoalCardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCardTableViewCell.swift; sourceTree = "<group>"; };
+		E2411DC5299E9A7300DED118 /* GoalCardTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GoalCardTableViewCell.xib; sourceTree = "<group>"; };
+		E2411DCD299E9C8D00DED118 /* SingleGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleGoalView.swift; sourceTree = "<group>"; };
+		E2411DCF299E9C9E00DED118 /* SingleGoalView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SingleGoalView.xib; sourceTree = "<group>"; };
 		E24FCB072997D5BB00361EF0 /* WheelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WheelViewController.swift; sourceTree = "<group>"; };
 		E24FCB0C2997D5EE00361EF0 /* WheelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WheelView.swift; sourceTree = "<group>"; };
 		E299DDCD298D48BE004AF932 /* SetreeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SetreeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -193,6 +203,15 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		E2411DC8299E9BFD00DED118 /* SingleGoal */ = {
+			isa = PBXGroup;
+			children = (
+				E2411DCD299E9C8D00DED118 /* SingleGoalView.swift */,
+				E2411DCF299E9C9E00DED118 /* SingleGoalView.xib */,
+			);
+			path = SingleGoal;
+			sourceTree = "<group>";
+		};
 		E24FCB062997D5AD00361EF0 /* Wheel */ = {
 			isa = PBXGroup;
 			children = (
@@ -208,6 +227,23 @@
 				E24FCB0C2997D5EE00361EF0 /* WheelView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		E2589073299E694900836E29 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E2589074299E694F00836E29 /* Cell */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E2589074299E694F00836E29 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				E2411DC4299E9A7300DED118 /* GoalCardTableViewCell.swift */,
+				E2411DC5299E9A7300DED118 /* GoalCardTableViewCell.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		E299DDC4298D48BE004AF932 = {
@@ -243,6 +279,8 @@
 		E2B1B8D4298FE64600470F5D /* Goals */ = {
 			isa = PBXGroup;
 			children = (
+				E2589073299E694900836E29 /* View */,
+				E2411DC0299E998B00DED118 /* GoalsNewViewController.swift */,
 			);
 			path = Goals;
 			sourceTree = "<group>";
@@ -277,6 +315,7 @@
 		E2BAA7B3298D8D6800D2AC5F /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				E2411DC8299E9BFD00DED118 /* SingleGoal */,
 				E2115F4A29967F670080FE30 /* plusBtnView */,
 			);
 			path = Components;
@@ -442,11 +481,13 @@
 				E2115F46299674240080FE30 /* plusBtnView.xib in Resources */,
 				E2115F58299684200080FE30 /* SF-UI-Display-Semibold.ttf in Resources */,
 				E299DDDA298D48C4004AF932 /* Assets.xcassets in Resources */,
+				E2411DD0299E9C9E00DED118 /* SingleGoalView.xib in Resources */,
 				E299DDD8298D48BE004AF932 /* Main.storyboard in Resources */,
 				E2F1E66D2992F96C006D4BD6 /* CollectionTableViewCell.xib in Resources */,
 				E2B60EA92996FAAE000858D0 /* CollectionListTableViewCell.xib in Resources */,
 				E2B60E9D2996F42C000858D0 /* ProfilHeaderTableViewCell.xib in Resources */,
 				E2115F57299684200080FE30 /* SF-UI-Display-Regular.ttf in Resources */,
+				E2411DC7299E9A7300DED118 /* GoalCardTableViewCell.xib in Resources */,
 				E2B60EA42996F7A6000858D0 /* FollowersSliderTableViewCell.xib in Resources */,
 				E2115F5B299684200080FE30 /* SF-UI-Display-Medium.ttf in Resources */,
 				E2115F59299684200080FE30 /* SF-UI-Display-Light.ttf in Resources */,
@@ -513,9 +554,12 @@
 				E2115F44299674150080FE30 /* plusBtnView.swift in Sources */,
 				E299DDD5298D48BE004AF932 /* ViewController.swift in Sources */,
 				E2E260E0299712F4005D2B54 /* UserViewController.swift in Sources */,
+				E2411DC6299E9A7300DED118 /* GoalCardTableViewCell.swift in Sources */,
 				E2115F63299698040080FE30 /* SocialFriendsTableViewCell.swift in Sources */,
 				E2BAA7BE298D9C5300D2AC5F /* CollectionsCardViewCell.swift in Sources */,
+				E2411DC1299E998B00DED118 /* GoalsNewViewController.swift in Sources */,
 				E299DDD1298D48BE004AF932 /* AppDelegate.swift in Sources */,
+				E2411DCE299E9C8D00DED118 /* SingleGoalView.swift in Sources */,
 				E21359292996E80C00D14929 /* FollowersSliderCollectionViewCell.swift in Sources */,
 				E24FCB082997D5BB00361EF0 /* WheelViewController.swift in Sources */,
 				E2F1E6652992DFFC006D4BD6 /* CollectionsDetailViewController.swift in Sources */,
