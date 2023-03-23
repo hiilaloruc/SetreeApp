@@ -21,6 +21,7 @@
 		E2115F5E29968DF10080FE30 /* SocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2115F5D29968DF10080FE30 /* SocialViewController.swift */; };
 		E2115F63299698040080FE30 /* SocialFriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2115F62299698040080FE30 /* SocialFriendsTableViewCell.swift */; };
 		E21359292996E80C00D14929 /* FollowersSliderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21359282996E80C00D14929 /* FollowersSliderCollectionViewCell.swift */; };
+		E230FBF929CCC45A0002397C /* GoalsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E230FBF829CCC45A0002397C /* GoalsDetailViewController.swift */; };
 		E2411DC1299E998B00DED118 /* GoalsNewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2411DC0299E998B00DED118 /* GoalsNewViewController.swift */; };
 		E2411DC6299E9A7300DED118 /* GoalCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2411DC4299E9A7300DED118 /* GoalCardTableViewCell.swift */; };
 		E2411DC7299E9A7300DED118 /* GoalCardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2411DC5299E9A7300DED118 /* GoalCardTableViewCell.xib */; };
@@ -66,6 +67,7 @@
 		E2115F5D29968DF10080FE30 /* SocialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialViewController.swift; sourceTree = "<group>"; };
 		E2115F62299698040080FE30 /* SocialFriendsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialFriendsTableViewCell.swift; sourceTree = "<group>"; };
 		E21359282996E80C00D14929 /* FollowersSliderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersSliderCollectionViewCell.swift; sourceTree = "<group>"; };
+		E230FBF829CCC45A0002397C /* GoalsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsDetailViewController.swift; sourceTree = "<group>"; };
 		E2411DC0299E998B00DED118 /* GoalsNewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsNewViewController.swift; sourceTree = "<group>"; };
 		E2411DC4299E9A7300DED118 /* GoalCardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCardTableViewCell.swift; sourceTree = "<group>"; };
 		E2411DC5299E9A7300DED118 /* GoalCardTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GoalCardTableViewCell.xib; sourceTree = "<group>"; };
@@ -203,6 +205,23 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		E230FBF629CCC4250002397C /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E230FBF729CCC4340002397C /* Detail */,
+				E2411DC0299E998B00DED118 /* GoalsNewViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		E230FBF729CCC4340002397C /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				E230FBF829CCC45A0002397C /* GoalsDetailViewController.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
 		E2411DC8299E9BFD00DED118 /* SingleGoal */ = {
 			isa = PBXGroup;
 			children = (
@@ -279,8 +298,8 @@
 		E2B1B8D4298FE64600470F5D /* Goals */ = {
 			isa = PBXGroup;
 			children = (
+				E230FBF629CCC4250002397C /* ViewController */,
 				E2589073299E694900836E29 /* View */,
-				E2411DC0299E998B00DED118 /* GoalsNewViewController.swift */,
 			);
 			path = Goals;
 			sourceTree = "<group>";
@@ -562,6 +581,7 @@
 				E2411DCE299E9C8D00DED118 /* SingleGoalView.swift in Sources */,
 				E21359292996E80C00D14929 /* FollowersSliderCollectionViewCell.swift in Sources */,
 				E24FCB082997D5BB00361EF0 /* WheelViewController.swift in Sources */,
+				E230FBF929CCC45A0002397C /* GoalsDetailViewController.swift in Sources */,
 				E2F1E6652992DFFC006D4BD6 /* CollectionsDetailViewController.swift in Sources */,
 				E2115F4929967EA80080FE30 /* BaseView.swift in Sources */,
 				E2B60EA32996F7A6000858D0 /* FollowersSliderTableViewCell.swift in Sources */,

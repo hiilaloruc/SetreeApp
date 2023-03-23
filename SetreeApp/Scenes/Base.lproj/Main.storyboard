@@ -602,6 +602,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="selectedImageTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="selectedIndex">
+                            <integer key="value" value="2"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <segue destination="N4Y-q5-QLx" kind="relationship" relationship="viewControllers" id="8ah-rF-sDh"/>
                         <segue destination="TIX-KW-vOE" kind="relationship" relationship="viewControllers" id="sty-SO-HzP"/>
@@ -671,7 +676,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c0h-Ry-Xvs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-119.2" y="742.61083743842369"/>
+            <point key="canvasLocation" x="-127" y="808"/>
         </scene>
         <!--Collections-->
         <scene sceneID="Kki-iT-0qN">
@@ -964,7 +969,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Tu-Oy-0pI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="753.62318840579712" y="762.72321428571422"/>
+            <point key="canvasLocation" x="754" y="822"/>
         </scene>
         <!--Profile-->
         <scene sceneID="VA6-tu-p2h">
@@ -1020,6 +1025,37 @@
             </objects>
             <point key="canvasLocation" x="886.95652173913049" y="93.75"/>
         </scene>
+        <!--Goals Detail View Controller-->
+        <scene sceneID="D8d-fT-nzw">
+            <objects>
+                <viewController storyboardIdentifier="GoalsDetailViewController" id="yfW-X1-i6U" customClass="GoalsDetailViewController" customModule="SetreeApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="POJ-o6-otQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="T1j-zv-xR3">
+                                <rect key="frame" x="0.0" y="44" width="375" height="734"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="1P7-sA-Dqv"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="1P7-sA-Dqv" firstAttribute="bottom" secondItem="T1j-zv-xR3" secondAttribute="bottom" id="7LT-jf-4RJ"/>
+                            <constraint firstItem="T1j-zv-xR3" firstAttribute="leading" secondItem="1P7-sA-Dqv" secondAttribute="leading" id="IoC-TY-qjj"/>
+                            <constraint firstItem="1P7-sA-Dqv" firstAttribute="trailing" secondItem="T1j-zv-xR3" secondAttribute="trailing" id="hp4-BW-qHy"/>
+                            <constraint firstItem="T1j-zv-xR3" firstAttribute="top" secondItem="1P7-sA-Dqv" secondAttribute="top" id="njQ-4q-IXV"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="T1j-zv-xR3" id="SSf-p5-Tge"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jX5-ED-myi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1521" y="822"/>
+        </scene>
         <!--Goals-->
         <scene sceneID="31U-UU-BYt">
             <objects>
@@ -1037,7 +1073,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PvG-an-b0g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-794.20289855072474" y="742.63392857142856"/>
+            <point key="canvasLocation" x="-802" y="808"/>
         </scene>
         <!--Social-->
         <scene sceneID="bGP-ZI-2r8">
