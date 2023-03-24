@@ -10,6 +10,7 @@ import UIKit
 class SocialViewController: UIViewController {
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var titleLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,7 @@ class SocialViewController: UIViewController {
     
     @IBAction func clickedSearchBtn(_ sender: Any) {
         print("jj: Search clicked: \(textField.text)")
+        titleLabel.text = "Results"
     }
     
 

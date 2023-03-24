@@ -16,6 +16,8 @@ class GoalCardTableViewCell: UITableViewCell {
 
     internal var color : UIColor? {
         didSet{
+            self.stackView.backgroundColor = UIColor.white
+            containerView.backgroundColor = self.color?.withAlphaComponent(0.2)
             for subview in bottomView.subviews {
                 subview.backgroundColor = self.color
             }
@@ -37,6 +39,7 @@ class GoalCardTableViewCell: UITableViewCell {
                 let goalItem = SingleGoalView()
                 goalItem.contentLabel.text = goal
                 goalItem.checkImageView.tintColor = self.color
+                goalItem.containerView.backgroundColor = self.color?.withAlphaComponent(0.2)
                 goalItem.translatesAutoresizingMaskIntoConstraints = false
                 goalItem.tappedCheckImage =  {
                     if ( (self.tappedCheck?("1_CustomId") != nil) &&  self.tappedCheck!("1_CustomId") ) {

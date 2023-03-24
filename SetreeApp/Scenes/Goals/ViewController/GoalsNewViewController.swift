@@ -70,7 +70,6 @@ extension GoalsNewViewController: UITableViewDelegate, UITableViewDataSource {
         let cell =  tableView.dequeueReusableCell(withIdentifier: "GoalCardTableViewCell", for: indexPath) as! GoalCardTableViewCell
         cell.selectionStyle = .none
         cell.color = UIColor(named: collectionCardColorsArr[indexPath.row%collectionCardColorsArr.count])!
-
         cell.titleLabel.text = GoalObjects[indexPath.row][0] as! String
         cell.countLabel.text = GoalObjects[indexPath.row][1] as! String
         cell.goalsArray = (GoalObjects[indexPath.row][2] as! [String])

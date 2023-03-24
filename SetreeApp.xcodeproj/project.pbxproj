@@ -46,6 +46,7 @@
 		E2BAA7C1298DA5FB00D2AC5F /* CollectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2BAA7C0298DA5FB00D2AC5F /* CollectionsViewController.swift */; };
 		E2D25C212999129700A2AE3A /* UIButtonX.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D25C202999129700A2AE3A /* UIButtonX.swift */; };
 		E2E260E0299712F4005D2B54 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E260DF299712F4005D2B54 /* UserViewController.swift */; };
+		E2E9548B29CDCD2B000617AC /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E9548A29CDCD2B000617AC /* ProfileViewController.swift */; };
 		E2F1E6652992DFFC006D4BD6 /* CollectionsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F1E6642992DFFC006D4BD6 /* CollectionsDetailViewController.swift */; };
 		E2F1E66C2992F96B006D4BD6 /* CollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F1E66A2992F96B006D4BD6 /* CollectionTableViewCell.swift */; };
 		E2F1E66D2992F96C006D4BD6 /* CollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2F1E66B2992F96B006D4BD6 /* CollectionTableViewCell.xib */; };
@@ -94,6 +95,7 @@
 		E2BAA7C0298DA5FB00D2AC5F /* CollectionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsViewController.swift; sourceTree = "<group>"; };
 		E2D25C202999129700A2AE3A /* UIButtonX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonX.swift; sourceTree = "<group>"; };
 		E2E260DF299712F4005D2B54 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
+		E2E9548A29CDCD2B000617AC /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		E2F1E6642992DFFC006D4BD6 /* CollectionsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsDetailViewController.swift; sourceTree = "<group>"; };
 		E2F1E66A2992F96B006D4BD6 /* CollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionTableViewCell.swift; sourceTree = "<group>"; };
 		E2F1E66B2992F96B006D4BD6 /* CollectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionTableViewCell.xib; sourceTree = "<group>"; };
@@ -343,10 +345,10 @@
 		E2BAA7BA298D9B4C00D2AC5F /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				E2E9548929CDCD01000617AC /* Profile */,
 				E24FCB062997D5AD00361EF0 /* Wheel */,
 				E2115F4729967E920080FE30 /* Core */,
 				E2F1E6622992DE39006D4BD6 /* Social */,
-				E2115F5D29968DF10080FE30 /* SocialViewController.swift */,
 				E2B1B8D4298FE64600470F5D /* Goals */,
 				E2BAA7BF298DA5CE00D2AC5F /* Collections */,
 				E299DDD6298D48BE004AF932 /* Main.storyboard */,
@@ -385,9 +387,18 @@
 			path = Collections;
 			sourceTree = "<group>";
 		};
+		E2E9548929CDCD01000617AC /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				E2E9548A29CDCD2B000617AC /* ProfileViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		E2F1E6622992DE39006D4BD6 /* Social */ = {
 			isa = PBXGroup;
 			children = (
+				E2115F5D29968DF10080FE30 /* SocialViewController.swift */,
 				E2115F60299697D90080FE30 /* ViewController */,
 				E2115F5F299697D50080FE30 /* View */,
 			);
@@ -569,6 +580,7 @@
 				E2B60EA82996FAAE000858D0 /* CollectionListTableViewCell.swift in Sources */,
 				E2115F502996803F0080FE30 /* Colors.swift in Sources */,
 				E2115F5E29968DF10080FE30 /* SocialViewController.swift in Sources */,
+				E2E9548B29CDCD2B000617AC /* ProfileViewController.swift in Sources */,
 				E2BAA7C1298DA5FB00D2AC5F /* CollectionsViewController.swift in Sources */,
 				E2115F44299674150080FE30 /* plusBtnView.swift in Sources */,
 				E299DDD5298D48BE004AF932 /* ViewController.swift in Sources */,

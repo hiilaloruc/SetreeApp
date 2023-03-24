@@ -76,4 +76,23 @@ extension CollectionsDetailViewController: UITableViewDelegate, UITableViewDataS
         return 44
     }
     
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let deleteAction = UITableViewRowAction(style: .destructive, title: "Sil") { (action, indexPath) in
+            // silme işlemini gerçekleştir
+            print("silme işlemini gerçekleştir")
+        }
+        return [deleteAction]
+    }
+
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            // silme işlemini gerçekleştir
+            print("silme işlemini gerçekleştir2")
+        }
+    }
+    
 }

@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SingleGoalView" customModule="SetreeApp" customModuleProvider="target">
             <connections>
                 <outlet property="checkImageView" destination="XVf-Y4-QmH" id="Z3i-Tz-oDj"/>
+                <outlet property="containerView" destination="iN0-l3-epB" id="Mb5-XG-ILP"/>
                 <outlet property="contentLabel" destination="OhK-Km-Pbb" id="6Um-UQ-MSB"/>
             </connections>
         </placeholder>
