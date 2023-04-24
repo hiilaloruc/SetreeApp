@@ -21,6 +21,7 @@
 		E2115F5E29968DF10080FE30 /* SocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2115F5D29968DF10080FE30 /* SocialViewController.swift */; };
 		E2115F63299698040080FE30 /* SocialFriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2115F62299698040080FE30 /* SocialFriendsTableViewCell.swift */; };
 		E21359292996E80C00D14929 /* FollowersSliderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21359282996E80C00D14929 /* FollowersSliderCollectionViewCell.swift */; };
+		E21C80E729F6033900C9E9AB /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E21C80E629F6033900C9E9AB /* Auth.storyboard */; };
 		E230FBF929CCC45A0002397C /* GoalsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E230FBF829CCC45A0002397C /* GoalsDetailViewController.swift */; };
 		E2411DC1299E998B00DED118 /* GoalsNewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2411DC0299E998B00DED118 /* GoalsNewViewController.swift */; };
 		E2411DC6299E9A7300DED118 /* GoalCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2411DC4299E9A7300DED118 /* GoalCardTableViewCell.swift */; };
@@ -29,6 +30,7 @@
 		E2411DD0299E9C9E00DED118 /* SingleGoalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2411DCF299E9C9E00DED118 /* SingleGoalView.xib */; };
 		E24FCB082997D5BB00361EF0 /* WheelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24FCB072997D5BB00361EF0 /* WheelViewController.swift */; };
 		E24FCB0D2997D5EE00361EF0 /* WheelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24FCB0C2997D5EE00361EF0 /* WheelView.swift */; };
+		E270DA4629F5F25E004243BE /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E270DA4529F5F25E004243BE /* UserService.swift */; };
 		E299DDD1298D48BE004AF932 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E299DDD0298D48BE004AF932 /* AppDelegate.swift */; };
 		E299DDD3298D48BE004AF932 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E299DDD2298D48BE004AF932 /* SceneDelegate.swift */; };
 		E299DDD5298D48BE004AF932 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E299DDD4298D48BE004AF932 /* ViewController.swift */; };
@@ -68,6 +70,7 @@
 		E2115F5D29968DF10080FE30 /* SocialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialViewController.swift; sourceTree = "<group>"; };
 		E2115F62299698040080FE30 /* SocialFriendsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialFriendsTableViewCell.swift; sourceTree = "<group>"; };
 		E21359282996E80C00D14929 /* FollowersSliderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersSliderCollectionViewCell.swift; sourceTree = "<group>"; };
+		E21C80E629F6033900C9E9AB /* Auth.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Auth.storyboard; sourceTree = "<group>"; };
 		E230FBF829CCC45A0002397C /* GoalsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsDetailViewController.swift; sourceTree = "<group>"; };
 		E2411DC0299E998B00DED118 /* GoalsNewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsNewViewController.swift; sourceTree = "<group>"; };
 		E2411DC4299E9A7300DED118 /* GoalCardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCardTableViewCell.swift; sourceTree = "<group>"; };
@@ -76,6 +79,7 @@
 		E2411DCF299E9C9E00DED118 /* SingleGoalView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SingleGoalView.xib; sourceTree = "<group>"; };
 		E24FCB072997D5BB00361EF0 /* WheelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WheelViewController.swift; sourceTree = "<group>"; };
 		E24FCB0C2997D5EE00361EF0 /* WheelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WheelView.swift; sourceTree = "<group>"; };
+		E270DA4529F5F25E004243BE /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		E299DDCD298D48BE004AF932 /* SetreeApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SetreeApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E299DDD0298D48BE004AF932 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E299DDD2298D48BE004AF932 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -267,6 +271,22 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		E270DA4429F5F23A004243BE /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				E270DA4529F5F25E004243BE /* UserService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		E270DA4729F5F31E004243BE /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				E21C80E629F6033900C9E9AB /* Auth.storyboard */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
 		E299DDC4298D48BE004AF932 = {
 			isa = PBXGroup;
 			children = (
@@ -288,6 +308,7 @@
 		E299DDCF298D48BE004AF932 /* SetreeApp */ = {
 			isa = PBXGroup;
 			children = (
+				E270DA4429F5F23A004243BE /* Service */,
 				E2BAA7BC298D9B8E00D2AC5F /* Assets */,
 				E2BAA7B3298D8D6800D2AC5F /* Components */,
 				E2BAA7BB298D9B7900D2AC5F /* Supporting File */,
@@ -345,6 +366,7 @@
 		E2BAA7BA298D9B4C00D2AC5F /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				E270DA4729F5F31E004243BE /* Auth */,
 				E2E9548929CDCD01000617AC /* Profile */,
 				E24FCB062997D5AD00361EF0 /* Wheel */,
 				E2115F4729967E920080FE30 /* Core */,
@@ -515,6 +537,7 @@
 				E299DDD8298D48BE004AF932 /* Main.storyboard in Resources */,
 				E2F1E66D2992F96C006D4BD6 /* CollectionTableViewCell.xib in Resources */,
 				E2B60EA92996FAAE000858D0 /* CollectionListTableViewCell.xib in Resources */,
+				E21C80E729F6033900C9E9AB /* Auth.storyboard in Resources */,
 				E2B60E9D2996F42C000858D0 /* ProfilHeaderTableViewCell.xib in Resources */,
 				E2115F57299684200080FE30 /* SF-UI-Display-Regular.ttf in Resources */,
 				E2411DC7299E9A7300DED118 /* GoalCardTableViewCell.xib in Resources */,
@@ -574,6 +597,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E270DA4629F5F25E004243BE /* UserService.swift in Sources */,
 				E24FCB0D2997D5EE00361EF0 /* WheelView.swift in Sources */,
 				E2B1B8D3298FE21700470F5D /* GlobalVariables.swift in Sources */,
 				E2D25C212999129700A2AE3A /* UIButtonX.swift in Sources */,
