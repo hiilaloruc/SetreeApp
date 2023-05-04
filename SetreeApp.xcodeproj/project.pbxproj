@@ -23,6 +23,8 @@
 		E21359292996E80C00D14929 /* FollowersSliderCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E21359282996E80C00D14929 /* FollowersSliderCollectionViewCell.swift */; };
 		E21C80E729F6033900C9E9AB /* Auth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E21C80E629F6033900C9E9AB /* Auth.storyboard */; };
 		E230FBF929CCC45A0002397C /* GoalsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E230FBF829CCC45A0002397C /* GoalsDetailViewController.swift */; };
+		E2355B9F2A03E31D00A4F1CB /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2355B9E2A03E31D00A4F1CB /* RegisterViewController.swift */; };
+		E2355BA42A03F8DD00A4F1CB /* env.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2355BA32A03F8DD00A4F1CB /* env.swift */; };
 		E2411DC1299E998B00DED118 /* GoalsNewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2411DC0299E998B00DED118 /* GoalsNewViewController.swift */; };
 		E2411DC6299E9A7300DED118 /* GoalCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2411DC4299E9A7300DED118 /* GoalCardTableViewCell.swift */; };
 		E2411DC7299E9A7300DED118 /* GoalCardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2411DC5299E9A7300DED118 /* GoalCardTableViewCell.xib */; };
@@ -72,6 +74,8 @@
 		E21359282996E80C00D14929 /* FollowersSliderCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowersSliderCollectionViewCell.swift; sourceTree = "<group>"; };
 		E21C80E629F6033900C9E9AB /* Auth.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Auth.storyboard; sourceTree = "<group>"; };
 		E230FBF829CCC45A0002397C /* GoalsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsDetailViewController.swift; sourceTree = "<group>"; };
+		E2355B9E2A03E31D00A4F1CB /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		E2355BA32A03F8DD00A4F1CB /* env.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = env.swift; sourceTree = "<group>"; };
 		E2411DC0299E998B00DED118 /* GoalsNewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsNewViewController.swift; sourceTree = "<group>"; };
 		E2411DC4299E9A7300DED118 /* GoalCardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCardTableViewCell.swift; sourceTree = "<group>"; };
 		E2411DC5299E9A7300DED118 /* GoalCardTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GoalCardTableViewCell.xib; sourceTree = "<group>"; };
@@ -228,6 +232,22 @@
 			path = Detail;
 			sourceTree = "<group>";
 		};
+		E2355B9D2A03DBF600A4F1CB /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E2355B9E2A03E31D00A4F1CB /* RegisterViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		E2355BA02A03F85B00A4F1CB /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				E2355BA32A03F8DD00A4F1CB /* env.swift */,
+			);
+			path = Private;
+			sourceTree = "<group>";
+		};
 		E2411DC8299E9BFD00DED118 /* SingleGoal */ = {
 			isa = PBXGroup;
 			children = (
@@ -282,6 +302,7 @@
 		E270DA4729F5F31E004243BE /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				E2355B9D2A03DBF600A4F1CB /* ViewController */,
 				E21C80E629F6033900C9E9AB /* Auth.storyboard */,
 			);
 			path = Auth;
@@ -308,6 +329,7 @@
 		E299DDCF298D48BE004AF932 /* SetreeApp */ = {
 			isa = PBXGroup;
 			children = (
+				E2355BA02A03F85B00A4F1CB /* Private */,
 				E270DA4429F5F23A004243BE /* Service */,
 				E2BAA7BC298D9B8E00D2AC5F /* Assets */,
 				E2BAA7B3298D8D6800D2AC5F /* Components */,
@@ -619,12 +641,14 @@
 				E24FCB082997D5BB00361EF0 /* WheelViewController.swift in Sources */,
 				E230FBF929CCC45A0002397C /* GoalsDetailViewController.swift in Sources */,
 				E2F1E6652992DFFC006D4BD6 /* CollectionsDetailViewController.swift in Sources */,
+				E2355BA42A03F8DD00A4F1CB /* env.swift in Sources */,
 				E2115F4929967EA80080FE30 /* BaseView.swift in Sources */,
 				E2B60EA32996F7A6000858D0 /* FollowersSliderTableViewCell.swift in Sources */,
 				E2B60E9C2996F42C000858D0 /* ProfilHeaderTableViewCell.swift in Sources */,
 				E2115F4E2996802A0080FE30 /* Fonts.swift in Sources */,
 				E299DDD3298D48BE004AF932 /* SceneDelegate.swift in Sources */,
 				E2F1E66C2992F96B006D4BD6 /* CollectionTableViewCell.swift in Sources */,
+				E2355B9F2A03E31D00A4F1CB /* RegisterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -777,7 +801,7 @@
 				INFOPLIST_FILE = SetreeApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = Auth;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -806,7 +830,7 @@
 				INFOPLIST_FILE = SetreeApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = Auth;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
