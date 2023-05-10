@@ -43,7 +43,7 @@ extension SocialViewController : UITableViewDelegate, UITableViewDataSource {
         cell.tappedUser = { [weak self] in
             guard let self = self else { return }
                 if let vc = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "UserViewController") as? UserViewController{
-                    
+                    vc.userId = 11
                     self.navigationController?.pushViewController(vc, animated: true)
                
                 }

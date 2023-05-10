@@ -10,13 +10,12 @@ import Foundation
 struct User: Codable {
     let userId: Int
     let username, firstName, lastName: String
-    let email: String?
+    let email: String
     let profilePhotoUrl: String?
-    let gender: String?
-    let status: String?
+    let gender: String
+    let status: String
     let followers, followings : [Int]?
     let createdAt, updatedAt :  String?
-    let password: String?
     
     enum CodingKeys: String, CodingKey {
         case userId = "id"
@@ -25,6 +24,6 @@ struct User: Codable {
         case profilePhotoUrl
         case gender,status
         case followers, followings
-        case createdAt, updatedAt,password
+        case createdAt, updatedAt
     }
 }

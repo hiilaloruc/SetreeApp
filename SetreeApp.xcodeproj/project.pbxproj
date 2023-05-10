@@ -58,6 +58,9 @@
 		E2F1E6652992DFFC006D4BD6 /* CollectionsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F1E6642992DFFC006D4BD6 /* CollectionsDetailViewController.swift */; };
 		E2F1E66C2992F96B006D4BD6 /* CollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F1E66A2992F96B006D4BD6 /* CollectionTableViewCell.swift */; };
 		E2F1E66D2992F96C006D4BD6 /* CollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E2F1E66B2992F96B006D4BD6 /* CollectionTableViewCell.xib */; };
+		E2F7787E2A0BC374005170F6 /* CollectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F7787D2A0BC374005170F6 /* CollectionService.swift */; };
+		E2F778802A0BD746005170F6 /* BaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F7787F2A0BD746005170F6 /* BaseService.swift */; };
+		E2F778822A0BD774005170F6 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F778812A0BD774005170F6 /* Collection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -115,6 +118,9 @@
 		E2F1E6642992DFFC006D4BD6 /* CollectionsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsDetailViewController.swift; sourceTree = "<group>"; };
 		E2F1E66A2992F96B006D4BD6 /* CollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionTableViewCell.swift; sourceTree = "<group>"; };
 		E2F1E66B2992F96B006D4BD6 /* CollectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionTableViewCell.xib; sourceTree = "<group>"; };
+		E2F7787D2A0BC374005170F6 /* CollectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionService.swift; sourceTree = "<group>"; };
+		E2F7787F2A0BD746005170F6 /* BaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseService.swift; sourceTree = "<group>"; };
+		E2F778812A0BD774005170F6 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
 		FC3284BDC75D12D278957BAB /* Pods-SetreeApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SetreeApp.release.xcconfig"; path = "Target Support Files/Pods-SetreeApp/Pods-SetreeApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -227,6 +233,7 @@
 			isa = PBXGroup;
 			children = (
 				E21BA8972A0AD2E9001E9561 /* User.swift */,
+				E2F778812A0BD774005170F6 /* Collection.swift */,
 			);
 			path = Modal;
 			sourceTree = "<group>";
@@ -314,6 +321,8 @@
 			isa = PBXGroup;
 			children = (
 				E270DA4529F5F25E004243BE /* UserService.swift */,
+				E2F7787D2A0BC374005170F6 /* CollectionService.swift */,
+				E2F7787F2A0BD746005170F6 /* BaseService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -647,15 +656,18 @@
 				E21BA8982A0AD2E9001E9561 /* User.swift in Sources */,
 				E2B60EA82996FAAE000858D0 /* CollectionListTableViewCell.swift in Sources */,
 				E2115F502996803F0080FE30 /* Colors.swift in Sources */,
+				E2F778802A0BD746005170F6 /* BaseService.swift in Sources */,
 				E2115F5E29968DF10080FE30 /* SocialViewController.swift in Sources */,
 				E21BA8A02A0AF55A001E9561 /* Utils.swift in Sources */,
 				E2E9548B29CDCD2B000617AC /* ProfileViewController.swift in Sources */,
+				E2F778822A0BD774005170F6 /* Collection.swift in Sources */,
 				E2BAA7C1298DA5FB00D2AC5F /* CollectionsViewController.swift in Sources */,
 				E2115F44299674150080FE30 /* plusBtnView.swift in Sources */,
 				E299DDD5298D48BE004AF932 /* ViewController.swift in Sources */,
 				E21BA89A2A0AE0D7001E9561 /* LoginViewController.swift in Sources */,
 				E2E260E0299712F4005D2B54 /* UserViewController.swift in Sources */,
 				E2411DC6299E9A7300DED118 /* GoalCardTableViewCell.swift in Sources */,
+				E2F7787E2A0BC374005170F6 /* CollectionService.swift in Sources */,
 				E2115F63299698040080FE30 /* SocialFriendsTableViewCell.swift in Sources */,
 				E2BAA7BE298D9C5300D2AC5F /* CollectionsCardViewCell.swift in Sources */,
 				E2411DC1299E998B00DED118 /* GoalsNewViewController.swift in Sources */,

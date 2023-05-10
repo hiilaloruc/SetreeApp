@@ -6,21 +6,53 @@
 //
 
 import UIKit
+import NotificationBannerSwift
+import Kingfisher
+
+
 class CollectionsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     @IBOutlet weak var collectionsView: UICollectionView!
     @IBOutlet weak var plusButton: UIView!
     
+    internal var collectionsArray : [Collection]?{
+        didSet{
+            collectionsView.reloadData()
+        }
+    }
+    private weak var collectionService: CollectionService?{
+        return CollectionService()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionsView.delegate = self
         collectionsView.dataSource = self
-        self.plusButton.isUserInteractionEnabled = true
         
+        initUI()
+        
+        self.plusButton.isUserInteractionEnabled = true
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(plusButtonTapped))
         self.plusButton.addGestureRecognizer(tapGestureRecognizer)
 
     }
+    func initUI(){
+        if let user = baseUSER{
+            collectionService?.getCollections(userId: user.userId){ result in
+                switch result {
+                case .success(let collections):
+                    self.collectionsArray = collections
+                     
+                case .failure(let error):
+                    let banner = GrowingNotificationBanner(title: "Something went wrong while retrieving the data.", subtitle: "Error: \(error.localizedDescription) ", style: .danger)
+                    banner.show()
+
+                }
+            }
+        }
+       
+    }
+    
     
     @objc func plusButtonTapped(_ sender: UITapGestureRecognizer) {
         print("jj: + clicked..")
@@ -31,13 +63,21 @@ class CollectionsViewController: UIViewController, UICollectionViewDelegate, UIC
             return 1
         }
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 15
+        return (collectionsArray?.count ?? 0)
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell =  collectionView.dequeueReusableCell(withReuseIdentifier: "cellCollection", for: indexPath) as! CollectionsCardViewCell
         cell.bgColor = UIColor(named: collectionCardColorsArr[indexPath.row%collectionCardColorsArr.count])!
-        
+        //cell.collection = self.collectionsArray![indexPath.row]
+        cell.titleLabel.text = self.collectionsArray![indexPath.row].title
+        cell.countLabel.text = "8"
+        if let imageUrl = self.collectionsArray![indexPath.row].imageUrl{
+            if let url = URL(string: imageUrl){
+                cell.imageView.kf.setImage(with: url)
+            }
+        }
+
         cell.tappedCell = { [weak self] in
             guard let self = self else { return }
                 if let vc = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "CollectionsDetailViewController") as? CollectionsDetailViewController{

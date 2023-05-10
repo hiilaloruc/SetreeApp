@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import NotificationBannerSwift
 
 class UserViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource {
     @IBOutlet weak var userImageView : UIImageView!
     @IBOutlet weak var nameLabel : UILabel!
+    @IBOutlet weak var usernameLabel : UILabel!
     @IBOutlet weak var listCountLabel : UILabel!
     @IBOutlet weak var followerCountLabel : UILabel!
     @IBOutlet weak var followingCountLabel : UILabel!
@@ -23,8 +25,20 @@ class UserViewController: UIViewController, UICollectionViewDelegate,UICollectio
     
     
     internal var isFollowed: Bool = true
-    internal var userId: Int = 112
-    internal var authUserID: Int = 112
+    internal var userId: Int? = nil
+    
+    internal var collectionsArray : [Collection]?{
+        didSet{
+            userListsCollectionView.reloadData()
+            DispatchQueue.main.async {
+               self.lastCollectionHeight.constant = self.userListsCollectionView.contentSize.height
+               self.scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: self.userListsCollectionView.contentSize.height + 480)
+            }
+        }
+    }
+    private weak var collectionService: CollectionService?{
+        return CollectionService()
+    }
     
     
     override func viewDidLoad() {
@@ -35,7 +49,6 @@ class UserViewController: UIViewController, UICollectionViewDelegate,UICollectio
         followingsSliderCollectionView.dataSource = self
         userListsCollectionView.delegate = self
         userListsCollectionView.dataSource = self
-        
         initUI()
         self.view.layoutIfNeeded()
     }
@@ -49,13 +62,43 @@ class UserViewController: UIViewController, UICollectionViewDelegate,UICollectio
         followButton.layer.borderColor = UIColor.mainRoyalBlueColor.cgColor
         followButton.layer.cornerRadius = 20
         followButton.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .bold)*/
+        if let baseUSER = baseUSER {
+            if self.userId == nil {
+                nameLabel.text = baseUSER.firstName + " " + baseUSER.lastName
+                usernameLabel.text = "@" + baseUSER.username
+                self.navigationItem.title =  baseUSER.username
+                
+                if let followers = baseUSER.followers {
+                    followerCountLabel.text = String(followers.count)
+                }
+                if let followings = baseUSER.followings {
+                    followingCountLabel.text = String(followings.count)
+                }
+                
+                collectionService?.getCollections(userId: baseUSER.userId){ result in
+                    switch result {
+                    case .success(let collections):
+                        self.collectionsArray = collections
+                         
+                    case .failure(let error):
+                        let banner = GrowingNotificationBanner(title: "Something went wrong while retrieving the data.", subtitle: "Error: \(error.localizedDescription) ", style: .danger)
+                        banner.show()
+
+                    }
+                }
+
+            }else{
+                //if user clicked to see someone else's profile -> getUser()
+            }
+        }
+        
     }
     
     
-    override func viewDidAppear(_ animated: Bool) {
-        self.lastCollectionHeight.constant = self.userListsCollectionView.contentSize.height
-        self.scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: self.userListsCollectionView.contentSize.height + 480)
-    }
+    //override func viewDidAppear(_ animated: Bool) {
+        //self.lastCollectionHeight.constant = self.userListsCollectionView.contentSize.height
+        //self.scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: self.userListsCollectionView.contentSize.height + 480)
+    //}
     func updateFollowButtonView(){
         if self.isFollowed {
             followOrEditButton.tintColor = UIColor.mainRoyalBlueColor
@@ -71,7 +114,7 @@ class UserViewController: UIViewController, UICollectionViewDelegate,UICollectio
     
     func setButtonView(){
         //that button can be either edit profile - follow,unfollow according to authUser
-        if self.userId == self.authUserID {
+        if self.userId == nil {
             followOrEditButton.tintColor = UIColor.white
             followOrEditButton.setTitleColor(UIColor.mainRoyalBlueColor, for: .normal)
             followOrEditButton.setTitle("Edit Profile", for: .normal)
@@ -83,7 +126,7 @@ class UserViewController: UIViewController, UICollectionViewDelegate,UICollectio
     @IBAction func followOrEditButtonClicked(_ sender: Any) {
         print("jj: clicked follow Current: \(isFollowed)")
         
-        if self.userId == self.authUserID {
+        if self.userId == nil {
          //navigate to profileVC
             print("edit profile clicked")
             if let vc = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "ProfileViewController") as? ProfileViewController{
@@ -104,7 +147,7 @@ class UserViewController: UIViewController, UICollectionViewDelegate,UICollectio
         }else if collectionView == self.followingsSliderCollectionView {
             return 20
         }else if collectionView == self.userListsCollectionView {
-            return 11
+            return collectionsArray?.count ?? 0
         }
         return 0
     }
@@ -143,6 +186,14 @@ class UserViewController: UIViewController, UICollectionViewDelegate,UICollectio
         }else{
             let cell =  collectionView.dequeueReusableCell(withReuseIdentifier: "cellCollection", for: indexPath) as! CollectionsCardViewCell
             cell.bgColor = UIColor(named: collectionCardColorsArr[indexPath.row%collectionCardColorsArr.count])!
+            
+            cell.titleLabel.text = self.collectionsArray![indexPath.row].title
+            cell.countLabel.text = "8"
+            if let imageUrl = self.collectionsArray![indexPath.row].imageUrl{
+                if let url = URL(string: imageUrl){
+                    cell.imageView.kf.setImage(with: url)
+                }
+            }
 
             cell.tappedCell = { [weak self] in
                 guard let self = self else { return }

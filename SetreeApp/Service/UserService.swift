@@ -8,22 +8,8 @@
 import Foundation
 import Alamofire
 
-struct RegisterResponse<T: Decodable>: Decodable {
-    let succeeded: Bool
-    let message: String?
-    let user: T?
-}
-
-struct LoginResponse<T: Decodable>: Decodable {
-    let succeeded: Bool
-    let user: T?
-    let token: String?
-}
-
 
 public class UserService {
-    let rootUrl = "\(Environment.getRootUrl())"
-    
     internal func registerUser(firstName: String,lastName: String,username: String,email:String,password:String, completion: @escaping (Result<User, Error>) -> Void) {
         let url = "\(rootUrl)/register"
 
@@ -65,9 +51,9 @@ public class UserService {
             case .success(let response):
                 if response.succeeded, let user = response.user,let token = response.token {
                     completion(.success(user))
-                    LocalStorage.setItem("baseTOKEN", value:token)
+                LocalStorage.setItem("baseTOKEN", value:token)
                 } else {
-                    let errorMessage = "Error occured while logging in."
+                    let errorMessage = response.error
                     let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: errorMessage])
                     completion(.failure(error))
                 }
@@ -76,5 +62,30 @@ public class UserService {
             }
         }
     }
+    
+    
+    internal func getUser(id: Int? = nil, completion: @escaping (Result<User, Error>) -> Void) {
+        //let url = "\(rootUrl)/getUser?id=\(id)"
+        let url = "\(rootUrl)/getUser" + (id != nil ? "?id=\(id!)" : "")
+        print("Request Url: ", url)
+        
 
+        // Alamofire : GET request
+        AF.request(url, headers: headers()).responseDecodable(of: GetUserResponse<User>.self) { response in
+            print("response:", response)
+            switch response.result {
+            case .success(let response):
+                if response.succeeded, let user = response.user {
+                    completion(.success(user))
+                } else {
+                    let errorMessage =  "Error occured while getting user."
+                    let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: errorMessage])
+                    completion(.failure(error))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
 }

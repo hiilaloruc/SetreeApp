@@ -40,9 +40,15 @@ class LoginViewController: UIViewController {
             case .success(let user):
                 print("User is successfully logged in -> USER: \(user)")
                 // Perform here the actions to be taken when the user is successfully registered
+                baseUSER = user
+                
+                let vc = UIStoryboard.init(name: "Main", bundle: nil).instantiateInitialViewController()!
+                vc.modalPresentationStyle = .fullScreen
+                self.present(vc, animated: true, completion: nil)
+                
                 let banner = GrowingNotificationBanner(title: "Success", subtitle: "You successfully logged in.", style: .success)
                 banner.show()
-        
+                 
             case .failure(let error):
                 print("The user could not logged in. ERROR: \(error.localizedDescription)")
                 // Perform here the actions to be taken when the user is not registered

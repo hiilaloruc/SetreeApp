@@ -14,6 +14,8 @@ class CollectionsCardViewCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     
+    //internal var collection : Collection!
+    
     internal var tappedCell : (() -> ())?
     
     internal var bgColor : UIColor? {
@@ -25,7 +27,6 @@ class CollectionsCardViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        //collectionCardView.titleLabel.text = "Hilal"
         
     }
     
