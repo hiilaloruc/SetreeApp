@@ -9,6 +9,7 @@ import UIKit
 
 class SocialFriendsTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel : UILabel!
+    @IBOutlet weak var usernameLabel : UILabel!
     @IBOutlet weak var subInfoLabel : UILabel!
     @IBOutlet weak var userImageView : UIImageView!
     @IBOutlet weak var followButton : UIButtonX!

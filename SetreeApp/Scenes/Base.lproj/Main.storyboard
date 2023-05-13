@@ -583,13 +583,19 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Laura Burke" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JpB-vH-w9L">
-                                                    <rect key="frame" x="84" y="11.000000000000002" width="96" height="21.666666666666671"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <rect key="frame" x="84" y="10.999999999999998" width="86.666666666666686" height="20.333333333333329"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@Laura" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FVL-vT-E3f">
+                                                    <rect key="frame" x="84" y="33.333333333333336" width="49" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 Lists • 123 Friends" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i6u-eb-o7t">
-                                                    <rect key="frame" x="84" y="37.666666666666664" width="123.66666666666669" height="16"/>
+                                                    <rect key="frame" x="84" y="52.333333333333336" width="123.66666666666669" height="16.000000000000007"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" systemColor="systemGray2Color"/>
                                                     <nil key="highlightedColor"/>
@@ -634,19 +640,21 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="syN-7X-EAg" firstAttribute="centerY" secondItem="mVd-jj-uZO" secondAttribute="centerY" id="8PK-pT-D9J"/>
+                                                <constraint firstItem="FVL-vT-E3f" firstAttribute="top" secondItem="JpB-vH-w9L" secondAttribute="bottom" constant="2" id="JGX-kD-NX9"/>
                                                 <constraint firstItem="syN-7X-EAg" firstAttribute="top" secondItem="mVd-jj-uZO" secondAttribute="top" constant="5" id="LG7-Le-DW5"/>
                                                 <constraint firstItem="VoH-No-Cgi" firstAttribute="top" secondItem="mVd-jj-uZO" secondAttribute="top" id="Q88-bW-z0h"/>
                                                 <constraint firstItem="i6u-eb-o7t" firstAttribute="leading" secondItem="JpB-vH-w9L" secondAttribute="leading" id="ReC-6q-W6L"/>
                                                 <constraint firstItem="syN-7X-EAg" firstAttribute="leading" secondItem="mVd-jj-uZO" secondAttribute="leading" id="Vnd-7o-6Nt"/>
+                                                <constraint firstItem="i6u-eb-o7t" firstAttribute="top" secondItem="FVL-vT-E3f" secondAttribute="bottom" constant="2" id="WXa-07-3MO"/>
                                                 <constraint firstItem="x5S-UC-PpV" firstAttribute="centerY" secondItem="mVd-jj-uZO" secondAttribute="centerY" id="Y2I-JA-ooU"/>
                                                 <constraint firstAttribute="bottom" secondItem="VoH-No-Cgi" secondAttribute="bottom" id="dTj-bv-DWT"/>
                                                 <constraint firstItem="JpB-vH-w9L" firstAttribute="leading" secondItem="syN-7X-EAg" secondAttribute="trailing" constant="24" id="deC-25-PHU"/>
-                                                <constraint firstItem="i6u-eb-o7t" firstAttribute="top" secondItem="JpB-vH-w9L" secondAttribute="bottom" constant="5" id="f36-hS-xTR"/>
                                                 <constraint firstAttribute="trailing" secondItem="x5S-UC-PpV" secondAttribute="trailing" constant="10" id="l5g-pE-ZIe"/>
                                                 <constraint firstItem="JpB-vH-w9L" firstAttribute="top" secondItem="mVd-jj-uZO" secondAttribute="topMargin" id="mhg-rb-MPB"/>
                                                 <constraint firstAttribute="bottom" secondItem="syN-7X-EAg" secondAttribute="bottom" constant="5" id="qoe-OX-f8O"/>
                                                 <constraint firstAttribute="trailing" secondItem="VoH-No-Cgi" secondAttribute="trailing" id="rqp-Xz-iFG"/>
                                                 <constraint firstItem="VoH-No-Cgi" firstAttribute="leading" secondItem="mVd-jj-uZO" secondAttribute="leading" id="vsm-LO-wQO"/>
+                                                <constraint firstItem="FVL-vT-E3f" firstAttribute="leading" secondItem="JpB-vH-w9L" secondAttribute="leading" id="w3d-eE-hpL"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -654,6 +662,7 @@
                                             <outlet property="nameLabel" destination="JpB-vH-w9L" id="c4v-MT-1Wd"/>
                                             <outlet property="subInfoLabel" destination="i6u-eb-o7t" id="xU9-IC-YE6"/>
                                             <outlet property="userImageView" destination="syN-7X-EAg" id="v3q-z0-L8M"/>
+                                            <outlet property="usernameLabel" destination="FVL-vT-E3f" id="c2g-MX-BCS"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -685,7 +694,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2282.608695652174" y="105.80357142857143"/>
+            <point key="canvasLocation" x="-2284" y="105.66502463054188"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="mOH-PX-Gil">

@@ -39,6 +39,9 @@ class UserViewController: UIViewController, UICollectionViewDelegate,UICollectio
     private weak var collectionService: CollectionService?{
         return CollectionService()
     }
+    private weak var userService: UserService?{
+        return UserService()
+    }
     
     
     override func viewDidLoad() {
@@ -53,6 +56,47 @@ class UserViewController: UIViewController, UICollectionViewDelegate,UICollectio
         self.view.layoutIfNeeded()
     }
     
+    func updateUI(with user: User) {
+        userImageView.kf.setImage(with: URL(string: user.imageUrl))
+        nameLabel.text = user.firstName + " " + user.lastName
+        usernameLabel.text = "@" + user.username
+        listCountLabel.text = String(user.listCount)
+        self.navigationItem.title = user.username
+        
+        followerCountLabel.text = String(user.followers?.count ?? 0)
+        followingCountLabel.text = String(user.followings?.count ?? 0)
+    }
+    
+    func loadUser(with id: Int) {
+        userService?.getUser(id: id){ [weak self] result in
+            switch result {
+            case .success(let user):
+                self?.updateUI(with: user)
+                self?.getCollections(for: user)
+                 
+            case .failure(let error):
+                let banner = GrowingNotificationBanner(title: "Try Again", subtitle: "User couldn't be loaded: \(error.localizedDescription) ", style: .warning)
+                banner.show()
+            }
+        }
+    }
+    
+    
+    
+    func getCollections(for user: User) {
+        collectionService?.getCollections(userId: user.userId){ [weak self] result in
+            switch result {
+            case .success(let collections):
+                self?.collectionsArray = collections
+                 
+            case .failure(let error):
+                let banner = GrowingNotificationBanner(title: "Something went wrong while retrieving the collections.", subtitle: "Error: \(error.localizedDescription) ", style: .danger)
+                banner.show()
+            }
+        }
+    }
+    
+    
     func initUI(){
         followOrEditButton.tintColor = UIColor.mainRoyalBlueColor
         followersSliderCollectionView.showsHorizontalScrollIndicator = false
@@ -63,32 +107,12 @@ class UserViewController: UIViewController, UICollectionViewDelegate,UICollectio
         followButton.layer.cornerRadius = 20
         followButton.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .bold)*/
         if let baseUSER = baseUSER {
-            if self.userId == nil {
-                nameLabel.text = baseUSER.firstName + " " + baseUSER.lastName
-                usernameLabel.text = "@" + baseUSER.username
-                self.navigationItem.title =  baseUSER.username
-                
-                if let followers = baseUSER.followers {
-                    followerCountLabel.text = String(followers.count)
-                }
-                if let followings = baseUSER.followings {
-                    followingCountLabel.text = String(followings.count)
-                }
-                
-                collectionService?.getCollections(userId: baseUSER.userId){ result in
-                    switch result {
-                    case .success(let collections):
-                        self.collectionsArray = collections
-                         
-                    case .failure(let error):
-                        let banner = GrowingNotificationBanner(title: "Something went wrong while retrieving the data.", subtitle: "Error: \(error.localizedDescription) ", style: .danger)
-                        banner.show()
-
-                    }
-                }
-
-            }else{
+            if let userId = self.userId {
                 //if user clicked to see someone else's profile -> getUser()
+                loadUser(with: userId)
+            } else {
+                updateUI(with: baseUSER)
+                getCollections(for: baseUSER)
             }
         }
         
@@ -188,7 +212,7 @@ class UserViewController: UIViewController, UICollectionViewDelegate,UICollectio
             cell.bgColor = UIColor(named: collectionCardColorsArr[indexPath.row%collectionCardColorsArr.count])!
             
             cell.titleLabel.text = self.collectionsArray![indexPath.row].title
-            cell.countLabel.text = "8"
+            cell.countLabel.text = String(collectionsArray![indexPath.row].itemCount)
             if let imageUrl = self.collectionsArray![indexPath.row].imageUrl{
                 if let url = URL(string: imageUrl){
                     cell.imageView.kf.setImage(with: url)

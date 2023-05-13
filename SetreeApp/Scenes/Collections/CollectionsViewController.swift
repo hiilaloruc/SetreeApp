@@ -71,7 +71,7 @@ class CollectionsViewController: UIViewController, UICollectionViewDelegate, UIC
         cell.bgColor = UIColor(named: collectionCardColorsArr[indexPath.row%collectionCardColorsArr.count])!
         //cell.collection = self.collectionsArray![indexPath.row]
         cell.titleLabel.text = self.collectionsArray![indexPath.row].title
-        cell.countLabel.text = "8"
+        cell.countLabel.text = String(collectionsArray![indexPath.row].itemCount)
         if let imageUrl = self.collectionsArray![indexPath.row].imageUrl{
             if let url = URL(string: imageUrl){
                 cell.imageView.kf.setImage(with: url)

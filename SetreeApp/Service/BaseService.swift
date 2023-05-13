@@ -43,6 +43,17 @@ struct getCollectionDetailResponse<Collection: Codable>: Codable {
     let collections: Collection?
 }
 
+struct GetFollowingResponse<User: Codable>: Codable {
+    let succeeded: Bool
+    let followingObjects: [User]?
+}
+
+struct GetFollowerResponse<User: Codable>: Codable {
+    let succeeded: Bool
+    let followerObjects: [User]?
+}
+
+
 
 
 let rootUrl = "\(Environment.getRootUrl())"

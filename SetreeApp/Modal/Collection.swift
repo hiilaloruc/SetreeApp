@@ -15,6 +15,7 @@ struct Collection: Codable {
     let isPublic: Bool
     let createdAt, updatedAt :  String?
     let collection : [CollectionItemMinor]?
+    let itemCount:Int
     
     enum CodingKeys: String, CodingKey {
         case collectionId = "id"
@@ -24,6 +25,7 @@ struct Collection: Codable {
         case isPublic,status
         case createdAt, updatedAt
         case collection
+        case itemCount
     }
 }
 struct CollectionItemMinor: Codable {
