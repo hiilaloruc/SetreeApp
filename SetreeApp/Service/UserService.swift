@@ -88,4 +88,31 @@ public class UserService {
         }
     }
     
+    internal func updateUser(firstName: String,lastName: String,username: String,email:String,gender:String, completion: @escaping (Result<User, Error>) -> Void) {
+        let url = "\(rootUrl)/updateUser"
+
+        // Alamofire : POST request
+        AF.request(url, method: .post, parameters: [
+            "firstName":firstName,
+            "lastName": lastName,
+            "username":username,
+            "email": email,
+            "gender": gender
+        ], encoding: JSONEncoding.default, headers:headers()).responseDecodable(of: UpdateUserResponse<User>.self) { response in
+            print("response:", response)
+            switch response.result {
+            case .success(let response):
+                if response.succeeded , let user = response.user {
+                    completion(.success(user))
+                } else {
+                    let errorMessage =  "User couldn't be updated."
+                    let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: errorMessage])
+                    completion(.failure(error))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
 }

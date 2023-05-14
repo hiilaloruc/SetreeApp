@@ -26,6 +26,18 @@ struct GetUserResponse<User: Codable>: Codable {
     let succeeded: Bool
     let user: User?
 }
+
+/*struct UpdateUserResponse<User: Codable>: Codable {
+    let succeeded: Bool
+    let user: User?
+}*/
+
+struct UpdateUserResponse<T: Decodable>: Decodable {
+    let succeeded: Bool
+    let user: T?
+}
+
+
 struct GetCollectionsResponse<Collection: Codable>: Codable {
     let succeeded: Bool
     let collections: [Collection]?

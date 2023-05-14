@@ -36,16 +36,31 @@ class UserViewController: UIViewController, UICollectionViewDelegate,UICollectio
             }
         }
     }
+    
+    internal var followersArray: [User]? {
+        didSet{
+            followersSliderCollectionView.reloadData()
+        }
+    }
+    
+    internal var followingsArray: [User]? {
+        didSet{
+            followingsSliderCollectionView.reloadData()
+        }
+    }
+    
     private weak var collectionService: CollectionService?{
         return CollectionService()
     }
     private weak var userService: UserService?{
         return UserService()
     }
+    private weak var followService : FollowService?{
+        return FollowService()
+    }
     
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         followersSliderCollectionView.delegate = self
         followersSliderCollectionView.dataSource = self
         followingsSliderCollectionView.delegate = self
@@ -73,6 +88,9 @@ class UserViewController: UIViewController, UICollectionViewDelegate,UICollectio
             case .success(let user):
                 self?.updateUI(with: user)
                 self?.getCollections(for: user)
+                self?.getFollowings(for: user)
+                self?.getFollowers(for: user)
+                
                  
             case .failure(let error):
                 let banner = GrowingNotificationBanner(title: "Try Again", subtitle: "User couldn't be loaded: \(error.localizedDescription) ", style: .warning)
@@ -90,7 +108,33 @@ class UserViewController: UIViewController, UICollectionViewDelegate,UICollectio
                 self?.collectionsArray = collections
                  
             case .failure(let error):
-                let banner = GrowingNotificationBanner(title: "Something went wrong while retrieving the collections.", subtitle: "Error: \(error.localizedDescription) ", style: .danger)
+                let banner = GrowingNotificationBanner(title: "Oh no!", subtitle: "Error: \(error.localizedDescription) ", style: .danger)
+                banner.show()
+            }
+        }
+    }
+    func getFollowers(for user: User){
+        followService?.getFollowers(id:user.userId){ [weak self] result in
+            switch result {
+            case .success(let followersResponse):
+                self?.followersArray = followersResponse
+                 
+            case .failure(let error):
+                let banner = GrowingNotificationBanner(title: "Oh no!", subtitle: "Error: \(error.localizedDescription) ", style: .danger)
+                banner.show()
+            }
+        }
+    }
+    
+    func getFollowings(for user: User){
+        //get followings
+        followService?.getFollowings(id:user.userId){ [weak self] result in
+            switch result {
+            case .success(let followingsResponse):
+                self?.followingsArray = followingsResponse
+                 
+            case .failure(let error):
+                let banner = GrowingNotificationBanner(title: "Oh no!", subtitle: "Error: \(error.localizedDescription) ", style: .danger)
                 banner.show()
             }
         }
@@ -113,6 +157,8 @@ class UserViewController: UIViewController, UICollectionViewDelegate,UICollectio
             } else {
                 updateUI(with: baseUSER)
                 getCollections(for: baseUSER)
+                getFollowings(for: baseUSER)
+                getFollowers(for: baseUSER)
             }
         }
         
@@ -165,11 +211,50 @@ class UserViewController: UIViewController, UICollectionViewDelegate,UICollectio
         }
         
     }
+    
+    @IBAction func FollowersClicked(_ sender: Any) {
+        if let vc = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "FullTableViewController") as? FullTableViewController{
+            vc.isFollowings = false
+            vc.objectsArr = self.followersArray
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    @IBAction func FollowingsClicked(_ sender: Any) {
+        if let vc = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "FullTableViewController") as? FullTableViewController{
+            vc.isFollowings = true
+            vc.objectsArr = self.followingsArray
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    
+    private func followCollectionViewCell(collectionView: UICollectionView, indexPath: IndexPath, followArray: [User]) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FollowersSliderCollectionViewCell", for: indexPath) as! FollowersSliderCollectionViewCell
+        
+        cell.userImageView.kf.setImage(with: URL(string: followArray[indexPath.row].imageUrl))
+        
+        cell.tappedCell = { [weak self] in
+            guard let self = self else { return }
+            if let vc = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "UserViewController") as? UserViewController{
+                if collectionView == self.followersSliderCollectionView {
+                    print("tapped follower name(id): \(followArray[indexPath.row].firstName)(\(followArray[indexPath.row].userId))")
+                } else if collectionView == self.followingsSliderCollectionView {
+                    print("tapped following name(id):\(followArray[indexPath.row].firstName)(\(followArray[indexPath.row].userId))")
+                }
+                vc.userId = followArray[indexPath.row].userId
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        }
+        return cell
+    }
+
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.followersSliderCollectionView {
-            return 11
+            return followersArray?.count ?? 0
         }else if collectionView == self.followingsSliderCollectionView {
-            return 20
+            return followingsArray?.count ?? 0
         }else if collectionView == self.userListsCollectionView {
             return collectionsArray?.count ?? 0
         }
@@ -178,36 +263,11 @@ class UserViewController: UIViewController, UICollectionViewDelegate,UICollectio
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        
-        
         if collectionView == self.followersSliderCollectionView {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FollowersSliderCollectionViewCell", for: indexPath) as! FollowersSliderCollectionViewCell
-            
-            cell.tappedCell = { [weak self] in
-                guard let self = self else { return }
-                    if let vc = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "UserViewController") as? UserViewController{
-                        print("jj: tapped follower")
-                        vc.userId = 113
-                        self.navigationController?.pushViewController(vc, animated: true)
-                   
-                    }
-                }
-            
-            return cell
-        }else if collectionView == self.followingsSliderCollectionView {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FollowersSliderCollectionViewCell", for: indexPath) as! FollowersSliderCollectionViewCell
-            
-            cell.tappedCell = { [weak self] in
-                guard let self = self else { return }
-                    if let vc = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "UserViewController") as? UserViewController{
-                        print("jj: tapped following")
-                        vc.userId = 113
-                        self.navigationController?.pushViewController(vc, animated: true)
-                    }
-                }
-            
-            return cell
-        }else{
+              return followCollectionViewCell(collectionView: collectionView, indexPath: indexPath, followArray: self.followersArray!)
+          } else if collectionView == self.followingsSliderCollectionView {
+              return followCollectionViewCell(collectionView: collectionView, indexPath: indexPath, followArray: self.followingsArray!)
+          }else{
             let cell =  collectionView.dequeueReusableCell(withReuseIdentifier: "cellCollection", for: indexPath) as! CollectionsCardViewCell
             cell.bgColor = UIColor(named: collectionCardColorsArr[indexPath.row%collectionCardColorsArr.count])!
             

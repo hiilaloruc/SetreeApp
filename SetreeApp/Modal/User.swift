@@ -12,18 +12,16 @@ struct User: Codable {
     let username, firstName, lastName: String
     let email: String
     let imageUrl: String
-    let profilePhotoUrl: String?
     let gender: String
     let status: String
     let followers, followings : [Int]?
-    let createdAt, updatedAt :  String?
+    let createdAt, updatedAt :  String
     let listCount: Int
     
     enum CodingKeys: String, CodingKey {
         case userId = "id"
         case username, firstName, lastName
         case email,imageUrl
-        case profilePhotoUrl
         case gender,status
         case followers, followings
         case createdAt, updatedAt
