@@ -4,13 +4,12 @@
 //
 //  Created by HilalOruc on 23.03.2023.
 //
-
 import UIKit
 
 class GoalsDetailViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    internal var goalObject: [Any] = []
+    internal var goalObject: Goal!
     
     internal var color : UIColor? {
         didSet{
@@ -18,15 +17,13 @@ class GoalsDetailViewController: UIViewController {
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.separatorStyle = .none
     
-        if let title = goalObject[0] as? String {
-            self.title = title
-        }
+        self.title = goalObject.title
         navigationController?.navigationBar.tintColor = .white
       
 
@@ -36,14 +33,16 @@ class GoalsDetailViewController: UIViewController {
 
 extension GoalsDetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (goalObject[2] as AnyObject).count
+        return goalObject.goalItems?.count ?? 0
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
         cell.selectionStyle = .none
-        if let items = goalObject[2] as? [String], indexPath.row < items.count {
+        
+        if (indexPath.row < goalObject.goalItems!.count) {
             let singleGoalView = SingleGoalView(frame: cell.contentView.bounds.inset(by: UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 0)))
-            singleGoalView.contentLabel.text = items[indexPath.row]
+            singleGoalView.contentLabel.text = goalObject.goalItems![indexPath.row].content
+            singleGoalView.checked = goalObject.goalItems![indexPath.row].isDone
             singleGoalView.checkImageView.tintColor = color
             singleGoalView.tappedCheckImage = {
                 //request handled via api

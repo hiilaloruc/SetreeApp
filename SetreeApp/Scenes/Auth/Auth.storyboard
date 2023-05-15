@@ -123,7 +123,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="5Ph-c7-Zzv">
-                                <rect key="frame" x="20" y="188" width="374" height="300"/>
+                                <rect key="frame" x="20" y="168" width="374" height="300"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nFj-ae-Ldx">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="23"/>
@@ -188,7 +188,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="48V-La-p01" customClass="UIButtonX" customModule="SetreeApp" customModuleProvider="target">
-                                <rect key="frame" x="30" y="508" width="354" height="50"/>
+                                <rect key="frame" x="30" y="488" width="354" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="UwF-yO-QK8"/>
                                 </constraints>
@@ -221,10 +221,10 @@
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon-setree" translatesAutoresizingMaskIntoConstraints="NO" id="oD8-2E-oS1">
-                                <rect key="frame" x="90" y="88" width="234" height="100"/>
+                                <rect key="frame" x="90" y="88" width="234" height="80"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="t0H-cs-kcT"/>
+                                    <constraint firstAttribute="height" constant="80" id="t0H-cs-kcT"/>
                                 </constraints>
                             </imageView>
                         </subviews>
@@ -264,7 +264,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="3rO-hz-vVm">
-                                <rect key="frame" x="20" y="188" width="374" height="108"/>
+                                <rect key="frame" x="20" y="188" width="374" height="107"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="hilal@gmail.com" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lqE-az-x7C">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="23"/>
@@ -279,12 +279,12 @@
                                         </constraints>
                                     </view>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="123456" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gRS-yF-0mR">
-                                        <rect key="frame" x="0.0" y="64" width="374" height="23"/>
+                                        <rect key="frame" x="0.0" y="64" width="374" height="22"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <textInputTraits key="textInputTraits" textContentType="email"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oTl-mt-6hZ">
-                                        <rect key="frame" x="0.0" y="107" width="374" height="1"/>
+                                        <rect key="frame" x="0.0" y="106" width="374" height="1"/>
                                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="Mr5-VU-2Gr"/>
@@ -293,7 +293,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VbB-6N-xt9" customClass="UIButtonX" customModule="SetreeApp" customModuleProvider="target">
-                                <rect key="frame" x="30" y="346" width="354" height="50"/>
+                                <rect key="frame" x="30" y="345" width="354" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="baO-s5-QBq"/>
                                 </constraints>

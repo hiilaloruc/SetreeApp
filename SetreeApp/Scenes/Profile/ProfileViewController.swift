@@ -17,6 +17,7 @@ class ProfileViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var createdAtLabel: UILabel!
     @IBOutlet weak var genderPickerView: UIPickerView!
+    @IBOutlet weak var userImageView: UIImageView!
     
     private weak var userService: UserService?{
         return UserService()
@@ -34,6 +35,7 @@ class ProfileViewController: UIViewController, UIPickerViewDataSource, UIPickerV
             self.surnameTextField.text = user.lastName
             self.usernameTextField.text = user.username
             self.emailTextField.text = user.email
+            
             if user.gender == "other" {
                 self.genderPickerView.selectRow(2, inComponent: 0, animated: true)
             }else if user.gender == "female" {
@@ -42,6 +44,9 @@ class ProfileViewController: UIViewController, UIPickerViewDataSource, UIPickerV
                 self.genderPickerView.selectRow(0, inComponent: 0, animated: true)
             }
             
+            if let url = URL(string: user.imageUrl){
+                self.userImageView.kf.setImage(with: url)
+            }
 
             let isoDateString = user.createdAt
             let dateFormatter = DateFormatter()

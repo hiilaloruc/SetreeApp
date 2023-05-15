@@ -26,7 +26,7 @@ class GoalCardTableViewCell: UITableViewCell {
     internal var tappedCheck : ((_ itemId: String?)->(Bool))?
     internal var tappedGoalDetail : (()->())?
 
-    internal var goalsArray: [String]? {
+    internal var goalsArray: [GoalItem]? {
         didSet {
             // Remove all existing arranged subviews from the stack view
             stackView.arrangedSubviews.forEach {
@@ -37,7 +37,8 @@ class GoalCardTableViewCell: UITableViewCell {
             // Add a new SingleGoalView for each goal in the array
             for goal in goalsArray! {
                 let goalItem = SingleGoalView()
-                goalItem.contentLabel.text = goal
+                goalItem.contentLabel.text = goal.content
+                goalItem.checked = goal.isDone
                 goalItem.checkImageView.tintColor = self.color
                 goalItem.containerView.backgroundColor = self.color?.withAlphaComponent(0.2)
                 goalItem.translatesAutoresizingMaskIntoConstraints = false

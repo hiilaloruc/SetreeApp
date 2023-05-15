@@ -14,16 +14,17 @@ struct User: Codable {
     let imageUrl: String
     let gender: String
     let status: String
-    let followers, followings : [Int]?
+    let followers, followings, likedCollections : [Int]?
     let createdAt, updatedAt :  String
     let listCount: Int
+
     
     enum CodingKeys: String, CodingKey {
         case userId = "id"
         case username, firstName, lastName
         case email,imageUrl
         case gender,status
-        case followers, followings
+        case followers, followings,likedCollections
         case createdAt, updatedAt
         case listCount
     }

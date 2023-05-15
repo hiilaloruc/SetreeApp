@@ -9,7 +9,10 @@ import UIKit
 
 class CollectionsDetailViewController: UIViewController {
     
+    @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var tableView: UITableView!
+    
+    internal var collection: Collection!
     
     internal var collectionId : Int?{
         didSet{
@@ -36,6 +39,11 @@ class CollectionsDetailViewController: UIViewController {
                 }*/
             }
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: customPlusButton)
+        
+        if let url = URL(string: self.collection.imageUrl){
+            self.imageView.kf.setImage(with: url)
+        }
+        
     }
 
 }
