@@ -24,8 +24,8 @@ class CollectionsViewController: UIViewController, UICollectionViewDelegate, UIC
         return CollectionService()
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         collectionsView.delegate = self
         collectionsView.dataSource = self
         

@@ -5,6 +5,7 @@
 //  Created by HilalOruc on 23.03.2023.
 //
 import UIKit
+import NotificationBannerSwift
 
 class GoalsDetailViewController: UIViewController {
     
@@ -16,6 +17,10 @@ class GoalsDetailViewController: UIViewController {
             self.view.backgroundColor = color
         }
     }
+    private weak var goalService: GoalService?{
+        return GoalService()
+    }
+    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -25,15 +30,41 @@ class GoalsDetailViewController: UIViewController {
     
         self.title = goalObject.title
         navigationController?.navigationBar.tintColor = .white
-      
+        
+       // updateData()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(updateData), name: NSNotification.Name(rawValue: "updateGoalObject") , object: nil)
 
+    }
+
+    
+    @objc func updateData(){
+        print("updateData() called..")
+        goalService?.getGoalDetail(goalId: self.goalObject.goalId){ result in
+            switch result {
+            case .success(let goal ):
+                self.goalObject = goal
+                self.tableView.reloadData()
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateGoalsAll"), object: nil)
+                
+            case .failure(let error):
+                let banner = GrowingNotificationBanner(title: "Something went wrong while retrieving the data.", subtitle: "Error: \(error.localizedDescription) ", style: .danger)
+                banner.show()
+
+            }
+        }
+       
+       
     }
 
 }
 
 extension GoalsDetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return goalObject.goalItems?.count ?? 0
+        return (goalObject.goalItems?.count ?? 0)  + 1
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
@@ -49,11 +80,35 @@ extension GoalsDetailViewController: UITableViewDelegate, UITableViewDataSource 
                 singleGoalView.checked.toggle()
             }
             cell.contentView.addSubview(singleGoalView)
+        }else {
+            // add new button cell
+            let addButton = UIButton(type: .system)
+            addButton.frame = cell.contentView.bounds
+            addButton.setTitle("+ Add New", for: .normal)
+            addButton.titleLabel?.textAlignment = .center
+            addButton.setTitleColor(.systemBlue, for: .normal)
+            addButton.addTarget(self, action: #selector(addNewGoalButtonTapped), for: .touchUpInside)
+            cell.contentView.addSubview(addButton)
         }
-
         
         return cell
     }
+    
+    @objc func addNewGoalButtonTapped() {
+        // Add New button tapped, handle the action
+        print("addNewGoalButtonTapped...")
+        
+        if let vc = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "AddNewGoalViewController") as? AddNewGoalViewController{
+            vc.goalId = self.goalObject.goalId
+            vc.title = "Create New Goal"
+            vc.color = color
+            self.present(UINavigationController(rootViewController:vc), animated: true)
+        }
+        
+        
+        
+    }
+    
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let deleteAction = UITableViewRowAction(style: .destructive, title: "Sil") { (action, indexPath) in
             // silme işlemini gerçekleştir

@@ -76,5 +76,30 @@ public class GoalService {
         }
     }
     
+    internal func createMultipleGoalItems(goalItemsArray: [String], goalId: Int ,completion: @escaping (Result<String, Error>) -> Void) {
+        let url = "\(rootUrl)/createMultipleGoalItems"
+
+        // Alamofire : POST request
+        AF.request(url, method: .post, parameters: [
+            "itemArray":goalItemsArray,
+            "goalId": goalId,
+
+        ], encoding: JSONEncoding.default, headers:headers()).responseDecodable(of: createMultipleGoalItemsResponse<String>.self) { response in
+            print("response:", response)
+            switch response.result {
+                case .success(let response):
+                    if response.succeeded {
+                        completion(.success(response.message ?? "Succes!"))
+                    } else {
+                        let errorMessage = "Goal Items couldn't be created."
+                        let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: errorMessage])
+                        completion(.failure(error))
+                    }
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+        }
+    }
+    
     
 }

@@ -14,6 +14,7 @@
                 <outlet property="checkImageView" destination="XVf-Y4-QmH" id="Z3i-Tz-oDj"/>
                 <outlet property="containerView" destination="iN0-l3-epB" id="Mb5-XG-ILP"/>
                 <outlet property="contentLabel" destination="OhK-Km-Pbb" id="6Um-UQ-MSB"/>
+                <outlet property="textView" destination="DYU-Zl-E2q" id="T6O-S0-JZH"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -43,14 +44,26 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <textView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="DYU-Zl-E2q">
+                    <rect key="frame" x="40" y="0.0" width="368" height="48"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="textColor" systemColor="labelColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="1ih-Pm-K7L" firstAttribute="leading" secondItem="XVf-Y4-QmH" secondAttribute="leading" id="58J-PJ-mgq"/>
                 <constraint firstAttribute="trailing" secondItem="OhK-Km-Pbb" secondAttribute="trailing" constant="5" id="HSM-oV-hB9"/>
+                <constraint firstItem="DYU-Zl-E2q" firstAttribute="leading" secondItem="XVf-Y4-QmH" secondAttribute="trailing" constant="5" id="KLU-w4-5HF"/>
                 <constraint firstItem="OhK-Km-Pbb" firstAttribute="centerY" secondItem="XVf-Y4-QmH" secondAttribute="centerY" id="N8c-ff-Pe7"/>
+                <constraint firstItem="DYU-Zl-E2q" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="W2i-GO-Wwy"/>
+                <constraint firstItem="DYU-Zl-E2q" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="abU-uS-e4B"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="DYU-Zl-E2q" secondAttribute="trailing" constant="5" id="clE-h1-yw5"/>
                 <constraint firstItem="XVf-Y4-QmH" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="g3p-Hw-UM6"/>
+                <constraint firstAttribute="bottom" secondItem="DYU-Zl-E2q" secondAttribute="bottom" id="gZo-Nj-gBJ"/>
                 <constraint firstItem="1ih-Pm-K7L" firstAttribute="trailing" secondItem="XVf-Y4-QmH" secondAttribute="trailing" id="haO-u8-Ry9"/>
                 <constraint firstItem="XVf-Y4-QmH" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="lz0-ax-nko"/>
                 <constraint firstItem="OhK-Km-Pbb" firstAttribute="leading" secondItem="XVf-Y4-QmH" secondAttribute="trailing" constant="5" id="m2X-hY-xFv"/>
@@ -66,6 +79,9 @@
         <namedColor name="softLilac">
             <color red="0.76499998569488525" green="0.69900000095367432" blue="0.82400000095367432" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

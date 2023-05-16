@@ -11,6 +11,7 @@ class SingleGoalView: BaseView {
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var checkImageView: UIImageView!
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var textView: UITextView!
     
     internal var tappedCheckImage : (() -> ())?
     internal var checked: Bool = false {

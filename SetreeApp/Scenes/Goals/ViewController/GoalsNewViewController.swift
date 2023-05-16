@@ -11,6 +11,8 @@ import NotificationBannerSwift
 class GoalsNewViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var plusButton: UIView!
+
     
     internal var goalsWithDetails: [Goal]? = []{
         didSet{
@@ -58,12 +60,24 @@ class GoalsNewViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib.init(nibName: "GoalCardTableViewCell", bundle: nil), forCellReuseIdentifier: "GoalCardTableViewCell")
+        NotificationCenter.default.addObserver(self, selector: #selector(getGoalDetails), name: NSNotification.Name(rawValue: "updateGoalsAll") , object: nil)
+        
+
+        
         initialUI()
+        
+        self.plusButton.isUserInteractionEnabled = true
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(plusButtonTapped))
+        self.plusButton.addGestureRecognizer(tapGestureRecognizer)
     }
     
-    func getGoalDetails(){
+    @objc func plusButtonTapped(_ sender: UITapGestureRecognizer) {
+        print("Plus button clicked on Goals..")
+    }
+    
+    @objc func getGoalDetails(){
+        goalsWithDetails = []
         if self.goalsArray != nil && self.goalsArray?.count ?? 0 > 0 {
-            
                 for item in self.goalsArray! {
                     goalService?.getGoalDetail(goalId: item.goalId){ result in
                         switch result {

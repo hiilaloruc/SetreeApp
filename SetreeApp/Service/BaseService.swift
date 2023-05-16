@@ -75,6 +75,12 @@ struct GetGoalDetailResponse<Collection: Codable>: Codable {
     let goal: Goal?
 }
 
+struct createMultipleGoalItemsResponse<T: Decodable>: Decodable {
+    let succeeded: Bool
+    let message: String?
+}
+
+
 let rootUrl = "\(Environment.getRootUrl())"
 
 

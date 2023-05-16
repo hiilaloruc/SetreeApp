@@ -941,12 +941,47 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="plusButton" destination="nOk-RG-zX8" id="lcM-yf-J1A"/>
                         <outlet property="tableView" destination="MWd-0r-F9o" id="mKX-n1-cBn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c0h-Ry-Xvs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-127" y="808"/>
+        </scene>
+        <!--Add New Goal View Controller-->
+        <scene sceneID="nmh-JU-bbw">
+            <objects>
+                <viewController storyboardIdentifier="AddNewGoalViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="pcc-2v-w9o" customClass="AddNewGoalViewController" customModule="SetreeApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="U0j-Mh-9nR">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Hlc-wY-T20">
+                                <rect key="frame" x="0.0" y="44" width="375" height="734"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="pcc-2v-w9o" id="BCw-Bs-0bJ"/>
+                                    <outlet property="delegate" destination="pcc-2v-w9o" id="GMf-sL-Kvq"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="m6g-10-dqO"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="m6g-10-dqO" firstAttribute="trailing" secondItem="Hlc-wY-T20" secondAttribute="trailing" id="I8W-8T-qJs"/>
+                            <constraint firstItem="Hlc-wY-T20" firstAttribute="leading" secondItem="m6g-10-dqO" secondAttribute="leading" id="ZhP-2w-TPa"/>
+                            <constraint firstItem="Hlc-wY-T20" firstAttribute="top" secondItem="m6g-10-dqO" secondAttribute="top" id="fNc-R6-yy6"/>
+                            <constraint firstItem="m6g-10-dqO" firstAttribute="bottom" secondItem="Hlc-wY-T20" secondAttribute="bottom" id="hyy-oJ-AIV"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="Hlc-wY-T20" id="MGn-Jl-zgp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="U8V-AB-AcB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="580" y="814"/>
         </scene>
         <!--Collections-->
         <scene sceneID="Kki-iT-0qN">
@@ -1240,7 +1275,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Tu-Oy-0pI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="754" y="822"/>
+            <point key="canvasLocation" x="1785" y="808"/>
         </scene>
         <!--Profile-->
         <scene sceneID="VA6-tu-p2h">
