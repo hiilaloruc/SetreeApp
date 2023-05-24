@@ -10,6 +10,8 @@ target 'SetreeApp' do
   pod 'Alamofire'
   pod 'NotificationBannerSwift', '~> 3.0.0'
   pod 'Kingfisher'
+  pod 'Cloudinary', '~> 3.0'
+
 
 
 

@@ -46,14 +46,12 @@ class LoginViewController: UIViewController {
                 vc.modalPresentationStyle = .fullScreen
                 self.present(vc, animated: true, completion: nil)
                 
-                let banner = GrowingNotificationBanner(title: "Success", subtitle: "You successfully logged in.", style: .success)
-                banner.show()
+                Banner.showSuccessBanner(message: "You successfully logged in.")
                  
             case .failure(let error):
                 print("The user could not logged in. ERROR: \(error.localizedDescription)")
                 // Perform here the actions to be taken when the user is not registered
-                let banner = GrowingNotificationBanner(title: "Error", subtitle: "\(error.localizedDescription).", style: .danger)
-                banner.show()
+                Banner.showErrorBanner(with: error)
             }
         }
     }

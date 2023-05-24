@@ -44,9 +44,7 @@ class CollectionsViewController: UIViewController, UICollectionViewDelegate, UIC
                     self.collectionsArray = collections
                      
                 case .failure(let error):
-                    let banner = GrowingNotificationBanner(title: "Something went wrong while retrieving the data.", subtitle: "Error: \(error.localizedDescription) ", style: .danger)
-                    banner.show()
-
+                    Banner.showErrorBanner(with: error)
                 }
             }
         }

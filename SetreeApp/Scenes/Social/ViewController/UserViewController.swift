@@ -108,8 +108,7 @@ class UserViewController: UIViewController, UICollectionViewDelegate,UICollectio
                 self?.collectionsArray = collections
                  
             case .failure(let error):
-                let banner = GrowingNotificationBanner(title: "Oh no!", subtitle: "Error: \(error.localizedDescription) ", style: .danger)
-                banner.show()
+                Banner.showErrorBanner(with: error)
             }
         }
     }
@@ -120,8 +119,7 @@ class UserViewController: UIViewController, UICollectionViewDelegate,UICollectio
                 self?.followersArray = followersResponse
                  
             case .failure(let error):
-                let banner = GrowingNotificationBanner(title: "Oh no!", subtitle: "Error: \(error.localizedDescription) ", style: .danger)
-                banner.show()
+                Banner.showErrorBanner(with: error)
             }
         }
     }
@@ -134,8 +132,7 @@ class UserViewController: UIViewController, UICollectionViewDelegate,UICollectio
                 self?.followingsArray = followingsResponse
                  
             case .failure(let error):
-                let banner = GrowingNotificationBanner(title: "Oh no!", subtitle: "Error: \(error.localizedDescription) ", style: .danger)
-                banner.show()
+                Banner.showErrorBanner(with: error)
             }
         }
     }

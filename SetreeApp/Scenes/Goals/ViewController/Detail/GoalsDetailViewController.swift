@@ -56,8 +56,7 @@ class GoalsDetailViewController: UIViewController {
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateGoalsAll"), object: nil)
                 
             case .failure(let error):
-                let banner = GrowingNotificationBanner(title: "Something went wrong while retrieving the data.", subtitle: "Error: \(error.localizedDescription) ", style: .danger)
-                banner.show()
+                Banner.showErrorBanner(with: error)
 
             }
         }
@@ -80,8 +79,7 @@ class GoalsDetailViewController: UIViewController {
                 case .success(let message):
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateGoalsAll"), object: nil)
                 case .failure(let error):
-                    let banner = GrowingNotificationBanner(title: "Something went wrong while retrieving the data.", subtitle: "Error: \(error.localizedDescription) ", style: .danger)
-                    banner.show()
+                    Banner.showErrorBanner(with: error)
                 }
             }
             print("Deleted GOAL GROUP")
@@ -159,8 +157,7 @@ extension GoalsDetailViewController: UITableViewDelegate, UITableViewDataSource 
                 self.goalObject = goal
                 self.tableView.reloadData()
             case .failure(let error):
-                let banner = GrowingNotificationBanner(title: "Something went wrong while reloading the goals.", subtitle: "Error: \(error.localizedDescription) ", style: .danger)
-                banner.show()
+                Banner.showErrorBanner(with: error)
 
             }
         }
@@ -177,9 +174,7 @@ extension GoalsDetailViewController: UITableViewDelegate, UITableViewDataSource 
                     self.refreshGoalObject()
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateGoalsAll"), object: nil)
                 case .failure(let error):
-                    let banner = GrowingNotificationBanner(title: "Something went wrong while retrieving the data.", subtitle: "Error: \(error.localizedDescription) ", style: .danger)
-                    banner.show()
-
+                    Banner.showErrorBanner(with: error)
                 }
             }
         }

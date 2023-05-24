@@ -9,7 +9,7 @@ import UIKit
 import NotificationBannerSwift
 let genders = ["Male", "Female", "Other"]
 
-class ProfileViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class ProfileViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var firstnameTextField: UITextField!
     @IBOutlet weak var surnameTextField: UITextField!
@@ -21,6 +21,9 @@ class ProfileViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     
     private weak var userService: UserService?{
         return UserService()
+    }
+    private weak var cloudinaryService: CloudinaryService?{
+        return CloudinaryService()
     }
     
 
@@ -98,25 +101,147 @@ class ProfileViewController: UIViewController, UIPickerViewDataSource, UIPickerV
                 print("User is successfully updated -> USER: \(user)")
                 // Perform here the actions to be taken when the user is successfully updated
                 baseUSER = user
-                let banner = GrowingNotificationBanner(title: "Success", subtitle: "Your account has been successfully updated.", style: .success)
-                banner.show()
+                Banner.showSuccessBanner(message:"Your account has been successfully updated.")
                 self.navigationController?.popViewController(animated: true)
 
             case .failure(let error):
                 print("The user could not be updated. ERROR: \(error.localizedDescription)")
                 // Perform here the actions to be taken when the user is not updated
-                let banner = GrowingNotificationBanner(title: "Error", subtitle: "\(error.localizedDescription).", style: .danger)
-                banner.show()
+                Banner.showErrorBanner(with: error)
             }
         }
     }
     
-    @IBAction func clickedEditImage(_ sender: Any){
+  /*  @IBAction func clickedEditImage(_ sender: Any){
         print("clickedEditImage..")
+        
+        if let image = UIImage(named: "dog"){
+            cloudinaryService?.uploadProfileImage(image: image) { result in
+                switch result {
+                case .success(let uploadResult):
+                    print("Profil resmi başarıyla yüklendi. Genel Kimlik (public ID): \(uploadResult.publicId)")
+                    // Yükleme başarılı
+                case .failure(let error):
+                    print("Profil resmi yüklenirken bir hata oluştu: \(error)")
+                    // Yükleme başarısız
+                }
+            }
+        }
+        
+
     }
+    */
+    @IBAction func clickedEditImage(_ sender: Any) {
+        print("clickedEditImage..")
+        
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.allowsEditing = true // Kırpma özelliğini etkinleştir
+        
+        print("imagePicker presenting...")
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[.editedImage] as? UIImage {
+            print("imagePicker-> Cropped Image selected..")
+            cloudinaryService?.uploadProfileImage(image: image) { result in
+                switch result {
+                case .success(let uploadResult):
+                    // Upload successfull to cloudinary
+                    if let publicId = uploadResult.publicId {
+                        print("Profile image succesfully loaded. (public ID): \(publicId)")
+                        let imageUrl = Environment.getImageRootUrl() + publicId
+                        print("imageUrl: ", imageUrl)
+                        //SEND UPDATE IMAGE REQUEST TO API
+                        self.userService?.updateProfileImage(newUrl: imageUrl){ result in
+                            switch result {
+                            case .success(let user):
+                                print("User is successfully updated -> USER: \(user)")
+                                baseUSER = user
+                                self.userImageView.image = image
+                                
+                                Banner.showSuccessBanner(message: "Your profile photo has been successfully updated.")
+                            case .failure(let error):
+                                print("The user could not be updated. ERROR: \(error.localizedDescription)")
+                                // Perform here the actions to be taken when the user is not updated
+                                Banner.showErrorBanner(with: error)
+                            }
+                        }
+                    } else {
+                        print("Profile image public ID is nil.")
+                    }
+                case .failure(let error):
+                    print("Profil resmi yüklenirken bir hata oluştu: \(error)")
+                    // Yükleme başarısız
+                }
+            }
+        }
+        
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+        print("imagePicker canceled..")
+    }
+    
     
     @IBAction func clickedChangePassword(_ sender: Any){
         print("clickedChangePassword..")
+        
+        // create the actual alert controller view that will be the pop-up
+        let alertController = UIAlertController(title: "Change Password", message: "", preferredStyle: .alert)
+
+        // Add the text fields to the stack view
+        alertController.addTextField { (textField) in
+            textField.placeholder = "Old Password"
+            textField.isSecureTextEntry = true // Mask applied to the text field
+        }
+
+        alertController.addTextField { (textField2) in
+            textField2.placeholder = "New Password"
+            textField2.isSecureTextEntry = true // Mask applied to the text field
+        }
+
+
+        // add the buttons/actions to the view controller
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in
+            // Handle cancel action
+            alertController.dismiss(animated: true, completion: nil)
+        }
+        let saveAction = UIAlertAction(title: "Change", style: .default) { _ in
+
+            // this code runs when the user hits the "save" button
+            let oldPass = alertController.textFields![0].text
+            print("oldPass: ",oldPass)
+            
+            let newPass = alertController.textFields![1].text
+            print("newPass: ",newPass)
+            
+            if let oldPass = oldPass, !oldPass.isEmpty,
+               let newPass = newPass, !newPass.isEmpty,
+               oldPass.count > 4, newPass.count > 4 {
+                self.userService?.updatePassword(oldPassword: oldPass, newPassword: newPass ){ result in
+                    switch result {
+                    case .success(let message ):
+                        Banner.showSuccessBanner(message:message)
+                    case .failure(let error):
+                        Banner.showErrorBanner(with: error)
+                    }
+                }
+            }else{
+                Banner.showInfoBanner(message: "Password length must be at least 4 characters")
+            }
+
+        }
+
+        alertController.addAction(cancelAction)
+        alertController.addAction(saveAction)
+
+        present(alertController, animated: true, completion: nil)
+        
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

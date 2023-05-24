@@ -115,4 +115,50 @@ public class UserService {
         }
     }
     
+    internal func updateProfileImage(newUrl: String, completion: @escaping (Result<User, Error>) -> Void) {
+        let url = "\(rootUrl)/updateProfileImage"
+
+        // Alamofire : POST request
+        AF.request(url, method: .post, parameters: [
+            "newUrl":newUrl,
+        ], encoding: JSONEncoding.default, headers:headers()).responseDecodable(of: UpdateUserResponse<User>.self) { response in
+            print("response:", response)
+            switch response.result {
+            case .success(let response):
+                if response.succeeded , let user = response.user {
+                    completion(.success(user))
+                } else {
+                    let errorMessage =  "User photo couldn't be updated."
+                    let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: errorMessage])
+                    completion(.failure(error))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    internal func updatePassword(oldPassword: String,newPassword: String, completion: @escaping (Result<String, Error>) -> Void) {
+        let url = "\(rootUrl)/updatePassword"
+
+        // Alamofire : POST request
+        AF.request(url, method: .post, parameters: [
+            "oldPassword":oldPassword,
+            "password":newPassword
+        ], encoding: JSONEncoding.default, headers:headers()).responseDecodable(of: BaseResponseW_2E<String>.self) { response in
+            print("response:", response)
+            switch response.result {
+            case .success(let response):
+                if response.succeeded , let message = response.message {
+                    completion(.success(message))
+                } else {
+                    let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: response.message ?? "User password couldn't be changed"])
+                    completion(.failure(error))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
 }

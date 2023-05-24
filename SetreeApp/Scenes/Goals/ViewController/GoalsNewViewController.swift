@@ -95,13 +95,11 @@ class GoalsNewViewController: UIViewController {
                     switch result {
                     case .success(let message ):
                         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateGoalsAll"), object: nil)
-                        let banner = GrowingNotificationBanner(title: "Success", subtitle: message, style: .success)
-                        banner.show()
+                        Banner.showSuccessBanner(message:message)
                         
                         
                     case .failure(let error):
-                        let banner = GrowingNotificationBanner(title: "Something went wrong while retrieving the data", subtitle: "Error: \(error.localizedDescription) ", style: .danger)
-                        banner.show()
+                        Banner.showErrorBanner(with: error)
 
                     }
                 }
@@ -126,8 +124,7 @@ class GoalsNewViewController: UIViewController {
                             self.goalsWithDetails?.append(goal)
                              
                         case .failure(let error):
-                            let banner = GrowingNotificationBanner(title: "Something went wrong while retrieving the data.", subtitle: "Error: \(error.localizedDescription) ", style: .danger)
-                            banner.show()
+                            Banner.showErrorBanner(with: error)
 
                         }
                     }
@@ -144,8 +141,7 @@ class GoalsNewViewController: UIViewController {
                     self.getGoalDetails()
                      
                 case .failure(let error):
-                    let banner = GrowingNotificationBanner(title: "Something went wrong while retrieving the data.", subtitle: "Error: \(error.localizedDescription) ", style: .danger)
-                    banner.show()
+                    Banner.showErrorBanner(with: error)
 
                 }
             }
@@ -159,12 +155,14 @@ extension GoalsNewViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let rowCount = goalsWithDetails?.count ?? 0
-        return min(rowCount, 6)
+        return rowCount
+        //return min(rowCount, 6) //limit with 6 rows step1/3
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row >= 0 && indexPath.row < goalsWithDetails!.count {
-            let count = min((goalsWithDetails![indexPath.row].goalItems?.count ?? 0), 6)
+            //let count = min((goalsWithDetails![indexPath.row].goalItems?.count ?? 0), 6) //limit with 6 rows  step2/3
+            let count = (goalsWithDetails![indexPath.row].goalItems?.count ?? 0)
             return CGFloat((64 + 8 + ( count * 40)))
         }
         return 0
@@ -178,8 +176,8 @@ extension GoalsNewViewController: UITableViewDelegate, UITableViewDataSource {
             cell.color = UIColor(named: collectionCardColorsArr[indexPath.row % collectionCardColorsArr.count])!
             cell.titleLabel.text = goal.title
             cell.countLabel.text = String(goal.goalItems?.count ?? 0)
-            cell.goalsArray = Array(goal.goalItems?.prefix(6) ?? [])
-            
+            //cell.goalsArray = Array(goal.goalItems?.prefix(6) ?? []) //limit with 6 rows  step3/3
+            cell.goalsArray = goal.goalItems
             cell.tappedCheck = { itemId in
                 if let itemId = itemId {
                     self.handleTappedCheck(goal: goal, itemId: itemId, indexPath: indexPath)
@@ -252,8 +250,7 @@ extension GoalsNewViewController: UITableViewDelegate, UITableViewDataSource {
                 
             case .failure(let error):
                 print("Failure for itemId: \(itemId) -> isDone cannot be updated.")
-                let banner = GrowingNotificationBanner(title: "Something went wrong while retrieving the data.", subtitle: "Error: \(error.localizedDescription)", style: .danger)
-                banner.show()
+                Banner.showErrorBanner(with: error)
             }
         }
     }

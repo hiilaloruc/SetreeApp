@@ -65,17 +65,14 @@ class AddNewGoalViewController: UIViewController {
             case .success(let message):
                 print("message: ", message)
                 // Perform here the actions to be taken when the user is successfully registered
-                let banner = GrowingNotificationBanner(title: "Success", subtitle: message , style: .success)
-                banner.show()
-                
+                Banner.showSuccessBanner(message:message)
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateGoalObject"), object: nil)
                 self.dismiss(animated: true)
 
             case .failure(let error):
                 print("Sorry, goals couldn't added: ERROR: \(error.localizedDescription)")
                 // Perform here the actions to be taken when the user is not registered
-                let banner = GrowingNotificationBanner(title: "Error", subtitle: "\(error.localizedDescription).", style: .danger)
-                banner.show()
+                Banner.showErrorBanner(with: error)
             }
         }
         

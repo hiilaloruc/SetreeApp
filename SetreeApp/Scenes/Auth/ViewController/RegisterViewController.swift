@@ -45,17 +45,16 @@ class RegisterViewController: UIViewController {
             switch result {
             case .success(let user):
                 print("User is successfully registered -> USER: \(user)")
+                
                 // Perform here the actions to be taken when the user is successfully registered
-                let banner = GrowingNotificationBanner(title: "Success", subtitle: "Your account has been successfully created. You can now Log In!", style: .success)
-                banner.show()
+                Banner.showSuccessBanner(message: "Your account has been successfully created. You can now Log In!")
 
                 self.navigationController?.popViewController(animated: true)
 
             case .failure(let error):
                 print("The user could not be registered. ERROR: \(error.localizedDescription)")
                 // Perform here the actions to be taken when the user is not registered
-                let banner = GrowingNotificationBanner(title: "Error", subtitle: "\(error.localizedDescription).", style: .danger)
-                banner.show()
+                Banner.showErrorBanner(with: error)
             }
         }
     }

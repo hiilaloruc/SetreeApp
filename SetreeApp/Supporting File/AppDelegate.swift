@@ -50,8 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     let storyBoard = UIStoryboard.init(name: "Auth" , bundle: nil)
                     self.window?.rootViewController = storyBoard.instantiateInitialViewController()
                     
-                    let banner = GrowingNotificationBanner(title: "Your session has expired", subtitle: "You should login again. Error: \(error.localizedDescription) ", style: .danger)
-                    banner.show()
+                    Banner.showErrorBanner(with: error)
                 }
             }
                     
