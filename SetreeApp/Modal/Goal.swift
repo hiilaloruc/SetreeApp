@@ -13,7 +13,7 @@ struct Goal: Codable {
     let title: String
     let status: String
     let createdAt, updatedAt : String
-    let goalItems : [GoalItem]?
+    var goalItems : [GoalItem]?
 
     
     enum CodingKeys: String, CodingKey {

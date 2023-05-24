@@ -273,6 +273,8 @@ class UserViewController: UIViewController, UICollectionViewDelegate,UICollectio
             
             cell.titleLabel.text = self.collectionsArray![indexPath.row].title
             cell.countLabel.text = String(collectionsArray![indexPath.row].itemCount)
+            cell.likeCountLabel.text = String(collectionsArray![indexPath.row].likeCount)
+            cell.viewCountLabel.text = String(collectionsArray![indexPath.row].viewCount)
             if let url = URL(string: self.collectionsArray![indexPath.row].imageUrl){
                 cell.imageView.kf.setImage(with: url)
             }

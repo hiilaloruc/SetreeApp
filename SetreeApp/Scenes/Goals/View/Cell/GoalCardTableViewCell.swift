@@ -23,7 +23,7 @@ class GoalCardTableViewCell: UITableViewCell {
             }
         }
     }
-    internal var tappedCheck : ((_ itemId: String?)->(Bool))?
+    internal var tappedCheck : ((_ itemId: Int?)->(Bool))?
     internal var tappedGoalDetail : (()->())?
 
     internal var goalsArray: [GoalItem]? {
@@ -43,7 +43,7 @@ class GoalCardTableViewCell: UITableViewCell {
                 goalItem.containerView.backgroundColor = self.color?.withAlphaComponent(0.2)
                 goalItem.translatesAutoresizingMaskIntoConstraints = false
                 goalItem.tappedCheckImage =  {
-                    if ( (self.tappedCheck?("1_CustomId") != nil) &&  self.tappedCheck!("1_CustomId") ) {
+                    if ( (self.tappedCheck?(goal.goalItemId) != nil) &&  self.tappedCheck!(goal.goalItemId) ) {
                         goalItem.checked.toggle()
                     }
                    

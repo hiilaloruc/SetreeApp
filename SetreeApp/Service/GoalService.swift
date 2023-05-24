@@ -32,6 +32,54 @@ public class GoalService {
         }
     }
     
+    internal func createGoal(title: String, completion: @escaping (Result<String, Error>) -> Void) {
+        let url = "\(rootUrl)/createGoal"
+
+        // Alamofire : POST request
+        AF.request(url, method: .post, parameters: [
+            "title":title
+
+        ], encoding: JSONEncoding.default, headers:headers()).responseDecodable(of: baseAnswerWithMessage<String>.self) { response in
+            print("response:", response)
+            switch response.result {
+                case .success(let response):
+                    if response.succeded {
+                        completion(.success(response.message ?? "Succes!"))
+                    } else {
+                        let errorMessage = "Goal couldn't be created."
+                        let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: errorMessage])
+                        completion(.failure(error))
+                    }
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+        }
+    }
+    
+    internal func deleteGoal(goalId: Int, completion: @escaping (Result<String, Error>) -> Void) {
+        let url = "\(rootUrl)/deleteGoal"
+
+        // Alamofire : POST request
+        AF.request(url, method: .post, parameters: [
+            "status":"inactive",
+            "id":goalId
+
+        ], encoding: JSONEncoding.default, headers:headers()).responseDecodable(of: baseAnswerWithMessage<String>.self) { response in
+            print("response:", response)
+            switch response.result {
+                case .success(let response):
+                    if response.succeded {
+                        completion(.success(response.message ?? "Succes!"))
+                    } else {
+                        let errorMessage = "Goal couldn't be deleted."
+                        let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: errorMessage])
+                        completion(.failure(error))
+                    }
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+        }
+    }
    /* internal func getCollection(collectionId: Int, completion: @escaping (Result<Collection, Error>) -> Void) {
         let url = "\(rootUrl)/getCollection/\(collectionId)"
         print("Request Url: ", url)
@@ -84,7 +132,7 @@ public class GoalService {
             "itemArray":goalItemsArray,
             "goalId": goalId,
 
-        ], encoding: JSONEncoding.default, headers:headers()).responseDecodable(of: createMultipleGoalItemsResponse<String>.self) { response in
+        ], encoding: JSONEncoding.default, headers:headers()).responseDecodable(of: BaseResponseW_2E<String>.self) { response in
             print("response:", response)
             switch response.result {
                 case .success(let response):
@@ -92,6 +140,52 @@ public class GoalService {
                         completion(.success(response.message ?? "Succes!"))
                     } else {
                         let errorMessage = "Goal Items couldn't be created."
+                        let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: errorMessage])
+                        completion(.failure(error))
+                    }
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+        }
+    }
+    
+    internal func deleteGoalItem( goalItemId: Int, completion: @escaping (Result<String, Error>) -> Void) {
+        let url = "\(rootUrl)/deleteGoalItem/\(goalItemId)"
+        print("Request Url: ", url)
+        
+        // Alamofire : GET request
+        AF.request(url, headers: headers()).responseDecodable(of: baseAnswerWithMessage<String>.self) { response in
+            print("response:", response)
+            switch response.result {
+            case .success(let response):
+                if response.succeded, let message = response.message {
+                    completion(.success(message))
+                } else {
+                    let errorMessage =  "Error occured while deleting goals."
+                    let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: errorMessage])
+                    completion(.failure(error))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    internal func updateGoalItem(goalItemId: Int,goalItemContent: String,goalItemIsDone:Bool ,completion: @escaping (Result<GoalItem, Error>) -> Void) {
+        let url = "\(rootUrl)/updateGoalItem"
+
+        // Alamofire : POST request
+        AF.request(url, method: .post, parameters: [
+            "content": goalItemContent,
+            "isDone": goalItemIsDone,
+            "id": goalItemId
+        ], encoding: JSONEncoding.default, headers:headers()).responseDecodable(of: updateGoalItemResponse<GoalItem>.self) { response in
+            print("response:", response)
+            switch response.result {
+                case .success(let response):
+                if response.succeded, let goalItem = response.goalItem {
+                        completion(.success(goalItem))
+                    } else {
+                        let errorMessage = "Goal couldn't be updated."
                         let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: errorMessage])
                         completion(.failure(error))
                     }

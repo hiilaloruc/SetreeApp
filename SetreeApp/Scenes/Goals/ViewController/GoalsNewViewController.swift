@@ -60,7 +60,7 @@ class GoalsNewViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib.init(nibName: "GoalCardTableViewCell", bundle: nil), forCellReuseIdentifier: "GoalCardTableViewCell")
-        NotificationCenter.default.addObserver(self, selector: #selector(getGoalDetails), name: NSNotification.Name(rawValue: "updateGoalsAll") , object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(initialUI), name: NSNotification.Name(rawValue: "updateGoalsAll") , object: nil)
         
 
         
@@ -73,6 +73,47 @@ class GoalsNewViewController: UIViewController {
     
     @objc func plusButtonTapped(_ sender: UITapGestureRecognizer) {
         print("Plus button clicked on Goals..")
+        // create the actual alert controller view that will be the pop-up
+        let alertController = UIAlertController(title: "New Goal Group", message: "", preferredStyle: .alert)
+
+        alertController.addTextField { (textField) in
+            // configure the properties of the text field
+            textField.placeholder = "Weekly"
+        }
+
+
+        // add the buttons/actions to the view controller
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let saveAction = UIAlertAction(title: "Create", style: .default) { _ in
+
+            // this code runs when the user hits the "save" button
+            let inputTitle = alertController.textFields![0].text
+            print("inputTitle: ",inputTitle)
+            
+            if (inputTitle != nil && inputTitle != ""){
+                self.goalService?.createGoal(title: String(inputTitle!)){ result in
+                    switch result {
+                    case .success(let message ):
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateGoalsAll"), object: nil)
+                        let banner = GrowingNotificationBanner(title: "Success", subtitle: message, style: .success)
+                        banner.show()
+                        
+                        
+                    case .failure(let error):
+                        let banner = GrowingNotificationBanner(title: "Something went wrong while retrieving the data", subtitle: "Error: \(error.localizedDescription) ", style: .danger)
+                        banner.show()
+
+                    }
+                }
+            }
+
+        }
+
+        alertController.addAction(cancelAction)
+        alertController.addAction(saveAction)
+
+        present(alertController, animated: true, completion: nil)
+        
     }
     
     @objc func getGoalDetails(){
@@ -94,7 +135,7 @@ class GoalsNewViewController: UIViewController {
         }
     }
     
-    func initialUI(){
+    @objc func initialUI(){
         if let user = baseUSER{
             goalService?.getGoals(){ result in
                 switch result {
@@ -123,7 +164,8 @@ extension GoalsNewViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row >= 0 && indexPath.row < goalsWithDetails!.count {
-            return CGFloat((64 + 8 + (goalsWithDetails![indexPath.row].goalItems?.count ?? 0 ) * 40))
+            let count = min((goalsWithDetails![indexPath.row].goalItems?.count ?? 0), 6)
+            return CGFloat((64 + 8 + ( count * 40)))
         }
         return 0
     }
@@ -132,22 +174,39 @@ extension GoalsNewViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell =  tableView.dequeueReusableCell(withIdentifier: "GoalCardTableViewCell", for: indexPath) as! GoalCardTableViewCell
         cell.selectionStyle = .none
-        cell.color = UIColor(named: collectionCardColorsArr[indexPath.row%collectionCardColorsArr.count])!
-        cell.titleLabel.text = goalsWithDetails![indexPath.row].title
-        cell.countLabel.text = String(goalsWithDetails![indexPath.row].goalItems?.count ?? 0)
-        cell.goalsArray = goalsWithDetails![indexPath.row].goalItems
+        if let goal = goalsWithDetails?[indexPath.row] {
+            cell.color = UIColor(named: collectionCardColorsArr[indexPath.row % collectionCardColorsArr.count])!
+            cell.titleLabel.text = goal.title
+            cell.countLabel.text = String(goal.goalItems?.count ?? 0)
+            cell.goalsArray = Array(goal.goalItems?.prefix(6) ?? [])
+            
+            cell.tappedCheck = { itemId in
+                if let itemId = itemId {
+                    self.handleTappedCheck(goal: goal, itemId: itemId, indexPath: indexPath)
+                                return true
+                            } else {
+                                print("The item id is not applicable. itemId: \(itemId)")
+                                return false
+                            }
+            }
         
-        cell.tappedCheck = { itemId in
-            print("hilal işte itemId: \(itemId) ,request and get result")
-            return true // Return true or false based on whether the req succces
-        }
         cell.tappedGoalDetail = {
             if let vc = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "GoalsDetailViewController") as? GoalsDetailViewController{
                 vc.goalObject = self.goalsWithDetails![indexPath.row]
                 vc.color = cell.color
+                vc.tappedCheck = { itemId in
+                    if let itemId = itemId {
+                        self.handleTappedCheck(goal: goal, itemId: itemId, indexPath: indexPath)
+                                               return true
+                                           } else {
+                                               print("The item id is not applicable. itemId: \(itemId)")
+                                               return false
+                    }
+                }
+                
                 self.navigationController?.pushViewController(vc, animated: true)
            
-            }
+            } }
     
         }
         // Add the custom separator view to the bottom of the cell
@@ -163,8 +222,52 @@ extension GoalsNewViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    func handleTappedCheck(goal: Goal, itemId: Int, indexPath: IndexPath) {
+        print("isDone clicked on itemId: \(itemId)")
+        
+        guard let goalItemIndex = goal.goalItems?.firstIndex(where: { $0.goalItemId == itemId }),
+              let goalItemContent = goal.goalItems?[goalItemIndex].content else {
+            print("Goal item not found with itemId: \(itemId)")
+            return
+        }
+        
+        let goalItemIsDone = !(goal.goalItems?[goalItemIndex].isDone ?? false)
+        
+        self.goalService?.updateGoalItem(goalItemId: itemId, goalItemContent: goalItemContent, goalItemIsDone: goalItemIsDone) { result in
+            switch result {
+            case .success(let newGoal):
+                print("Success for itemId: \(itemId) -> new isDone:", newGoal.isDone)
+                
+                // Create a copy of the goalWithDetails array
+                var updatedGoalsWithDetails = self.goalsWithDetails ?? []
+                
+                // Update the goal in the copied array
+                if let index = updatedGoalsWithDetails.firstIndex(where: { $0.goalId == goal.goalId }) {
+                    updatedGoalsWithDetails[index].goalItems?[goalItemIndex] = newGoal
+                }
+                
+                // Update the original goalsWithDetails array with the copied array
+                self.goalsWithDetails = updatedGoalsWithDetails
+                self.reloadCard(at: indexPath)
+                
+            case .failure(let error):
+                print("Failure for itemId: \(itemId) -> isDone cannot be updated.")
+                let banner = GrowingNotificationBanner(title: "Something went wrong while retrieving the data.", subtitle: "Error: \(error.localizedDescription)", style: .danger)
+                banner.show()
+            }
+        }
+    }
+
+    
     
 }
 
 
+extension GoalsNewViewController {
+    func reloadCard(at indexPath: IndexPath) {
+        DispatchQueue.main.async { [weak self] in
+            self?.tableView.reloadRows(at: [indexPath], with: .none)
+        }
+    }
+}
 

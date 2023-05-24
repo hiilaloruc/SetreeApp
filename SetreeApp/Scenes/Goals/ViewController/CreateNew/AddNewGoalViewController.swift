@@ -150,15 +150,14 @@ extension AddNewGoalViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
-            
-            if(self.newGoalArr.count < indexPath.row){
+            if (indexPath.row < (self.newGoalArr.count ?? 0) ){
+                print("silme işlemini gerçekleştir2 , silinecek: \(self.newGoalArr[indexPath.row])")
                 self.newGoalArr.remove(at: indexPath.row)
                 print("newGoalArr: ", self.newGoalArr)
                 tableView.reloadData()
             }else{
-                
+                print("out of range indexpath.row: \(indexPath.row) , arrCount: ", self.newGoalArr.count ?? 0)
             }
-            
         }
         return [deleteAction]
     }
@@ -170,7 +169,7 @@ extension AddNewGoalViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // silme işlemini gerçekleştir
-            print("silme işlemini gerçekleştir2")
+            
         }
     }
 

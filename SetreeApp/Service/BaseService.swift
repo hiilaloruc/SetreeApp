@@ -75,9 +75,19 @@ struct GetGoalDetailResponse<Collection: Codable>: Codable {
     let goal: Goal?
 }
 
-struct createMultipleGoalItemsResponse<T: Decodable>: Decodable {
+struct BaseResponseW_2E<T: Decodable>: Decodable {
     let succeeded: Bool
     let message: String?
+}
+
+struct baseAnswerWithMessage<T: Decodable>: Decodable {
+    let succeded: Bool
+    let message: String?
+}
+struct updateGoalItemResponse<GoalItem: Codable>: Codable {
+    let succeded: Bool
+    let message: String?
+    let goalItem: GoalItem?
 }
 
 

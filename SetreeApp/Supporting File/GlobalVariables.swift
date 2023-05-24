@@ -6,4 +6,4 @@
 //
 
 import Foundation
-let collectionCardColorsArr = ["softOrange", "softLilac", "softDarkblue", "softPink", "verySoftRed", "softGreen" ]
+let collectionCardColorsArr = ["softOrange", "softLilac","verySoftRed","softGreen", "softPink", "softDarkblue" ]
