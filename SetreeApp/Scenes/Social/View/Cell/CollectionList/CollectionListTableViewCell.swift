@@ -31,9 +31,9 @@ class CollectionListTableViewCell: UITableViewCell, UICollectionViewDelegate, UI
 
         cell.tappedCell = { [weak self] in
             guard let self = self else { return }
-                if let vc = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "CollectionsDetailViewController") as? CollectionsDetailViewController{
+                if let vc = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "CollectionDetailViewController") as? CollectionDetailViewController{
                     vc.title = cell.titleLabel.text //update later if needed
-                    vc.collectionId = 11
+//                    vc.collectionId = 11
                     //self.navigationController?.pushViewController(vc, animated: true)
                
                 }

@@ -269,7 +269,7 @@ class UserViewController: UIViewController, UICollectionViewDelegate,UICollectio
             cell.bgColor = UIColor(named: collectionCardColorsArr[indexPath.row%collectionCardColorsArr.count])!
             
             cell.titleLabel.text = self.collectionsArray![indexPath.row].title
-            cell.countLabel.text = String(collectionsArray![indexPath.row].itemCount)
+            //cell.countLabel.text = String(collectionsArray![indexPath.row].itemCount)
             cell.likeCountLabel.text = String(collectionsArray![indexPath.row].likeCount)
             cell.viewCountLabel.text = String(collectionsArray![indexPath.row].viewCount)
             if let url = URL(string: self.collectionsArray![indexPath.row].imageUrl){
@@ -279,9 +279,9 @@ class UserViewController: UIViewController, UICollectionViewDelegate,UICollectio
 
             cell.tappedCell = { [weak self] in
                 guard let self = self else { return }
-                    if let vc = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "CollectionsDetailViewController") as? CollectionsDetailViewController{
+                    if let vc = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "CollectionDetailViewController") as? CollectionDetailViewController{
                         vc.title = cell.titleLabel.text //update later if needed
-                        vc.collectionId = 11
+                        //vc.collectionId = 11
                         vc.collection = self.collectionsArray![indexPath.row]
                         self.navigationController?.pushViewController(vc, animated: true)
                    

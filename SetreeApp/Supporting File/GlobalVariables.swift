@@ -13,12 +13,12 @@ let collectionCardColorsArr = ["softOrange", "softLilac","verySoftRed","softGree
 class Banner{
     static func showErrorBanner(with error: Error) {
         print("An error occurred: \(error)")
-        let banner = GrowingNotificationBanner(title: "Error", subtitle: "\(error.localizedDescription).", style: .danger)
+        let banner = GrowingNotificationBanner(title: "Sorry!", subtitle: "\(error.localizedDescription).", style: .danger)
         banner.show()
     }
 
     static func showSuccessBanner(message: String) {
-        let banner = GrowingNotificationBanner(title: "Success", subtitle: message, style: .success)
+        let banner = GrowingNotificationBanner(title: "Success!", subtitle: message, style: .success)
         banner.show()
     }
     

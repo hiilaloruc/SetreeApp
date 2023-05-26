@@ -90,6 +90,24 @@ struct updateGoalItemResponse<GoalItem: Codable>: Codable {
     let goalItem: GoalItem?
 }
 
+struct CreateCollectionResponse<Collection: Codable>: Codable {
+    let succeded: Bool
+    let message: String?
+    let collection: Collection?
+}
+
+
+struct ImageResponse: Codable {
+    let total: Int
+    let totalHits: Int
+    let hits: [ImageHit]
+}
+
+    
+struct ImageHit: Codable {
+    let webformatURL: String
+}
+
 
 let rootUrl = "\(Environment.getRootUrl())"
 

@@ -53,7 +53,11 @@ class CollectionsViewController: UIViewController, UICollectionViewDelegate, UIC
     
     
     @objc func plusButtonTapped(_ sender: UITapGestureRecognizer) {
-        print("jj: + clicked..")
+        print("new collection clicked..")
+        if let vc = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "CollectionCreateViewController") as? CollectionCreateViewController{
+            vc.senderVC = self
+            self.present(UINavigationController(rootViewController:vc), animated: true)
+        }
     }
     
     
@@ -69,7 +73,7 @@ class CollectionsViewController: UIViewController, UICollectionViewDelegate, UIC
         cell.bgColor = UIColor(named: collectionCardColorsArr[indexPath.row%collectionCardColorsArr.count])!
         //cell.collection = self.collectionsArray![indexPath.row]
         cell.titleLabel.text = self.collectionsArray![indexPath.row].title
-        cell.countLabel.text = String(collectionsArray![indexPath.row].itemCount)
+        //cell.countLabel.text = String(collectionsArray![indexPath.row].itemCount)
         cell.likeCountLabel.text = String(collectionsArray![indexPath.row].likeCount)
         cell.viewCountLabel.text = String(collectionsArray![indexPath.row].viewCount)
         if let url = URL(string: self.collectionsArray![indexPath.row].imageUrl){
@@ -78,9 +82,9 @@ class CollectionsViewController: UIViewController, UICollectionViewDelegate, UIC
 
         cell.tappedCell = { [weak self] in
             guard let self = self else { return }
-                if let vc = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "CollectionsDetailViewController") as? CollectionsDetailViewController{
-                    vc.title = cell.titleLabel.text //update later if needed
-                    vc.collectionId = 11
+                if let vc = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "CollectionDetailViewController") as? CollectionDetailViewController{
+                   // vc.title = cell.titleLabel.text //update later if needed
+                    //vc.collectionId = 11
                     vc.collection = self.collectionsArray![indexPath.row]
                     self.navigationController?.pushViewController(vc, animated: true)
                

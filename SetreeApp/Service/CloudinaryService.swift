@@ -7,6 +7,7 @@
 
 import Foundation
 import Cloudinary
+import Alamofire
 
 
 public class CloudinaryService {
@@ -29,7 +30,18 @@ public class CloudinaryService {
             }
         }
     }
-
+    
+    func getImageByTitle(title: String = "architecture", completion: @escaping (Result<ImageResponse, Error>) -> Void){
+        let url = "https://pixabay.com/api/?key=\(Environment.getPixabayKey())&q=\(title)&image_type=photo&pretty=true&per_page=3"
+        AF.request(url).responseDecodable(of: ImageResponse.self) { response in
+            switch response.result {
+            case .success(let imageResponse):
+                completion(.success(imageResponse))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
 
     
     

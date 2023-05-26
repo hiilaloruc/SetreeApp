@@ -15,7 +15,7 @@ struct Collection: Codable {
     let isPublic: Bool
     let createdAt, updatedAt : String
     let collectionItems : [CollectionItemMinor]?
-    let itemCount:Int
+    //let itemCount:Int
     let viewCount, likeCount: Int
     let tag: String?
     
@@ -26,7 +26,7 @@ struct Collection: Codable {
         case imageUrl
         case isPublic,status
         case createdAt, updatedAt
-        case itemCount
+        //case itemCount
         case viewCount, likeCount
         case tag
         case collectionItems = "collection" //not sure
