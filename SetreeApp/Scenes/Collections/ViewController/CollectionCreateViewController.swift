@@ -165,6 +165,17 @@ class CollectionCreateViewController: UIViewController, UITextFieldDelegate, UII
           
     }
     
+    @IBAction func switchValueChanged(_ sender: UISwitch) {
+        if sender.isOn {
+            // Switch is turned on
+            print("Switch is turned on")
+        } else {
+            // Switch is turned off
+            print("Switch is turned off")
+        }
+    }
+
+    
 
 
 }

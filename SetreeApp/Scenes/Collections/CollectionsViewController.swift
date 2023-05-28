@@ -34,9 +34,10 @@ class CollectionsViewController: UIViewController, UICollectionViewDelegate, UIC
         self.plusButton.isUserInteractionEnabled = true
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(plusButtonTapped))
         self.plusButton.addGestureRecognizer(tapGestureRecognizer)
+        NotificationCenter.default.addObserver(self, selector: #selector(initUI), name: NSNotification.Name(rawValue: "updateCollectionsAll") , object: nil)
 
     }
-    func initUI(){
+    @objc func initUI(){
         if let user = baseUSER{
             collectionService?.getCollections(userId: user.userId){ result in
                 switch result {

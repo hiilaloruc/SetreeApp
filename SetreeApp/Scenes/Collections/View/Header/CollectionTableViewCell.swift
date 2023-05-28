@@ -8,8 +8,10 @@
 import UIKit
 
 class CollectionTableViewCell: UITableViewCell {
-    
+    //@IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
+   
+    
     
     
     override func awakeFromNib() {
@@ -17,5 +19,5 @@ class CollectionTableViewCell: UITableViewCell {
         // Initialization code
         self.clipsToBounds = true
     }
-    
+    @IBOutlet weak var userImageView : UIImageView!
 }

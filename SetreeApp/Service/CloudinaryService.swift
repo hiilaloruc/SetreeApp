@@ -36,8 +36,10 @@ public class CloudinaryService {
         AF.request(url).responseDecodable(of: ImageResponse.self) { response in
             switch response.result {
             case .success(let imageResponse):
+                print("Pixabay success ..")
                 completion(.success(imageResponse))
             case .failure(let error):
+                print("Pixabay gave error ..")
                 completion(.failure(error))
             }
         }

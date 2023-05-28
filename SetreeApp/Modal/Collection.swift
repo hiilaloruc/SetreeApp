@@ -42,3 +42,18 @@ struct CollectionItemMinor: Codable {
     }
     
 }
+
+struct CollectionItem: Codable {
+    let collectionItemId: Int
+    let collectionId: Int
+    let content: String
+    let type: String
+    let createdAt: String
+    
+    enum CodingKeys: String, CodingKey {
+        case collectionItemId = "id"
+        case content,collectionId,type,createdAt
+    }
+    
+}
+

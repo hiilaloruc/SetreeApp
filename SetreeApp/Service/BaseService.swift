@@ -96,11 +96,15 @@ struct CreateCollectionResponse<Collection: Codable>: Codable {
     let collection: Collection?
 }
 
-
 struct ImageResponse: Codable {
     let total: Int
     let totalHits: Int
     let hits: [ImageHit]
+}
+
+struct getItemsByCollectionResponse<CollectionItem : Codable>: Codable {
+    let succeeded: Bool
+    let collectionItems : [CollectionItem]?
 }
 
     

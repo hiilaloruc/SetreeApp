@@ -275,6 +275,23 @@ class UserViewController: UIViewController, UICollectionViewDelegate,UICollectio
             if let url = URL(string: self.collectionsArray![indexPath.row].imageUrl){
                 cell.imageView.kf.setImage(with: url)
             }
+            /*let imageUrl = self.collectionsArray![indexPath.row].imageUrl
+              if imageUrl.hasPrefix("https") {
+                  // Regular URL
+                  if let url = URL(string: imageUrl) {
+                      print("jjj: image URL format")
+                      cell.imageView.kf.setImage(with: url)
+                  }
+              } else if imageUrl.hasPrefix("data:image") {
+                  // Base64-encoded image URL
+                  if let base64String = imageUrl.components(separatedBy: ",").last,
+                      let base64Data = Data(base64Encoded: base64String, options: .ignoreUnknownCharacters),
+                      let image = UIImage(data: base64Data) {
+                      print("jjj: image base64Data format")
+                      cell.imageView.image = image
+                  }
+              }*/
+              
 
 
             cell.tappedCell = { [weak self] in

@@ -108,5 +108,74 @@ public class CollectionService {
         }
     }
     
+    internal func getItemsByCollection(collectionId: Int, completion: @escaping (Result<[CollectionItem], Error>) -> Void) {
+        let url = "\(rootUrl)/getItemsByCollection/\(collectionId)"
+        print("Request Url: ", url)
+        
+        // Alamofire : GET request
+        AF.request(url, headers: headers()).responseDecodable(of: getItemsByCollectionResponse<CollectionItem>.self) { response in
+            print("response:", response)
+            switch response.result {
+            case .success(let response):
+                if response.succeeded, let collectionItems = response.collectionItems  {
+                    completion(.success(collectionItems))
+                } else {
+                    let errorMessage =  "Error occured while getting collection items."
+                    let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: errorMessage])
+                    completion(.failure(error))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    internal func deleteCollection(collectionId: Int, completion: @escaping (Result<String, Error>) -> Void) {
+        let url = "\(rootUrl)/deleteCollection"
+
+        // Alamofire : POST request
+        AF.request(url, method: .post, parameters: [
+            "status":"inactive",
+            "id":collectionId
+
+        ], encoding: JSONEncoding.default, headers:headers()).responseDecodable(of: baseAnswerWithMessage<String>.self) { response in
+            print("response:", response)
+            switch response.result {
+                case .success(let response):
+                    if response.succeded {
+                        completion(.success(response.message ?? "Succes!"))
+                    } else {
+                        let errorMessage = "Goal couldn't be deleted."
+                        let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: errorMessage])
+                        completion(.failure(error))
+                    }
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+        }
+    }
+    
+    internal func deleteCollectionItem( collectionItemId: Int, completion: @escaping (Result<String, Error>) -> Void) {
+        let url = "\(rootUrl)/deleteCollectionItem/\(collectionItemId)"
+        print("Request Url: ", url)
+        
+        // Alamofire : GET request
+        AF.request(url, headers: headers()).responseDecodable(of: baseAnswerWithMessage<String>.self) { response in
+            print("response:", response)
+            switch response.result {
+            case .success(let response):
+                if response.succeded, let message = response.message {
+                    completion(.success(message))
+                } else {
+                    let errorMessage =  "Error occured while deleting collection item."
+                    let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: errorMessage])
+                    completion(.failure(error))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
     
 }
