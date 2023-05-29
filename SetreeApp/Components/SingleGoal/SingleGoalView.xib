@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -14,6 +15,7 @@
                 <outlet property="checkImageView" destination="XVf-Y4-QmH" id="Z3i-Tz-oDj"/>
                 <outlet property="containerView" destination="iN0-l3-epB" id="Mb5-XG-ILP"/>
                 <outlet property="contentLabel" destination="OhK-Km-Pbb" id="6Um-UQ-MSB"/>
+                <outlet property="showMoreButton" destination="x2z-lx-8a9" id="VCC-XZ-fto"/>
                 <outlet property="textView" destination="DYU-Zl-E2q" id="T6O-S0-JZH"/>
             </connections>
         </placeholder>
@@ -51,15 +53,30 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x2z-lx-8a9">
+                    <rect key="frame" x="0.0" y="0.0" width="413" height="48"/>
+                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" imagePlacement="leading">
+                        <imageReference key="image" image="arrow.up.backward.and.arrow.down.forward" catalog="system" symbolScale="large"/>
+                    </buttonConfiguration>
+                    <connections>
+                        <action selector="clickedShowMore:" destination="-1" eventType="touchUpInside" id="0EU-dW-05i"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="1ih-Pm-K7L" firstAttribute="leading" secondItem="XVf-Y4-QmH" secondAttribute="leading" id="58J-PJ-mgq"/>
                 <constraint firstAttribute="trailing" secondItem="OhK-Km-Pbb" secondAttribute="trailing" constant="5" id="HSM-oV-hB9"/>
+                <constraint firstAttribute="trailing" secondItem="x2z-lx-8a9" secondAttribute="trailing" id="IT9-wI-6Gj"/>
                 <constraint firstItem="DYU-Zl-E2q" firstAttribute="leading" secondItem="XVf-Y4-QmH" secondAttribute="trailing" constant="5" id="KLU-w4-5HF"/>
                 <constraint firstItem="OhK-Km-Pbb" firstAttribute="centerY" secondItem="XVf-Y4-QmH" secondAttribute="centerY" id="N8c-ff-Pe7"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="x2z-lx-8a9" secondAttribute="bottom" id="SIe-DK-jX4"/>
                 <constraint firstItem="DYU-Zl-E2q" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="W2i-GO-Wwy"/>
+                <constraint firstItem="x2z-lx-8a9" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Y9i-WX-nyN"/>
+                <constraint firstItem="x2z-lx-8a9" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ZXv-xu-Yh6"/>
                 <constraint firstItem="DYU-Zl-E2q" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="abU-uS-e4B"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="DYU-Zl-E2q" secondAttribute="trailing" constant="5" id="clE-h1-yw5"/>
                 <constraint firstItem="XVf-Y4-QmH" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="g3p-Hw-UM6"/>
@@ -68,6 +85,7 @@
                 <constraint firstItem="XVf-Y4-QmH" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="lz0-ax-nko"/>
                 <constraint firstItem="OhK-Km-Pbb" firstAttribute="leading" secondItem="XVf-Y4-QmH" secondAttribute="trailing" constant="5" id="m2X-hY-xFv"/>
                 <constraint firstItem="1ih-Pm-K7L" firstAttribute="top" secondItem="XVf-Y4-QmH" secondAttribute="top" id="m9s-W0-t4j"/>
+                <constraint firstItem="x2z-lx-8a9" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="mhs-Tg-laI"/>
                 <constraint firstItem="1ih-Pm-K7L" firstAttribute="bottom" secondItem="XVf-Y4-QmH" secondAttribute="bottom" id="xrU-r2-gtO"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -75,6 +93,7 @@
         </view>
     </objects>
     <resources>
+        <image name="arrow.up.backward.and.arrow.down.forward" catalog="system" width="128" height="115"/>
         <image name="checkmark.circle" catalog="system" width="128" height="121"/>
         <namedColor name="softLilac">
             <color red="0.76499998569488525" green="0.69900000095367432" blue="0.82400000095367432" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>

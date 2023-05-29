@@ -126,10 +126,17 @@ extension GoalsDetailViewController: UITableViewDelegate, UITableViewDataSource 
             let addButton = UIButton(type: .system)
             addButton.frame = cell.contentView.bounds
             addButton.setTitle("+ Add New", for: .normal)
+            addButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18) // Adjust the font size as desired
             addButton.titleLabel?.textAlignment = .center
-            addButton.setTitleColor(.systemBlue, for: .normal)
+            addButton.setTitleColor(color, for: .normal)
             addButton.addTarget(self, action: #selector(addNewGoalButtonTapped), for: .touchUpInside)
+            addButton.translatesAutoresizingMaskIntoConstraints = false
             cell.contentView.addSubview(addButton)
+            // Center the button using Auto Layout constraints
+            NSLayoutConstraint.activate([
+                addButton.centerXAnchor.constraint(equalTo: cell.contentView.centerXAnchor),
+                addButton.centerYAnchor.constraint(equalTo: cell.contentView.centerYAnchor)
+            ])
         }
         
         return cell

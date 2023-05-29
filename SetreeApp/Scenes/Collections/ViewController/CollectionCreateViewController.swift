@@ -12,6 +12,7 @@ class CollectionCreateViewController: UIViewController, UITextFieldDelegate, UII
     
     @IBOutlet weak var titleTF: UITextField!
     @IBOutlet weak var tagTF: UITextField!
+    @IBOutlet weak var isPublicLabel: UILabel!
     @IBOutlet weak var isPublicSwitch: UISwitch!
     @IBOutlet weak var imageView: UIImageView!
     
@@ -169,9 +170,13 @@ class CollectionCreateViewController: UIViewController, UITextFieldDelegate, UII
         if sender.isOn {
             // Switch is turned on
             print("Switch is turned on")
+            isPublicLabel.text = "Public"
+          //  isPublicLabel.tintColor = UIColor(named: "softGreen")
         } else {
             // Switch is turned off
             print("Switch is turned off")
+            isPublicLabel.text = "Private"
+            //isPublicLabel.tintColor = UIColor.systemGray4
         }
     }
 

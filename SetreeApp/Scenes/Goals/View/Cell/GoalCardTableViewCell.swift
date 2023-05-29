@@ -13,6 +13,8 @@ class GoalCardTableViewCell: UITableViewCell {
     @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var bottomView: UIView!
+    
+    internal var showMoreNeeded: Bool = false
 
     internal var color : UIColor? {
         didSet{
@@ -50,6 +52,20 @@ class GoalCardTableViewCell: UITableViewCell {
                 }
                 stackView.addArrangedSubview(goalItem)
             }
+            if showMoreNeeded {
+                let goalItem = SingleGoalView()
+                goalItem.showMoreButton.isHidden = false
+                goalItem.contentLabel.isHidden  = true
+                goalItem.checkImageView.isHidden = true
+                goalItem.showMoreButton.tintColor = self.color
+                goalItem.containerView.backgroundColor = self.color?.withAlphaComponent(0.2)
+                goalItem.translatesAutoresizingMaskIntoConstraints = false
+                goalItem.tappedShowMore =  {
+                    self.tappedGoalDetail?()
+                }
+                stackView.addArrangedSubview(goalItem)
+            }
+            
             stackView.layoutIfNeeded()
             
         }

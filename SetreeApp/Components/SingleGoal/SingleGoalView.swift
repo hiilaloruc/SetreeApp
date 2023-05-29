@@ -12,8 +12,10 @@ class SingleGoalView: BaseView {
     @IBOutlet weak var checkImageView: UIImageView!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var showMoreButton: UIButton!
     
     internal var tappedCheckImage : (() -> ())?
+    internal var tappedShowMore : (() -> ())?
     internal var checked: Bool = false {
         didSet{
             if (checked) {
@@ -47,4 +49,8 @@ class SingleGoalView: BaseView {
         self.tappedCheckImage?()
     }
 
+    @IBAction func clickedShowMore(_ sender: Any){
+        print("clickedShowMore..!")
+        self.tappedShowMore?()
+    }
 }

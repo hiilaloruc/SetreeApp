@@ -170,6 +170,12 @@ extension CollectionDetailViewController: UITableViewDelegate, UITableViewDataSo
             //cell.titleLabel.text = self.collection.title
             cell.likeCountLabel.text = String(self.collection.likeCount)
             cell.viewCountLabel.text = String(self.collection.viewCount)
+            if self.collection.userId != baseUSER?.userId {
+                cell.editStackView.isHidden = true // someone else's collection
+            }else {
+                cell.editStackView.isHidden = false // my own collection
+            }
+            
             if let tag = self.collection.tag {
                 cell.tagLabel.text = "#\(tag)"
             }
@@ -198,7 +204,6 @@ extension CollectionDetailViewController: UITableViewDelegate, UITableViewDataSo
         cell.titleLabel.isHidden = false
         cell.userImageView.isHidden = false
         cell.titleLabel.text = collectionItem.content
-        
         if collectionItem.type == "image" {
             // Load image and hide/show appropriate views
             cell.titleLabel.isHidden = true
@@ -213,6 +218,9 @@ extension CollectionDetailViewController: UITableViewDelegate, UITableViewDataSo
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
+            if self.collection.userId != baseUSER?.userId {
+                return 90 // someone else's collection
+            }
             return 125
         }
         if indexPath.section == 1{

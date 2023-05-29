@@ -13,6 +13,7 @@ class CollectionHeaderTableViewCell: UITableViewCell {
     @IBOutlet weak var likeCountLabel: UILabel!
     @IBOutlet weak var viewCountLabel: UILabel!
     @IBOutlet weak var isPublicButton: UIButton!
+    @IBOutlet weak var editStackView: UIStackView!
     
     //internal var addTitleClicked: (()->())?
     

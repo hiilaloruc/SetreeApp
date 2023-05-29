@@ -16,7 +16,7 @@ class GoalsNewViewController: UIViewController {
     
     internal var goalsWithDetails: [Goal]? = []{
         didSet{
-           // collectionsView.reloadData()
+            goalsWithDetails?.sort(by: { $0.createdAt > $1.createdAt })
             print("goalsWithDetails updated :) new count:", goalsWithDetails?.count)
             self.tableView.reloadData()
         }
@@ -32,29 +32,6 @@ class GoalsNewViewController: UIViewController {
         return GoalService()
     }
     
-    /*var GoalObjects = [["Daily","3", [ "Call mom and remind", "Give breakfast to Max", "Give breakfast to Max"]],
-    
-                       ["Weekly","6", ["Visit your granmda","Go to a cinema with a friend","Explore a new technology","Call a random friend","Get a certificate from any field","Enroll a course - that you know nothing"]],
-                       ["Monthly","5",  ["Join a workshop as a part of a team", "Go stay in Poland for at least  2 weeks", "Call mom and remind her medicines", "Give breakfast to Max","Go somewhere that you never did"]],
-                       
-                       ["Tomorrow","2", [ "Call mom and remind", "Give breakfast to Max"]]
-    ]*/
-    /*
-    var todoArray = [
-        [ "Call mom and remind", "Give breakfast to Max", "Give breakfast to Max"],
-        ["Visit your granmda","Go to a cinema with a friend","Explore a new technology","Call a random friend","Get a certificate from any field","Enroll a course - that you know nothing"],
-        ["Join a workshop as a part of a team", "Go stay in Poland for at least  2 weeks", "Call mom and remind her medicines", "Give breakfast to Max","Go somewhere that you never did"],
-        [ "Call mom and remind", "Give breakfast to Max"]
-    ]
-    
-    var GoalsInfoArray = [
-        ["Daily","2"],
-        ["Weekly","6"],
-        ["Monthly","5"],
-        ["Tomorrow","2"]
-        ]
-    
-    */
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -156,16 +133,19 @@ extension GoalsNewViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let rowCount = goalsWithDetails?.count ?? 0
         return rowCount
-        //return min(rowCount, 6) //limit with 6 rows step1/3
+        return min(rowCount, 6) //limit with 6 rows step1/3
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row >= 0 && indexPath.row < goalsWithDetails!.count {
-            //let count = min((goalsWithDetails![indexPath.row].goalItems?.count ?? 0), 6) //limit with 6 rows  step2/3
-            let count = (goalsWithDetails![indexPath.row].goalItems?.count ?? 0)
-            return CGFloat((64 + 8 + ( count * 40)))
+        guard let goalsWithDetails = goalsWithDetails, indexPath.row >= 0, indexPath.row < goalsWithDetails.count else {
+            return 0
         }
-        return 0
+        
+        let goalItemcount = goalsWithDetails[indexPath.row].goalItems?.count ?? 0
+        let rowCount = min(goalItemcount, 6)
+        let totalHeight = CGFloat(64 + 8 + (rowCount * 40) + (goalItemcount > 6 ? 20 : 0))
+        
+        return totalHeight
     }
 
     
@@ -176,35 +156,40 @@ extension GoalsNewViewController: UITableViewDelegate, UITableViewDataSource {
             cell.color = UIColor(named: collectionCardColorsArr[indexPath.row % collectionCardColorsArr.count])!
             cell.titleLabel.text = goal.title
             cell.countLabel.text = String(goal.goalItems?.count ?? 0)
-            //cell.goalsArray = Array(goal.goalItems?.prefix(6) ?? []) //limit with 6 rows  step3/3
-            cell.goalsArray = goal.goalItems
+            if goal.goalItems?.count ?? 0 > 6 {
+                cell.showMoreNeeded = true
+            }
+            cell.goalsArray = Array(goal.goalItems?.prefix(6) ?? []) //limit with 6 rows  step3/3
+            
+            
+            //cell.goalsArray = goal.goalItems
             cell.tappedCheck = { itemId in
                 if let itemId = itemId {
                     self.handleTappedCheck(goal: goal, itemId: itemId, indexPath: indexPath)
-                                return true
-                            } else {
-                                print("The item id is not applicable. itemId: \(itemId)")
-                                return false
-                            }
+                    return true
+                } else {
+                    print("The item id is not applicable. itemId: \(itemId)")
+                    return false
+                }
             }
         
-        cell.tappedGoalDetail = {
-            if let vc = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "GoalsDetailViewController") as? GoalsDetailViewController{
-                vc.goalObject = self.goalsWithDetails![indexPath.row]
-                vc.color = cell.color
-                vc.tappedCheck = { itemId in
-                    if let itemId = itemId {
-                        self.handleTappedCheck(goal: goal, itemId: itemId, indexPath: indexPath)
-                                               return true
-                                           } else {
-                                               print("The item id is not applicable. itemId: \(itemId)")
-                                               return false
+            cell.tappedGoalDetail = {
+                if let vc = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "GoalsDetailViewController") as? GoalsDetailViewController{
+                    vc.goalObject = self.goalsWithDetails![indexPath.row]
+                    vc.color = cell.color
+                    vc.tappedCheck = { itemId in
+                        if let itemId = itemId {
+                            self.handleTappedCheck(goal: goal, itemId: itemId, indexPath: indexPath)
+                            return true
+                       } else {
+                           print("The item id is not applicable. itemId: \(itemId)")
+                           return false
+                        }
                     }
-                }
-                
-                self.navigationController?.pushViewController(vc, animated: true)
-           
-            } }
+                    
+                    self.navigationController?.pushViewController(vc, animated: true)
+               
+                } }
     
         }
         // Add the custom separator view to the bottom of the cell

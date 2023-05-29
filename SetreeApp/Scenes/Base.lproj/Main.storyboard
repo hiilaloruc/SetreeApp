@@ -1322,7 +1322,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Public" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2It-PJ-d4a">
                                 <rect key="frame" x="224" y="158" width="42" height="23"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" systemColor="systemGray4Color"/>
                                 <color key="highlightedColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </label>
                         </subviews>
@@ -1359,6 +1359,7 @@
                     </view>
                     <connections>
                         <outlet property="imageView" destination="NFa-aR-HY6" id="Jef-KI-7qv"/>
+                        <outlet property="isPublicLabel" destination="2It-PJ-d4a" id="Fem-Qr-17B"/>
                         <outlet property="isPublicSwitch" destination="QSc-6F-J8h" id="Irx-EO-ysy"/>
                         <outlet property="tagTF" destination="Fsr-yj-B8s" id="Rmn-3x-hja"/>
                         <outlet property="titleTF" destination="1JD-R5-gGb" id="PMV-rF-pam"/>
@@ -2029,6 +2030,9 @@
         </systemColor>
         <systemColor name="systemGray2Color">
             <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray5Color">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
