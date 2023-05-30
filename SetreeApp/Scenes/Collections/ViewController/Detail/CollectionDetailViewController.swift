@@ -189,6 +189,32 @@ extension CollectionDetailViewController: UITableViewDelegate, UITableViewDataSo
                 cell.isPublicButton.tintColor = UIColor.systemGray4
             }
             
+            cell.addNewItemClicked = {  itemType in
+                if let vc = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "CollectionitemCreateViewController") as? CollectionitemCreateViewController{
+                    vc.itemType = itemType
+                    vc.createTextOrTitle = {  type, content in
+                        print("Type: \(type), Content: \(content)")
+                        
+                        self.collectionService?.createCollectionItem(content: content, type: type, collectionId: self.collection.collectionId) {result in
+                            switch result {
+                            case .success(let collectionItem):
+                                Banner.showSuccessBanner(message: "Item successfully created")
+                                self.collectionItemsArray?.append(collectionItem)
+                                
+                            case .failure(let error):
+                                Banner.showErrorBanner(with: error)
+                            }
+                        }
+                    }
+                    
+                    
+                    vc.createImage = {  imgUrl in
+                        print("imgUrl: \(imgUrl)")
+                    }
+                    self.present(UINavigationController(rootViewController:vc), animated: true)
+                }
+            }
+            
             
             return cell
         }else{
@@ -236,26 +262,7 @@ extension CollectionDetailViewController: UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
-    
-    /*func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-           let headerView = UIView()
-           headerView.backgroundColor = .white
-           let label = UILabel()
-           label.textColor = UIColor.black
-           label.font = UIFont.boldSystemFont(ofSize: 35)
-           label.translatesAutoresizingMaskIntoConstraints = false
-           headerView.addSubview(label)
-           
-           label.centerXAnchor.constraint(equalTo: headerView.centerXAnchor).isActive = true
-           label.centerYAnchor.constraint(equalTo: headerView.centerYAnchor).isActive = true
-           label.text = "My Title"
 
-         return headerView
-     }
-     
-     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-         return 40
-     }*/
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let deleteAction = UITableViewRowAction(style: .destructive, title: "Sil") { (action, indexPath) in

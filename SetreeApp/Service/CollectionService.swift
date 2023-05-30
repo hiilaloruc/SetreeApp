@@ -177,5 +177,31 @@ public class CollectionService {
         }
     }
     
+    internal func createCollectionItem(content: String, type: String ,collectionId: Int ,completion: @escaping (Result<CollectionItem, Error>) -> Void) {
+        let url = "\(rootUrl)/createCollectionItem"
+
+        // Alamofire : POST request
+        AF.request(url, method: .post, parameters: [
+            "content":content,
+            "type":type,
+            "collectionId": collectionId,
+
+        ], encoding: JSONEncoding.default, headers:headers()).responseDecodable(of: CreateCollectionItemResponse<CollectionItem>.self) { response in
+            print("response:", response)
+            switch response.result {
+                case .success(let response):
+                if response.succeded, let collectionItem = response.collectionItem {
+                        completion(.success(collectionItem))
+                    } else {
+                        let errorMessage = "Collection Item couldn't be created."
+                        let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: errorMessage])
+                        completion(.failure(error))
+                    }
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+        }
+    }
+    
     
 }

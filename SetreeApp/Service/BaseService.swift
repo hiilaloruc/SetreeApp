@@ -107,6 +107,12 @@ struct getItemsByCollectionResponse<CollectionItem : Codable>: Codable {
     let collectionItems : [CollectionItem]?
 }
 
+struct CreateCollectionItemResponse<CollectionItem: Codable>: Codable {
+    let succeded: Bool
+    let message: String?
+    let collectionItem: CollectionItem?
+}
+
     
 struct ImageHit: Codable {
     let webformatURL: String

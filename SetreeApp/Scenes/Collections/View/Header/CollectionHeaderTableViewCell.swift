@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 class CollectionHeaderTableViewCell: UITableViewCell {
     //@IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var tagLabel: UILabel!
@@ -15,7 +16,8 @@ class CollectionHeaderTableViewCell: UITableViewCell {
     @IBOutlet weak var isPublicButton: UIButton!
     @IBOutlet weak var editStackView: UIStackView!
     
-    //internal var addTitleClicked: (()->())?
+    internal var addNewItemClicked: ((CollectionItemType) -> Void)?
+
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,12 +31,15 @@ class CollectionHeaderTableViewCell: UITableViewCell {
     }
     @IBAction func addTitleClicked(_ sender: Any) {
         print("addTitleClicked")
+        self.addNewItemClicked?(.title)
     }
     @IBAction func addTextClicked(_ sender: Any) {
         print("addTextClicked")
+        self.addNewItemClicked?(.text)
     }
     @IBAction func addImageClicked(_ sender: Any) {
         print("addImageClicked")
+        self.addNewItemClicked?(.image)
     }
     
 }

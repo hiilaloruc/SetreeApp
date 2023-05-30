@@ -90,7 +90,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jhc-0Z-EZ4">
                                 <rect key="frame" x="0.0" y="0.0" width="76" height="31"/>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
-                                <color key="tintColor" name="AccentColor"/>
+                                <color key="tintColor" name="mainRoyalBlueColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="text.cursor" catalog="system"/>
                                 <connections>
@@ -100,7 +100,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kfF-N1-Rie">
                                 <rect key="frame" x="82" y="0.0" width="76" height="31"/>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
-                                <color key="tintColor" name="AccentColor"/>
+                                <color key="tintColor" name="mainRoyalBlueColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="text.alignleft" catalog="system"/>
                                 <connections>
@@ -110,7 +110,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OA8-if-BTJ">
                                 <rect key="frame" x="164" y="0.0" width="76" height="31"/>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
-                                <color key="tintColor" name="AccentColor"/>
+                                <color key="tintColor" name="mainRoyalBlueColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="photo.on.rectangle.angled" catalog="system"/>
                                 <connections>
@@ -151,9 +151,6 @@
         <image name="photo.on.rectangle.angled" catalog="system" width="128" height="100"/>
         <image name="text.alignleft" catalog="system" width="128" height="100"/>
         <image name="text.cursor" catalog="system" width="128" height="118"/>
-        <namedColor name="AccentColor">
-            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="mainRoyalBlueColor">
             <color red="0.53700000047683716" green="0.61599999666213989" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
