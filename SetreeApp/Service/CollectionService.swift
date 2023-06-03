@@ -203,5 +203,28 @@ public class CollectionService {
         }
     }
     
+    internal func getCollectionsByTag(tag: String, completion: @escaping (Result<[Collection], Error>) -> Void) {
+        let url = "\(rootUrl)/getCollectionsByTag/\(tag)"
+        print("Request Url: ", url)
+        
+        // Alamofire : GET request
+        AF.request(url, headers: headers()).responseDecodable(of: GetCollectionsByTagResponse<Collection>.self) { response in
+            print("response:", response)
+            switch response.result {
+            case .success(let response):
+                if response.success, let collections = response.collections {
+                    completion(.success(collections))
+                } else {
+                    let errorMessage =  "Error occured while getting collections."
+                    let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: errorMessage])
+                    completion(.failure(error))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    
     
 }

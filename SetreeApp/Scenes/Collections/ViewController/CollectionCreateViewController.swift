@@ -88,7 +88,7 @@ class CollectionCreateViewController: UIViewController, UITextFieldDelegate, UII
     }
     
      func uploadImageToCloudinary(image: UIImage){
-         self.cloudinaryService?.uploadProfileImage(image: image) { result in
+         self.cloudinaryService?.uploadImage(image: image) { result in
             switch result {
             case .success(let uploadResult):
                 // Upload successfull to cloudinary

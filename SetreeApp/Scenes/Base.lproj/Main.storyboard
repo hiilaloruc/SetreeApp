@@ -30,12 +30,14 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="health" translatesAutoresizingMaskIntoConstraints="NO" id="hKL-CS-xLb">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tag" translatesAutoresizingMaskIntoConstraints="NO" id="hKL-CS-xLb">
                                                     <rect key="frame" x="5" y="5" width="60" height="60"/>
+                                                    <color key="tintColor" name="softLilac"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="60" id="11E-pK-5L9"/>
                                                         <constraint firstAttribute="height" constant="60" id="3IC-2I-bsi"/>
                                                     </constraints>
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium" weight="ultraLight"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                             <integer key="value" value="30"/>
@@ -713,7 +715,7 @@
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZT8-la-oCn">
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZT8-la-oCn">
                                         <rect key="frame" x="288" y="3" width="48" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="54d-Qa-vM3"/>
@@ -722,12 +724,12 @@
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title=" ">
-                                            <backgroundConfiguration key="background" imageContentMode="scaleAspectFit">
-                                                <imageReference key="image" image="magnifyingglass" catalog="system" symbolScale="default"/>
+                                            <backgroundConfiguration key="background" imageContentMode="center">
+                                                <imageReference key="image" image="xmark.octagon" catalog="system" symbolScale="large"/>
                                             </backgroundConfiguration>
                                         </buttonConfiguration>
                                         <connections>
-                                            <action selector="clickedSearchBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mZE-XA-tSM"/>
+                                            <action selector="clickedCancel:" destination="BYZ-38-t0r" eventType="touchUpInside" id="a2x-tr-NIF"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -892,6 +894,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Social" id="oW6-in-scR"/>
                     <connections>
+                        <outlet property="cancelButton" destination="ZT8-la-oCn" id="Yaa-OL-Vvc"/>
                         <outlet property="tableView" destination="PnN-Hn-M8R" id="1Y2-oZ-v5n"/>
                         <outlet property="textField" destination="w1o-qW-VM8" id="nV9-fx-E8A"/>
                         <outlet property="titleLabel" destination="ufN-5g-NaN" id="XHq-iJ-bTM"/>
@@ -1026,7 +1029,7 @@
         <!--Collections-->
         <scene sceneID="Kki-iT-0qN">
             <objects>
-                <viewController id="wcb-vC-YP5" customClass="CollectionsViewController" customModule="SetreeApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CollectionsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wcb-vC-YP5" customClass="CollectionsViewController" customModule="SetreeApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lNp-rd-8iJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2055,7 +2058,6 @@
         <image name="eye.fill" catalog="system" width="128" height="78"/>
         <image name="health" width="1976" height="1266"/>
         <image name="heart.fill" catalog="system" width="128" height="109"/>
-        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="note.text.badge.plus" catalog="system" width="128" height="108"/>
         <image name="person.2" catalog="system" width="128" height="81"/>
         <image name="person.circle" catalog="system" width="128" height="121"/>
@@ -2063,14 +2065,19 @@
         <image name="photo.on.rectangle" catalog="system" width="128" height="97"/>
         <image name="photo.on.rectangle.angled" catalog="system" width="128" height="100"/>
         <image name="pin" catalog="system" width="119" height="128"/>
+        <image name="tag" width="128" height="128"/>
         <image name="text.alignleft" catalog="system" width="128" height="100"/>
         <image name="text.cursor" catalog="system" width="128" height="118"/>
         <image name="timelapse" catalog="system" width="128" height="122"/>
+        <image name="xmark.octagon" catalog="system" width="128" height="112"/>
         <namedColor name="mainRoyalBlueColor">
             <color red="0.53700000047683716" green="0.61599999666213989" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="softDarkblue">
             <color red="0.29899999499320984" green="0.44499999284744263" blue="0.66699999570846558" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="softLilac">
+            <color red="0.76499998569488525" green="0.69900000095367432" blue="0.82400000095367432" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="softOrange">
             <color red="0.92299997806549072" green="0.76399999856948853" blue="0.54100000858306885" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>

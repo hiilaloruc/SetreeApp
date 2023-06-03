@@ -9,12 +9,19 @@ import UIKit
 import NotificationBannerSwift
 import Kingfisher
 
+enum collectionsType{
+    case hashtag
+    case normal
+}
+
 
 class CollectionsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     @IBOutlet weak var collectionsView: UICollectionView!
     @IBOutlet weak var plusButton: UIView!
     
+    internal var type: collectionsType = .normal
+    internal var tag: String?
     internal var collectionsArray : [Collection]?{
         didSet{
             collectionsView.reloadData()
@@ -31,13 +38,18 @@ class CollectionsViewController: UIViewController, UICollectionViewDelegate, UIC
         
         initUI()
         
-        self.plusButton.isUserInteractionEnabled = true
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(plusButtonTapped))
-        self.plusButton.addGestureRecognizer(tapGestureRecognizer)
-        NotificationCenter.default.addObserver(self, selector: #selector(initUI), name: NSNotification.Name(rawValue: "updateCollectionsAll") , object: nil)
+        if self.type == .normal {
+            self.plusButton.isUserInteractionEnabled = true
+            let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(plusButtonTapped))
+            self.plusButton.addGestureRecognizer(tapGestureRecognizer)
+            NotificationCenter.default.addObserver(self, selector: #selector(initUI), name: NSNotification.Name(rawValue: "updateCollectionsAll") , object: nil)
+        }
+        
 
     }
     @objc func initUI(){
+        switch self.type {
+        case .normal:
         if let user = baseUSER{
             collectionService?.getCollections(userId: user.userId){ result in
                 switch result {
@@ -49,6 +61,19 @@ class CollectionsViewController: UIViewController, UICollectionViewDelegate, UIC
                 }
             }
         }
+        case .hashtag:
+            if let tag = self.tag {
+                collectionService?.getCollectionsByTag(tag: tag){ result in
+                    switch result {
+                    case .success(let collections):
+                        self.collectionsArray = collections
+                    case .failure(let error):
+                        Banner.showErrorBanner(with: error)
+                    }
+                }
+            }
+        }
+            
        
     }
     

@@ -12,7 +12,7 @@ import Alamofire
 
 public class CloudinaryService {
     
-    func uploadProfileImage(image: UIImage, folderName: String = "Setree", completion: @escaping (Result<CLDUploadResult, Error>) -> Void) {
+    func uploadImage(image: UIImage, folderName: String = "Setree", completion: @escaping (Result<CLDUploadResult, Error>) -> Void) {
         if let cloudinary = Environment.getCloudinary() {
             let preset = Environment.getCloudinaryPreset()
             let params = CLDUploadRequestParams()

@@ -87,7 +87,7 @@ class CollectionitemCreateViewController: UIViewController, UIImagePickerControl
     
      func uploadImageToCloudinary(image: UIImage){
          print("upload image to cloudinary image: ",image)
-         self.cloudinaryService?.uploadProfileImage(image: image) { result in
+         self.cloudinaryService?.uploadImage(image: image) { result in
             switch result {
             case .success(let uploadResult):
                 // Upload successfull to cloudinary

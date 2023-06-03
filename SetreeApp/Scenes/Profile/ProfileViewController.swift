@@ -146,7 +146,7 @@ class ProfileViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[.editedImage] as? UIImage {
             print("imagePicker-> Cropped Image selected..")
-            cloudinaryService?.uploadProfileImage(image: image) { result in
+            cloudinaryService?.uploadImage(image: image) { result in
                 switch result {
                 case .success(let uploadResult):
                     // Upload successfull to cloudinary

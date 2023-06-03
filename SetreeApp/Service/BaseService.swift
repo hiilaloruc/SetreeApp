@@ -44,6 +44,11 @@ struct GetCollectionsResponse<Collection: Codable>: Codable {
 
 }
 
+struct GetCollectionsByTagResponse<Collection: Codable>: Codable {
+    let success: Bool
+    let collections: [Collection]?
+
+}
 struct GetCollectionResponse<Collection: Codable>: Codable {
     let succeeded: Bool
     let collection: Collection?
@@ -113,7 +118,17 @@ struct CreateCollectionItemResponse<CollectionItem: Codable>: Codable {
     let collectionItem: CollectionItem?
 }
 
-    
+
+struct SearchResponse<T: Decodable>: Decodable {
+    let succeeded: Bool
+    let searchResults: SearchResults<T>
+}
+
+struct SearchResults<T: Decodable>: Decodable {
+    let users: [User]
+    let tags: [Tag]
+}
+
 struct ImageHit: Codable {
     let webformatURL: String
 }
