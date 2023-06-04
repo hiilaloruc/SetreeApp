@@ -65,7 +65,7 @@
                                 <color key="tintColor" name="softGreen"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" imagePlacement="trailing">
-                                    <imageReference key="image" image="lock.open.fill" catalog="system" symbolScale="medium"/>
+                                    <imageReference key="image" image="lock.open.fill" catalog="system" symbolScale="small"/>
                                     <attributedString key="attributedTitle">
                                         <fragment content="Public ">
                                             <attributes>

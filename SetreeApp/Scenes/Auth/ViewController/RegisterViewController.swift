@@ -40,12 +40,16 @@ class RegisterViewController: UIViewController {
             
                   return
               }
-        
+        DispatchQueue.main.async {
+            LoadingScreen.show()
+        }
         userService?.registerUser(firstName: firstName, lastName: lastName, username: username, email: email, password: password){ result in
+            DispatchQueue.main.async {
+                LoadingScreen.hide()
+            }
             switch result {
             case .success(let user):
                 print("User is successfully registered -> USER: \(user)")
-                
                 // Perform here the actions to be taken when the user is successfully registered
                 Banner.showSuccessBanner(message: "Your account has been successfully created. You can now Log In!")
 

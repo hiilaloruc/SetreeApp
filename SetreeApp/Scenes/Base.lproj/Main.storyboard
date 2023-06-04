@@ -709,11 +709,11 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g06-rQ-wuk">
                                 <rect key="frame" x="12" y="98" width="351" height="54"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search friends.." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="w1o-qW-VM8">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search friends or #tag " minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="w1o-qW-VM8">
                                         <rect key="frame" x="25" y="15.666666666666671" width="263" height="23"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                                     </textField>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZT8-la-oCn">
                                         <rect key="frame" x="288" y="3" width="48" height="48"/>

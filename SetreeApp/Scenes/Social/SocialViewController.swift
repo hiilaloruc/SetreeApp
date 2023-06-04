@@ -56,7 +56,10 @@ class SocialViewController: UIViewController {
     private weak var searchService: SearchService?{
         return SearchService()
     }
-    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.pageType = .feed
+    }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -65,8 +68,8 @@ class SocialViewController: UIViewController {
         tableView.dataSource = self
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
-        self.textField.text = ""
-        textField.attributedPlaceholder = NSAttributedString(string: "Search friends..", attributes: [NSAttributedString.Key.foregroundColor: UIColor.tooMuchLightRoyalBlueColor])
+        //self.textField.text = ""
+        textField.attributedPlaceholder = NSAttributedString(string: "Search friends or #tag ", attributes: [NSAttributedString.Key.foregroundColor: UIColor.tooMuchLightRoyalBlueColor])
         textField.delegate = self
         // Add tap gesture recognizer
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
@@ -78,10 +81,16 @@ class SocialViewController: UIViewController {
     }
     
     func initalUI(){
+        DispatchQueue.main.async {
+            LoadingScreen.show()
+        }
         followService?.getFollowings(){ result in
+            DispatchQueue.main.async {
+                LoadingScreen.hide()
+            }
             switch result {
             case .success(let followingObjects):
-                self.pageType = .feed
+                //self.pageType = .feed
                 self.followingsArray = followingObjects
                  
             case .failure(let error):
@@ -95,16 +104,18 @@ class SocialViewController: UIViewController {
     }
     
     @objc func handleTap() {
-        self.pageType = .feed
+        //self.pageType = .feed
         view.endEditing(true) // Close the keyboard by resigning the first responder status
     }
     
     @IBAction func clickedCancel(_ sender: Any) {
         print("jj: clickedCancel: \(textField.text)")
+        self.pageType = .feed
+        initalUI()
         self.textField.text = ""
         self.tagSearchResult?.removeAll()
         self.userSearchResult?.removeAll()
-        self.pageType = .feed
+        
     }
     
 
@@ -189,7 +200,7 @@ extension SocialViewController : UITableViewDelegate, UITableViewDataSource {
                 cell.nameLabel.text = "#\(self.tagSearchResult![index].title)"
                 cell.usernameLabel.text = "\(tagSearchResult![index].collectionIds.count ) Collections"
                 
-                /*cell.tappedUser = { [weak self] in
+                cell.tappedUser = { [weak self] in
                     guard let self = self else { return }
                         if let vc = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "CollectionsViewController") as? CollectionsViewController{
                             vc.type = .hashtag
@@ -198,7 +209,7 @@ extension SocialViewController : UITableViewDelegate, UITableViewDataSource {
                             self.navigationController?.pushViewController(vc, animated: true)
                        
                         }
-                    }*/
+                    }
                 
             }
             
@@ -226,7 +237,7 @@ extension SocialViewController: UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
        print("TextField is not active")
-        cancelButton.isHidden = true
+        //cancelButton.isHidden = true
    }
     
     func textFieldDidChangeSelection(_ textField: UITextField) {

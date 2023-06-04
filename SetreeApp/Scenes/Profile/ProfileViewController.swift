@@ -95,7 +95,15 @@ class ProfileViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     }
     func updateUser(gender: String ){
         print("firstName: \(self.firstnameTextField.text ?? "") \n lastName: \(self.surnameTextField.text ?? "") \n username: \(self.usernameTextField.text ?? "") \n email: \(self.emailTextField.text ?? "") \n gender: \(gender) \n ")
+        
+        DispatchQueue.main.async {
+            LoadingScreen.show()
+        }
+        
         userService?.updateUser(firstName: self.firstnameTextField.text ?? "", lastName: self.surnameTextField.text ?? "", username: self.usernameTextField.text ?? "", email: self.emailTextField.text ?? "", gender: gender){ result in
+            DispatchQueue.main.async {
+                LoadingScreen.hide()
+            }
             switch result {
             case .success(let user):
                 print("User is successfully updated -> USER: \(user)")
@@ -146,7 +154,13 @@ class ProfileViewController: UIViewController, UIPickerViewDataSource, UIPickerV
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[.editedImage] as? UIImage {
             print("imagePicker-> Cropped Image selected..")
+            DispatchQueue.main.async {
+                LoadingScreen.show()
+            }
             cloudinaryService?.uploadImage(image: image) { result in
+                DispatchQueue.main.async {
+                    LoadingScreen.hide()
+                }
                 switch result {
                 case .success(let uploadResult):
                     // Upload successfull to cloudinary
@@ -223,7 +237,13 @@ class ProfileViewController: UIViewController, UIPickerViewDataSource, UIPickerV
             if let oldPass = oldPass, !oldPass.isEmpty,
                let newPass = newPass, !newPass.isEmpty,
                oldPass.count > 4, newPass.count > 4 {
+                DispatchQueue.main.async {
+                    LoadingScreen.show()
+                }
                 self.userService?.updatePassword(oldPassword: oldPass, newPassword: newPass ){ result in
+                    DispatchQueue.main.async {
+                        LoadingScreen.hide()
+                    }
                     switch result {
                     case .success(let message ):
                         Banner.showSuccessBanner(message:message)

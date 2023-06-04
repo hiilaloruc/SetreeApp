@@ -83,7 +83,13 @@ class UserViewController: UIViewController, UICollectionViewDelegate,UICollectio
     }
     
     func loadUser(with id: Int) {
+        DispatchQueue.main.async {
+            LoadingScreen.show()
+        }
         userService?.getUser(id: id){ [weak self] result in
+            DispatchQueue.main.async {
+                LoadingScreen.hide()
+            }
             switch result {
             case .success(let user):
                 self?.updateUI(with: user)
@@ -102,7 +108,13 @@ class UserViewController: UIViewController, UICollectionViewDelegate,UICollectio
     
     
     func getCollections(for user: User) {
+        DispatchQueue.main.async {
+            LoadingScreen.show()
+        }
         collectionService?.getCollections(userId: user.userId){ [weak self] result in
+            DispatchQueue.main.async {
+                LoadingScreen.hide()
+            }
             switch result {
             case .success(let collections):
                 self?.collectionsArray = collections
@@ -113,7 +125,13 @@ class UserViewController: UIViewController, UICollectionViewDelegate,UICollectio
         }
     }
     func getFollowers(for user: User){
+        DispatchQueue.main.async {
+            LoadingScreen.show()
+        }
         followService?.getFollowers(id:user.userId){ [weak self] result in
+            DispatchQueue.main.async {
+                LoadingScreen.hide()
+            }
             switch result {
             case .success(let followersResponse):
                 self?.followersArray = followersResponse
@@ -125,8 +143,14 @@ class UserViewController: UIViewController, UICollectionViewDelegate,UICollectio
     }
     
     func getFollowings(for user: User){
+        DispatchQueue.main.async {
+            LoadingScreen.show()
+        }
         //get followings
         followService?.getFollowings(id:user.userId){ [weak self] result in
+            DispatchQueue.main.async {
+                LoadingScreen.hide()
+            }
             switch result {
             case .success(let followingsResponse):
                 self?.followingsArray = followingsResponse

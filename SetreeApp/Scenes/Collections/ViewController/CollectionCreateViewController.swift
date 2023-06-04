@@ -66,16 +66,22 @@ class CollectionCreateViewController: UIViewController, UITextFieldDelegate, UII
         
         let isPublic = isPublicSwitch.isOn
         print("title: ", title,", tagReq: ",tag ,", isPublic: ", isPublic)
+        DispatchQueue.main.async {
+            LoadingScreen.show()
+        }
         self.collectionService?.createCollection(title: title, tagReq: tag , isPublic: isPublic, imageUrl: imageUrl) { result in
+            DispatchQueue.main.async {
+                LoadingScreen.hide()
+            }
             switch result {
             case .success(let collection):
                 Banner.showSuccessBanner(message: "Collection created!")
                 print("Collection created id: ", collection.collectionId)
                 if let firstVC = self.senderVC as? CollectionsViewController {
                     firstVC.initUI()
-                    // Scroll to the last item in the last section
+                   /* // Scroll to the last item in the last section
                     let itemCount = firstVC.collectionsView.numberOfItems(inSection: 0)
-                    firstVC.collectionsView.scrollToItem(at: IndexPath(item: itemCount - 1, section: 0), at: .bottom, animated: true)
+                    firstVC.collectionsView.scrollToItem(at: IndexPath(item: itemCount - 1, section: 0), at: .bottom, animated: true)*/
                     
                 }
                 
@@ -88,7 +94,13 @@ class CollectionCreateViewController: UIViewController, UITextFieldDelegate, UII
     }
     
      func uploadImageToCloudinary(image: UIImage){
+         DispatchQueue.main.async {
+             LoadingScreen.show()
+         }
          self.cloudinaryService?.uploadImage(image: image) { result in
+             DispatchQueue.main.async {
+                 LoadingScreen.hide()
+             }
             switch result {
             case .success(let uploadResult):
                 // Upload successfull to cloudinary
@@ -141,7 +153,13 @@ class CollectionCreateViewController: UIViewController, UITextFieldDelegate, UII
         print("pickForMeClicked")
         if titleTF.text!.count > 2 {
             print("image title: ",titleTF.text!)
+            DispatchQueue.main.async {
+                LoadingScreen.show()
+            }
             cloudinaryService?.getImageByTitle(title: titleTF.text!.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)! )  { result in
+                DispatchQueue.main.async {
+                    LoadingScreen.show()
+                }
                 switch result {
                 case .success(let imageResponse):
                     //print("selecetedImage url:", imageResponse.hits[0].webformatURL)

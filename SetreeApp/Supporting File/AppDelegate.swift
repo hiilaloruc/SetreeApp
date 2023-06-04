@@ -31,8 +31,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
 
         if(Utils.isLoggedIn()){
-            
+            DispatchQueue.main.async {
+                LoadingScreen.show()
+            }
             self.userService?.getUser(){ result in
+                DispatchQueue.main.async {
+                    LoadingScreen.hide()
+                }
                 switch result {
                 case .success(let user):
                     baseUSER = user
@@ -46,7 +51,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      
                 case .failure(let error):
                     LocalStorage.setItem("baseTOKEN", value:0)
-                    
                     let storyBoard = UIStoryboard.init(name: "Auth" , bundle: nil)
                     self.window?.rootViewController = storyBoard.instantiateInitialViewController()
                     

@@ -34,8 +34,13 @@ class LoginViewController: UIViewController {
                 banner.show()
                 return
               }
-        
+        DispatchQueue.main.async {
+            LoadingScreen.show()
+        }
         userService?.loginUser(email: email, password: password){ result in
+            DispatchQueue.main.async {
+                LoadingScreen.hide()
+            }
             switch result {
             case .success(let user):
                 print("User is successfully logged in -> USER: \(user)")

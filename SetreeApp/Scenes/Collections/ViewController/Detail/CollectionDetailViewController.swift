@@ -74,7 +74,13 @@ class CollectionDetailViewController: UIViewController {
     func initUI(){
         self.title = collection.title
         self.collectionItemsArray?.removeAll()
+        DispatchQueue.main.async {
+            LoadingScreen.show()
+        }
         self.collectionService?.getItemsByCollection(collectionId: self.collection.collectionId ){ result in
+            DispatchQueue.main.async {
+                LoadingScreen.hide()
+            }
             switch(result){
             case .success(let collectionItemsArray):
                 self.collectionItemsArray = collectionItemsArray
@@ -122,7 +128,13 @@ class CollectionDetailViewController: UIViewController {
         let saveAction = UIAlertAction(title: "Yes", style: .destructive) { _ in
 
             // this code runs when the user hits the "save" button
+            DispatchQueue.main.async {
+                LoadingScreen.show()
+            }
             self.collectionService?.deleteCollection(collectionId: self.collection.collectionId){ result in
+                DispatchQueue.main.async {
+                    LoadingScreen.hide()
+                }
                   switch result {
                   case .success(let message):
                       NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateCollectionsAll"), object: nil)
@@ -269,7 +281,13 @@ extension CollectionDetailViewController: UITableViewDelegate, UITableViewDataSo
             // silme işlemini gerçekleştir
             
             print("silme işlemini gerçekleştir satır \(indexPath.row) , item: \(self.collectionItemsArray![indexPath.row].content)")
+            DispatchQueue.main.async {
+                LoadingScreen.show()
+            }
             self.collectionService?.deleteCollectionItem(collectionItemId: self.collectionItemsArray![indexPath.row].collectionItemId){ result in
+                DispatchQueue.main.async {
+                    LoadingScreen.hide()
+                }
                 switch result {
                 case .success(let message ):
                     self.initUI()

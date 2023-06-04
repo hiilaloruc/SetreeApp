@@ -32,8 +32,8 @@ class GoalsNewViewController: UIViewController {
         return GoalService()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewDidLoad() {
+        super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib.init(nibName: "GoalCardTableViewCell", bundle: nil), forCellReuseIdentifier: "GoalCardTableViewCell")
@@ -68,7 +68,13 @@ class GoalsNewViewController: UIViewController {
             print("inputTitle: ",inputTitle)
             
             if (inputTitle != nil && inputTitle != ""){
+                DispatchQueue.main.async {
+                    LoadingScreen.show()
+                }
                 self.goalService?.createGoal(title: String(inputTitle!)){ result in
+                    DispatchQueue.main.async {
+                        LoadingScreen.hide()
+                    }
                     switch result {
                     case .success(let message ):
                         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateGoalsAll"), object: nil)
@@ -79,6 +85,7 @@ class GoalsNewViewController: UIViewController {
                         Banner.showErrorBanner(with: error)
 
                     }
+                    
                 }
             }
 
@@ -95,7 +102,13 @@ class GoalsNewViewController: UIViewController {
         goalsWithDetails = []
         if self.goalsArray != nil && self.goalsArray?.count ?? 0 > 0 {
                 for item in self.goalsArray! {
+                    DispatchQueue.main.async {
+                        LoadingScreen.show()
+                    }
                     goalService?.getGoalDetail(goalId: item.goalId){ result in
+                        DispatchQueue.main.async {
+                            LoadingScreen.hide()
+                        }
                         switch result {
                         case .success(let goal ):
                             self.goalsWithDetails?.append(goal)
@@ -111,12 +124,18 @@ class GoalsNewViewController: UIViewController {
     
     @objc func initialUI(){
         if let user = baseUSER{
+            DispatchQueue.main.async {
+                LoadingScreen.show()
+            }
             goalService?.getGoals(){ result in
+                DispatchQueue.main.async {
+                    LoadingScreen.hide()
+                }
                 switch result {
                 case .success(let goals):
                     self.goalsArray = goals
                     self.getGoalDetails()
-                     
+                    
                 case .failure(let error):
                     Banner.showErrorBanner(with: error)
 
@@ -215,8 +234,13 @@ extension GoalsNewViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         let goalItemIsDone = !(goal.goalItems?[goalItemIndex].isDone ?? false)
-        
+        DispatchQueue.main.async {
+            LoadingScreen.show()
+        }
         self.goalService?.updateGoalItem(goalItemId: itemId, goalItemContent: goalItemContent, goalItemIsDone: goalItemIsDone) { result in
+            DispatchQueue.main.async {
+                LoadingScreen.hide()
+            }
             switch result {
             case .success(let newGoal):
                 print("Success for itemId: \(itemId) -> new isDone:", newGoal.isDone)
@@ -237,6 +261,7 @@ extension GoalsNewViewController: UITableViewDelegate, UITableViewDataSource {
                 print("Failure for itemId: \(itemId) -> isDone cannot be updated.")
                 Banner.showErrorBanner(with: error)
             }
+            
         }
     }
 

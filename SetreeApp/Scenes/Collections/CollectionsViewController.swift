@@ -35,23 +35,28 @@ class CollectionsViewController: UIViewController, UICollectionViewDelegate, UIC
         super.viewDidAppear(animated)
         collectionsView.delegate = self
         collectionsView.dataSource = self
-        
+        self.plusButton.isHidden = true
         initUI()
         
         if self.type == .normal {
+            self.plusButton.isHidden = false
             self.plusButton.isUserInteractionEnabled = true
             let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(plusButtonTapped))
             self.plusButton.addGestureRecognizer(tapGestureRecognizer)
             NotificationCenter.default.addObserver(self, selector: #selector(initUI), name: NSNotification.Name(rawValue: "updateCollectionsAll") , object: nil)
         }
-        
-
     }
     @objc func initUI(){
         switch self.type {
         case .normal:
         if let user = baseUSER{
+            DispatchQueue.main.async {
+                LoadingScreen.show()
+            }
             collectionService?.getCollections(userId: user.userId){ result in
+                DispatchQueue.main.async {
+                    LoadingScreen.hide()
+                }
                 switch result {
                 case .success(let collections):
                     self.collectionsArray = collections
@@ -63,7 +68,13 @@ class CollectionsViewController: UIViewController, UICollectionViewDelegate, UIC
         }
         case .hashtag:
             if let tag = self.tag {
+                DispatchQueue.main.async {
+                    LoadingScreen.show()
+                }
                 collectionService?.getCollectionsByTag(tag: tag){ result in
+                    DispatchQueue.main.async {
+                        LoadingScreen.hide()
+                    }
                     switch result {
                     case .success(let collections):
                         self.collectionsArray = collections

@@ -60,7 +60,13 @@ class AddNewGoalViewController: UIViewController {
         print("The goals being sent to DB:", itemArray)
     
         //API req:
+        DispatchQueue.main.async {
+            LoadingScreen.show()
+        }
         goalService?.createMultipleGoalItems(goalItemsArray: itemArray, goalId: self.goalId){ result in
+            DispatchQueue.main.async {
+                LoadingScreen.hide()
+            }
             switch result {
             case .success(let message):
                 print("message: ", message)

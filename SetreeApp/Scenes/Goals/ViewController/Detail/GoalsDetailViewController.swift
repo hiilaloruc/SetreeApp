@@ -48,7 +48,13 @@ class GoalsDetailViewController: UIViewController {
     
     @objc func updateData(){
         print("updateData() called..")
+        DispatchQueue.main.async {
+            LoadingScreen.show()
+        }
         goalService?.getGoalDetail(goalId: self.goalObject.goalId){ result in
+            DispatchQueue.main.async {
+                LoadingScreen.hide()
+            }
             switch result {
             case .success(let goal ):
                 self.goalObject = goal
@@ -74,7 +80,13 @@ class GoalsDetailViewController: UIViewController {
         let saveAction = UIAlertAction(title: "Yes", style: .destructive) { _ in
 
             // this code runs when the user hits the "save" button
+            DispatchQueue.main.async {
+                LoadingScreen.show()
+            }
             self.goalService?.deleteGoal(goalId: self.goalObject.goalId){ result in
+                DispatchQueue.main.async {
+                    LoadingScreen.hide()
+                }
                 switch result {
                 case .success(let message):
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateGoalsAll"), object: nil)
@@ -158,7 +170,13 @@ extension GoalsDetailViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func refreshGoalObject(){
+        DispatchQueue.main.async {
+            LoadingScreen.show()
+        }
         self.goalService?.getGoalDetail(goalId: self.goalObject.goalId){ result in
+            DispatchQueue.main.async {
+                LoadingScreen.hide()
+            }
             switch result {
             case .success(let goal ):
                 self.goalObject = goal
@@ -173,9 +191,14 @@ extension GoalsDetailViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let deleteAction = UITableViewRowAction(style: .destructive, title: "Sil") { (action, indexPath) in
             // silme işlemini gerçekleştir
-            
+            DispatchQueue.main.async {
+                LoadingScreen.show()
+            }
             print("silme işlemini gerçekleştir satır \(indexPath.row) , item: \(self.goalObject.goalItems![indexPath.row].content)")
             self.goalService?.deleteGoalItem(goalItemId: self.goalObject.goalItems![indexPath.row].goalItemId){ result in
+                DispatchQueue.main.async {
+                    LoadingScreen.hide()
+                }
                 switch result {
                 case .success(let message ):
                     self.refreshGoalObject()
