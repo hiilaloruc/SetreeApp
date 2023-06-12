@@ -24,8 +24,9 @@ class UserViewController: UIViewController, UICollectionViewDelegate,UICollectio
     @IBOutlet weak var scrollView: UIScrollView!
     
     
-    internal var isFollowed: Bool = true
-    internal var userId: Int? = nil
+   //internal var isFollowed: Bool = true
+    internal var userId: Int? = nil // if userId is not nil it means you are someone else's profile (not yourself).
+    internal var profileUser: User?
     
     internal var collectionsArray : [Collection]?{
         didSet{
@@ -80,6 +81,13 @@ class UserViewController: UIViewController, UICollectionViewDelegate,UICollectio
         
         followerCountLabel.text = String(user.followers?.count ?? 0)
         followingCountLabel.text = String(user.followings?.count ?? 0)
+        
+        if let isFollowing = user.followers?.contains(baseUSER!.userId), isFollowing {
+            updateFollowButtonView(isFollowing: true)
+        } else {
+            updateFollowButtonView(isFollowing: false)
+        }
+        
     }
     
     func loadUser(with id: Int) {
@@ -92,6 +100,7 @@ class UserViewController: UIViewController, UICollectionViewDelegate,UICollectio
             }
             switch result {
             case .success(let user):
+                self?.profileUser = user
                 self?.updateUI(with: user)
                 self?.getCollections(for: user)
                 self?.getFollowings(for: user)
@@ -154,7 +163,7 @@ class UserViewController: UIViewController, UICollectionViewDelegate,UICollectio
             switch result {
             case .success(let followingsResponse):
                 self?.followingsArray = followingsResponse
-                 
+
             case .failure(let error):
                 Banner.showErrorBanner(with: error)
             }
@@ -166,20 +175,19 @@ class UserViewController: UIViewController, UICollectionViewDelegate,UICollectio
         followOrEditButton.tintColor = UIColor.mainRoyalBlueColor
         followersSliderCollectionView.showsHorizontalScrollIndicator = false
         followingsSliderCollectionView.showsHorizontalScrollIndicator = false
-        setButtonView()
-     /*   followButton.layer.borderWidth = 1
-        followButton.layer.borderColor = UIColor.mainRoyalBlueColor.cgColor
-        followButton.layer.cornerRadius = 20
-        followButton.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .bold)*/
+        
         if let baseUSER = baseUSER {
             if let userId = self.userId {
-                //if user clicked to see someone else's profile -> getUser()
+                //if user clicked to see someone else's profile -> loadUser()
                 loadUser(with: userId)
             } else {
                 updateUI(with: baseUSER)
                 getCollections(for: baseUSER)
                 getFollowings(for: baseUSER)
                 getFollowers(for: baseUSER)
+                followOrEditButton.tintColor = UIColor.white
+                followOrEditButton.setTitleColor(UIColor.mainRoyalBlueColor, for: .normal)
+                followOrEditButton.setTitle("Edit Profile", for: .normal)
             }
         }
         
@@ -190,8 +198,8 @@ class UserViewController: UIViewController, UICollectionViewDelegate,UICollectio
         //self.lastCollectionHeight.constant = self.userListsCollectionView.contentSize.height
         //self.scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: self.userListsCollectionView.contentSize.height + 480)
     //}
-    func updateFollowButtonView(){
-        if self.isFollowed {
+    func updateFollowButtonView(isFollowing: Bool!){
+        if isFollowing {
             followOrEditButton.tintColor = UIColor.mainRoyalBlueColor
             followOrEditButton.setTitleColor(.white, for: .normal)
             followOrEditButton.setTitle("Following", for: .normal)
@@ -203,39 +211,65 @@ class UserViewController: UIViewController, UICollectionViewDelegate,UICollectio
         }
     }
     
-    func setButtonView(){
-        //that button can be either edit profile - follow,unfollow according to authUser
-        if self.userId == nil {
-            followOrEditButton.tintColor = UIColor.white
-            followOrEditButton.setTitleColor(UIColor.mainRoyalBlueColor, for: .normal)
-            followOrEditButton.setTitle("Edit Profile", for: .normal)
-        }else{
-            updateFollowButtonView()
-        }
-    }
-    
     @IBAction func followOrEditButtonClicked(_ sender: Any) {
-        print("jj: clicked follow Current: \(isFollowed)")
         
         if self.userId == nil {
          //navigate to profileVC
             print("edit profile clicked")
             if let vc = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "ProfileViewController") as? ProfileViewController{
                 self.navigationController?.pushViewController(vc, animated: true)
-           
             }
             
-        }else{
-            self.isFollowed.toggle()
-            updateFollowButtonView()
-            print("jj: clicked follow new: \(isFollowed)")
+        } else {
+            guard let profileUser = self.profileUser else {
+                print("No profile user found.")
+                return
+            }
+
+            let isFollowing = profileUser.followers?.contains(baseUSER!.userId) ?? false
+
+            let followAction: (Int, @escaping (Result<String, Error>) -> Void) -> Void = isFollowing ? self.unfollow : self.follow
+            
+            DispatchQueue.main.async {
+                LoadingScreen.show()
+            }
+            followAction(profileUser.userId) { [weak self] result in
+               
+                DispatchQueue.main.async {
+                    LoadingScreen.hide()
+                }
+                guard let self = self else { return }
+                switch result {
+                case .success(let message):
+                    Banner.showSuccessBanner(message: message)
+                    self.updateFollowButtonView(isFollowing: !isFollowing)
+                    self.loadUser(with: profileUser.userId)
+                case .failure(let error):
+                    Banner.showErrorBanner(with: error)
+                }
+            }
         }
         
+    }
+    
+    private func follow(userId: Int, completion: @escaping (Result<String, Error>) -> Void) {
+        self.userService?.follow(userId: userId, completion: completion)
+    }
+
+    private func unfollow(userId: Int, completion: @escaping (Result<String, Error>) -> Void) {
+        self.userService?.unfollow(userId: userId, completion: completion)
     }
     
     @IBAction func FollowersClicked(_ sender: Any) {
         if let vc = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "FullTableViewController") as? FullTableViewController{
             vc.isFollowings = false
+            
+            if let userid = self.userId {
+                vc.userId = userid
+            }else{
+                vc.userId = baseUSER?.userId
+            }
+           
             vc.objectsArr = self.followersArray
             self.navigationController?.pushViewController(vc, animated: true)
         }
@@ -244,6 +278,13 @@ class UserViewController: UIViewController, UICollectionViewDelegate,UICollectio
     @IBAction func FollowingsClicked(_ sender: Any) {
         if let vc = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "FullTableViewController") as? FullTableViewController{
             vc.isFollowings = true
+            
+            if let userid = self.userId {
+                vc.userId = userid
+            }else{
+                vc.userId = baseUSER?.userId
+            }
+           
             vc.objectsArr = self.followingsArray
             self.navigationController?.pushViewController(vc, animated: true)
         }

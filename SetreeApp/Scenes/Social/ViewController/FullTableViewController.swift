@@ -9,20 +9,68 @@ import UIKit
 
 class FullTableViewController: UIViewController {
     @IBOutlet weak var tableView : UITableView!
-    internal var objectsArr : [User]? 
+    internal var objectsArr : [User]?
+    internal var userId: Int!
+    
     internal var isFollowings : Bool = true
 
-
+    private weak var userService: UserService?{
+        return UserService()
+    }
+    
+    private weak var followService: FollowService?{
+        return FollowService()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        
-       // tableView.register(UINib(nibName: "SocialFriendsTableViewCell", bundle: nil), forCellReuseIdentifier: "SocialFriendsTableViewCell")
 
         self.title = isFollowings ? "Followings" : "Followers"
     }
     
+    private func follow(userId: Int, completion: @escaping (Result<String, Error>) -> Void) {
+        self.userService?.follow(userId: userId, completion: completion)
+    }
+
+    private func unfollow(userId: Int, completion: @escaping (Result<String, Error>) -> Void) {
+        self.userService?.unfollow(userId: userId, completion: completion)
+    }
+    
+    func UpdateObjectsArr(index: [IndexPath]){
+        if self.isFollowings {
+            followService?.getFollowings(id:userId){ result in
+                DispatchQueue.main.async {
+                    LoadingScreen.hide()
+                }
+                switch result {
+                case .success(let followingObjects):
+                    self.objectsArr = followingObjects
+                    self.tableView.reloadRows(at: index, with: .automatic)
+                     
+                case .failure(let error):
+                    Banner.showErrorBanner(with: error)
+                }
+                
+            }
+        }else{
+            followService?.getFollowers(id:userId){ result in
+                DispatchQueue.main.async {
+                    LoadingScreen.hide()
+                }
+                switch result {
+                case .success(let followersObjects):
+                    self.objectsArr = followersObjects
+                    self.tableView.reloadRows(at: index, with: .automatic)
+                     
+                case .failure(let error):
+                    Banner.showErrorBanner(with: error)
+                }
+                
+            }
+        }
+    }
 }
 
 
@@ -36,9 +84,14 @@ extension FullTableViewController : UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SocialFriendsTableViewCell", for: indexPath) as! SocialFriendsTableViewCell
         
         cell.nameLabel.text = self.objectsArr![indexPath.row].firstName + self.objectsArr![indexPath.row].lastName
-        cell.isFollowed = isFollowings
         cell.usernameLabel.text = "@" + self.objectsArr![indexPath.row].username
         cell.subInfoLabel.text = "\(self.objectsArr![indexPath.row].listCount) Lists • \(self.objectsArr![indexPath.row].followers?.count ?? 0) Followers"
+        
+        let isFollowing = self.objectsArr![indexPath.row].followers?.contains(baseUSER!.userId) ?? false
+        cell.followButton.tintColor = isFollowing ? UIColor.mainRoyalBlueColor : UIColor.white
+        cell.followButton.setTitleColor(isFollowing ? .white : UIColor.mainRoyalBlueColor, for: .normal)
+        cell.followButton.setTitle(isFollowing ? "Following" : "Follow", for: .normal)
+    
 
        if let url = URL(string: self.objectsArr![indexPath.row].imageUrl){
             cell.userImageView.kf.setImage(with: url)
@@ -55,16 +108,29 @@ extension FullTableViewController : UITableViewDelegate, UITableViewDataSource {
         }
         
         cell.tappedFollow = {
-            if cell.isFollowed {
-                cell.followButton.tintColor = UIColor.white
-                cell.followButton.setTitleColor(UIColor.mainRoyalBlueColor, for: .normal)
-                cell.followButton.setTitle("Follow", for: .normal)
-            } else {
-                cell.followButton.tintColor = UIColor.mainRoyalBlueColor
-                cell.followButton.setTitleColor(.white, for: .normal)
-                cell.followButton.setTitle("Following", for: .normal)
+            let isFollowing =  self.objectsArr![indexPath.row].followers?.contains(baseUSER!.userId) ?? false
+            
+            let followAction: (Int, @escaping (Result<String, Error>) -> Void) -> Void = isFollowing ? self.unfollow : self.follow
+            
+            DispatchQueue.main.async {
+                LoadingScreen.show()
             }
-            cell.isFollowed.toggle()
+            followAction(  self.objectsArr![indexPath.row].userId) { [weak self] result in
+               
+                DispatchQueue.main.async {
+                    LoadingScreen.hide()
+                }
+                guard let self = self else { return }
+                switch result {
+                case .success(let message):
+                    self.UpdateObjectsArr(index: [IndexPath(item: indexPath.row, section: 0)])
+                    Banner.showSuccessBanner(message: message)
+                    
+                case .failure(let error):
+                    Banner.showErrorBanner(with: error)
+                }
+            }
+        
         }
         return cell
     }

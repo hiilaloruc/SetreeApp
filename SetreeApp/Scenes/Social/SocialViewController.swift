@@ -56,6 +56,10 @@ class SocialViewController: UIViewController {
     private weak var searchService: SearchService?{
         return SearchService()
     }
+    private weak var userService: UserService?{
+        return UserService()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.pageType = .feed
@@ -118,6 +122,14 @@ class SocialViewController: UIViewController {
         
     }
     
+    private func follow(userId: Int, completion: @escaping (Result<String, Error>) -> Void) {
+        self.userService?.follow(userId: userId, completion: completion)
+    }
+
+    private func unfollow(userId: Int, completion: @escaping (Result<String, Error>) -> Void) {
+        self.userService?.unfollow(userId: userId, completion: completion)
+    }
+    
 
 
 }
@@ -140,13 +152,16 @@ extension SocialViewController : UITableViewDelegate, UITableViewDataSource {
         case .feed:
             cell.followButton.isHidden = false
             cell.nameLabel.text = self.followingsArray![indexPath.row].firstName + self.followingsArray![indexPath.row].lastName
-            cell.isFollowed = true
             cell.usernameLabel.text = "@" + self.followingsArray![indexPath.row].username
             cell.subInfoLabel.text = "\(self.followingsArray![indexPath.row].listCount) Lists • \(self.followingsArray![indexPath.row].followers?.count ?? 0) Followers"
 
            if let url = URL(string: self.followingsArray![indexPath.row].imageUrl){
                 cell.userImageView.kf.setImage(with: url)
             }
+            let isFollowing = self.followingsArray![indexPath.row].followers?.contains(baseUSER!.userId) ?? false
+            cell.followButton.tintColor = isFollowing ? UIColor.mainRoyalBlueColor : UIColor.white
+            cell.followButton.setTitleColor(isFollowing ? .white : UIColor.mainRoyalBlueColor, for: .normal)
+            cell.followButton.setTitle(isFollowing ? "Following" : "Follow", for: .normal)
         
             cell.tappedUser = { [weak self] in
                 guard let self = self else { return }
@@ -158,16 +173,29 @@ extension SocialViewController : UITableViewDelegate, UITableViewDataSource {
                 }
             
             cell.tappedFollow = {
-                if cell.isFollowed {
-                    cell.followButton.tintColor = UIColor.white
-                    cell.followButton.setTitleColor(UIColor.mainRoyalBlueColor, for: .normal)
-                    cell.followButton.setTitle("Follow", for: .normal)
-                } else {
-                    cell.followButton.tintColor = UIColor.mainRoyalBlueColor
-                    cell.followButton.setTitleColor(.white, for: .normal)
-                    cell.followButton.setTitle("Following", for: .normal)
+                let isFollowing = self.followingsArray![indexPath.row].followers?.contains(baseUSER!.userId) ?? false
+                
+                let followAction: (Int, @escaping (Result<String, Error>) -> Void) -> Void = isFollowing ? self.unfollow : self.follow
+                
+                DispatchQueue.main.async {
+                    LoadingScreen.show()
                 }
-                cell.isFollowed.toggle()
+                followAction( self.followingsArray![indexPath.row].userId) { [weak self] result in
+                   
+                    DispatchQueue.main.async {
+                        LoadingScreen.hide()
+                    }
+                    guard let self = self else { return }
+                    switch result {
+                    case .success(let message):
+                        Banner.showSuccessBanner(message: message)
+                        self.initalUI()
+                        
+                    case .failure(let error):
+                        Banner.showErrorBanner(with: error)
+                    }
+                }
+            
             }
         case .search:
             if indexPath.row < self.userSearchResult?.count ?? 0 {

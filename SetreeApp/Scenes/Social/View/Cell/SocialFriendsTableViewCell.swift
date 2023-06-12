@@ -16,7 +16,7 @@ class SocialFriendsTableViewCell: UITableViewCell {
     
     internal var tappedUser : (() -> ())?
     internal var tappedFollow : (() -> ())?
-    internal var isFollowed: Bool = true
+    //internal var isFollowed: Bool = true
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -31,12 +31,10 @@ class SocialFriendsTableViewCell: UITableViewCell {
     }
     
     @IBAction func clickedCell(_ sender: Any){
-        print("jj: cell Clicked")
         self.tappedUser?()
     }
     
     @IBAction func clickedFollowBtn(_ sender: Any){
-        print("jj: follow Clicked")
         self.tappedFollow?()
     }
 }

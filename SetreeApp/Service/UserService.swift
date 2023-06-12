@@ -161,4 +161,47 @@ public class UserService {
         }
     }
     
+    internal func follow(userId: Int, completion: @escaping (Result<String, Error>) -> Void) {
+        let url = "\(rootUrl)/follow/\(userId)" // followed userid
+        
+        // Alamofire : POST request
+        AF.request(url, headers: headers()).responseDecodable(of: BaseResponseW_2E<String>.self) { response in
+            print("response:", response)
+            switch response.result {
+            case .success(let response):
+                if response.succeeded , let message = response.message {
+                    completion(.success(message))
+                } else {
+                    let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: response.message ?? "User couldn't be followed"])
+                    completion(.failure(error))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    internal func unfollow(userId: Int, completion: @escaping (Result<String, Error>) -> Void) {
+        let url = "\(rootUrl)/unfollow/\(userId)" // unfollowed userid
+        
+        // Alamofire : POST request
+        AF.request(url, headers: headers()).responseDecodable(of: BaseResponseW_2E<String>.self) { response in
+            print("response:", response)
+            switch response.result {
+            case .success(let response):
+                if response.succeeded , let message = response.message {
+                    completion(.success(message))
+                } else {
+                    let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: response.message ?? "User couldn't be unfollowed"])
+                    completion(.failure(error))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    
+    
+    
 }
