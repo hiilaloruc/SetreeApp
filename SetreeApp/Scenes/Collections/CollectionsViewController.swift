@@ -50,13 +50,13 @@ class CollectionsViewController: UIViewController, UICollectionViewDelegate, UIC
         switch self.type {
         case .normal:
         if let user = baseUSER{
-            DispatchQueue.main.async {
+            /*DispatchQueue.main.async {
                 LoadingScreen.show()
-            }
+            }*/
             collectionService?.getCollections(userId: user.userId){ result in
-                DispatchQueue.main.async {
+               /* DispatchQueue.main.async {
                     LoadingScreen.hide()
-                }
+                }*/
                 switch result {
                 case .success(let collections):
                     self.collectionsArray = collections

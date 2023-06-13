@@ -11,6 +11,7 @@ class CollectionDetailViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var likeBtn: UIImageView!
     
     internal var collection: Collection!{
         didSet{
@@ -27,13 +28,15 @@ class CollectionDetailViewController: UIViewController {
             self.tableView.reloadData()
         }
     }
-    /*internal var collectionId : Int?{
-        didSet{
-        print("collectionId declared : \(collectionId!)")
-        }
-    }*/
+
     private weak var collectionService : CollectionService? {
         return CollectionService()
+    }
+    private weak var userService : UserService? {
+        return UserService()
+    }
+    private weak var followService: FollowService? {
+        return FollowService()
     }
     
     override func viewDidLoad() {
@@ -55,6 +58,9 @@ class CollectionDetailViewController: UIViewController {
             self.imageView.kf.setImage(with: url)
         }
         
+        
+        likeBtn.isUserInteractionEnabled = true
+        likeBtn.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(hearthClicked)))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -71,9 +77,30 @@ class CollectionDetailViewController: UIViewController {
             }
         }
     }
+    
     func initUI(){
         self.title = collection.title
         self.collectionItemsArray?.removeAll()
+        
+        if let baseUser = baseUSER {
+            if collection.userId == baseUser.userId {
+                likeBtn.isHidden = true
+            } else {
+                likeBtn.isHidden = false
+                likeBtn.layer.shadowColor = UIColor.black.cgColor
+                likeBtn.layer.shadowOpacity = 0.8
+                likeBtn.layer.shadowOffset = CGSize(width: 3, height: 3)
+                likeBtn.layer.shadowRadius = 3
+                
+                if let likedCollections = baseUser.likedCollections {
+                    likeBtn.tintColor = likedCollections.contains(collection.collectionId) ? .systemRed : .systemGray5
+                }
+            }
+        }
+
+        
+       
+        
         DispatchQueue.main.async {
             LoadingScreen.show()
         }
@@ -85,6 +112,69 @@ class CollectionDetailViewController: UIViewController {
             case .success(let collectionItemsArray):
                 self.collectionItemsArray = collectionItemsArray
                 
+            case .failure(let error):
+                Banner.showErrorBanner(with: error)
+            }
+        }
+    }
+    
+    @objc func hearthClicked(){
+        //hearth tapped-> like or dislike
+        
+        if baseUSER != nil, baseUSER?.likedCollections != nil {
+            if baseUSER!.likedCollections!.contains(self.collection.collectionId){
+                print("Dislike operation is starting..")
+                self.collectionService?.dislikeCollection(collectionId: collection.collectionId){ result in
+                    switch result {
+                    case .success(let message):
+                        self.updateBaseUser()
+                        self.updateCollection()
+                        self.likeBtn.tintColor = .systemGray5
+                        
+                    case .failure(let error):
+                        Banner.showErrorBanner(with: error)
+                    }
+                }
+                
+                
+            }else{
+                print("Like operation is starting..")
+                self.collectionService?.likeCollection(collectionId: collection.collectionId){ result in
+                    switch result {
+                    case .success(let message):
+                        self.updateBaseUser()
+                        self.updateCollection()
+                        self.likeBtn.tintColor = .systemRed
+                    case .failure(let error):
+                        Banner.showErrorBanner(with: error)
+                    }
+                }
+            }
+        }
+        
+    }
+    
+    func updateBaseUser(){
+        self.userService?.getUser(){ result in
+            switch result {
+            case .success(let user):
+                baseUSER = user
+                print("baseUSER : ",baseUSER)
+
+            case .failure(let error):
+                Banner.showErrorBanner(with: error)
+            }
+        }
+    }
+    func updateCollection(){
+        self.collectionService?.getCollection(collectionId: self.collection.collectionId){ result in
+            switch result {
+            case .success(let collection):
+                self.collection = collection
+                //tableView reload header(section 0)
+                self.tableView.reloadSections([0], with: .none)
+                print("collection : ",collection)
+
             case .failure(let error):
                 Banner.showErrorBanner(with: error)
             }
@@ -302,6 +392,9 @@ extension CollectionDetailViewController: UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
+    
+
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // silme işlemini gerçekleştir

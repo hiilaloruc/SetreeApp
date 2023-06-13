@@ -137,9 +137,9 @@
             <connections>
                 <outlet property="editStackView" destination="VJ1-j8-H6F" id="iYe-lm-B2h"/>
                 <outlet property="isPublicButton" destination="AEF-op-HjH" id="KC2-OW-33M"/>
-                <outlet property="likeCountLabel" destination="WMT-E0-nYL" id="xB2-KX-r7W"/>
+                <outlet property="likeCountLabel" destination="H2v-VM-DKc" id="bk1-Rt-j3J"/>
                 <outlet property="tagLabel" destination="SNG-Cj-WgS" id="doV-ws-VQ7"/>
-                <outlet property="viewCountLabel" destination="H2v-VM-DKc" id="3Vy-Fv-iyq"/>
+                <outlet property="viewCountLabel" destination="WMT-E0-nYL" id="g71-aj-iQi"/>
             </connections>
             <point key="canvasLocation" x="89.855072463768124" y="-34.151785714285715"/>
         </tableViewCell>

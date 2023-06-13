@@ -20,7 +20,7 @@
                         <rect key="frame" x="20" y="5" width="280" height="24"/>
                         <string key="text">40-minutes walk every morning40-minutes walk every morning40-minutes walk every morning40-minutes walk every morning40-minutes walk every morning</string>
                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
-                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="textColor" red="0.16932663803148751" green="0.16932663803148751" blue="0.16932663803148751" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="To6-M1-3ge">

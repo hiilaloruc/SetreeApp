@@ -102,13 +102,13 @@ class GoalsNewViewController: UIViewController {
         goalsWithDetails = []
         if self.goalsArray != nil && self.goalsArray?.count ?? 0 > 0 {
                 for item in self.goalsArray! {
-                    DispatchQueue.main.async {
+                   /* DispatchQueue.main.async {
                         LoadingScreen.show()
-                    }
+                    }*/
                     goalService?.getGoalDetail(goalId: item.goalId){ result in
-                        DispatchQueue.main.async {
+                      /*  DispatchQueue.main.async {
                             LoadingScreen.hide()
-                        }
+                        }*/
                         switch result {
                         case .success(let goal ):
                             self.goalsWithDetails?.append(goal)

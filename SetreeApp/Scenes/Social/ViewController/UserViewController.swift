@@ -117,13 +117,13 @@ class UserViewController: UIViewController, UICollectionViewDelegate,UICollectio
     
     
     func getCollections(for user: User) {
-        DispatchQueue.main.async {
+       /* DispatchQueue.main.async {
             LoadingScreen.show()
-        }
+        }*/
         collectionService?.getCollections(userId: user.userId){ [weak self] result in
-            DispatchQueue.main.async {
+           /* DispatchQueue.main.async {
                 LoadingScreen.hide()
-            }
+            }*/
             switch result {
             case .success(let collections):
                 self?.collectionsArray = collections
@@ -134,13 +134,13 @@ class UserViewController: UIViewController, UICollectionViewDelegate,UICollectio
         }
     }
     func getFollowers(for user: User){
-        DispatchQueue.main.async {
+        /*DispatchQueue.main.async {
             LoadingScreen.show()
-        }
+        }*/
         followService?.getFollowers(id:user.userId){ [weak self] result in
-            DispatchQueue.main.async {
+           /* DispatchQueue.main.async {
                 LoadingScreen.hide()
-            }
+            }*/
             switch result {
             case .success(let followersResponse):
                 self?.followersArray = followersResponse
@@ -152,14 +152,14 @@ class UserViewController: UIViewController, UICollectionViewDelegate,UICollectio
     }
     
     func getFollowings(for user: User){
-        DispatchQueue.main.async {
+        /*DispatchQueue.main.async {
             LoadingScreen.show()
-        }
+        }*/
         //get followings
         followService?.getFollowings(id:user.userId){ [weak self] result in
-            DispatchQueue.main.async {
+           /* DispatchQueue.main.async {
                 LoadingScreen.hide()
-            }
+            }*/
             switch result {
             case .success(let followingsResponse):
                 self?.followingsArray = followingsResponse
@@ -241,9 +241,10 @@ class UserViewController: UIViewController, UICollectionViewDelegate,UICollectio
                 guard let self = self else { return }
                 switch result {
                 case .success(let message):
-                    Banner.showSuccessBanner(message: message)
+                    self.updateBaseUser()
                     self.updateFollowButtonView(isFollowing: !isFollowing)
                     self.loadUser(with: profileUser.userId)
+                    Banner.showSuccessBanner(message: message)
                 case .failure(let error):
                     Banner.showErrorBanner(with: error)
                 }
@@ -253,11 +254,24 @@ class UserViewController: UIViewController, UICollectionViewDelegate,UICollectio
     }
     
     private func follow(userId: Int, completion: @escaping (Result<String, Error>) -> Void) {
-        self.userService?.follow(userId: userId, completion: completion)
+        self.followService?.follow(userId: userId, completion: completion)
     }
 
     private func unfollow(userId: Int, completion: @escaping (Result<String, Error>) -> Void) {
-        self.userService?.unfollow(userId: userId, completion: completion)
+        self.followService?.unfollow(userId: userId, completion: completion)
+    }
+    
+    func updateBaseUser(){
+        self.userService?.getUser(){ result in
+            switch result {
+            case .success(let user):
+                baseUSER = user
+                print("baseUSER : ",baseUSER)
+
+            case .failure(let error):
+                Banner.showErrorBanner(with: error)
+            }
+        }
     }
     
     @IBAction func FollowersClicked(_ sender: Any) {

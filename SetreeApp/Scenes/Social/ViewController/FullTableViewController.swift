@@ -31,11 +31,24 @@ class FullTableViewController: UIViewController {
     }
     
     private func follow(userId: Int, completion: @escaping (Result<String, Error>) -> Void) {
-        self.userService?.follow(userId: userId, completion: completion)
+        self.followService?.follow(userId: userId, completion: completion)
     }
 
     private func unfollow(userId: Int, completion: @escaping (Result<String, Error>) -> Void) {
-        self.userService?.unfollow(userId: userId, completion: completion)
+        self.followService?.unfollow(userId: userId, completion: completion)
+    }
+    
+    func updateBaseUser(){
+        self.userService?.getUser(){ result in
+            switch result {
+            case .success(let user):
+                baseUSER = user
+                print("baseUSER : ",baseUSER)
+
+            case .failure(let error):
+                Banner.showErrorBanner(with: error)
+            }
+        }
     }
     
     func UpdateObjectsArr(index: [IndexPath]){
@@ -124,6 +137,7 @@ extension FullTableViewController : UITableViewDelegate, UITableViewDataSource {
                 switch result {
                 case .success(let message):
                     self.UpdateObjectsArr(index: [IndexPath(item: indexPath.row, section: 0)])
+                    self.updateBaseUser()
                     Banner.showSuccessBanner(message: message)
                     
                 case .failure(let error):

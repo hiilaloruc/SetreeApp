@@ -73,7 +73,7 @@ public class CollectionService {
             print("response:", response)
             switch response.result {
             case .success(let response):
-                if response.succeeded, let collection = response.collection {
+                if response.succeded, let collection = response.collection {
                     completion(.success(collection))
                 } else {
                     let errorMessage =  "Error occured while getting collections."
@@ -217,6 +217,46 @@ public class CollectionService {
                 } else {
                     let errorMessage =  "Error occured while getting collections."
                     let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: errorMessage])
+                    completion(.failure(error))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    internal func likeCollection(collectionId: Int, completion: @escaping (Result<String, Error>) -> Void) {
+        let url = "\(rootUrl)/likeACollection/\(collectionId)"
+        
+        // Alamofire : POST request
+        AF.request(url, headers: headers()).responseDecodable(of: BaseResponseW_2E<String>.self) { response in
+            print("response:", response)
+            switch response.result {
+            case .success(let response):
+                if response.succeeded , let message = response.message {
+                    completion(.success(message))
+                } else {
+                    let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: response.message ?? "Collection couldn't be liked."])
+                    completion(.failure(error))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    internal func dislikeCollection(collectionId: Int, completion: @escaping (Result<String, Error>) -> Void) {
+        let url = "\(rootUrl)/dislikeACollection/\(collectionId)"
+        
+        // Alamofire : POST request
+        AF.request(url, headers: headers()).responseDecodable(of: BaseResponseW_2E<String>.self) { response in
+            print("response:", response)
+            switch response.result {
+            case .success(let response):
+                if response.succeeded , let message = response.message {
+                    completion(.success(message))
+                } else {
+                    let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: response.message ?? "Collection couldn't be liked."])
                     completion(.failure(error))
                 }
             case .failure(let error):

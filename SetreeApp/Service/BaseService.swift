@@ -50,7 +50,7 @@ struct GetCollectionsByTagResponse<Collection: Codable>: Codable {
 
 }
 struct GetCollectionResponse<Collection: Codable>: Codable {
-    let succeeded: Bool
+    let succeded: Bool
     let collection: Collection?
 
 }

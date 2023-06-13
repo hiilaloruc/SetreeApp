@@ -18,6 +18,20 @@ class CollectionTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         self.clipsToBounds = true
+        
+        // Hücre seçili olduğunda arkaplan rengini değiştirme
+          selectionStyle = .none
+        
     }
     @IBOutlet weak var userImageView : UIImageView!
+    
+    /*override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+
+        // Hücre seçili olduğunda arkaplan rengini ayarla
+        if selected {
+            backgroundColor = UIColor.clear
+        }
+    }*/
+
 }

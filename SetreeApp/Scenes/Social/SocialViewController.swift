@@ -60,6 +60,7 @@ class SocialViewController: UIViewController {
         return UserService()
     }
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.pageType = .feed
@@ -85,13 +86,13 @@ class SocialViewController: UIViewController {
     }
     
     func initalUI(){
-        DispatchQueue.main.async {
+        /*DispatchQueue.main.async {
             LoadingScreen.show()
-        }
+        }*/
         followService?.getFollowings(){ result in
-            DispatchQueue.main.async {
+          /*  DispatchQueue.main.async {
                 LoadingScreen.hide()
-            }
+            }*/
             switch result {
             case .success(let followingObjects):
                 //self.pageType = .feed
@@ -123,11 +124,24 @@ class SocialViewController: UIViewController {
     }
     
     private func follow(userId: Int, completion: @escaping (Result<String, Error>) -> Void) {
-        self.userService?.follow(userId: userId, completion: completion)
+        self.followService?.follow(userId: userId, completion: completion)
     }
 
     private func unfollow(userId: Int, completion: @escaping (Result<String, Error>) -> Void) {
-        self.userService?.unfollow(userId: userId, completion: completion)
+        self.followService?.unfollow(userId: userId, completion: completion)
+    }
+    
+    func updateBaseUser(){
+        self.userService?.getUser(){ result in
+            switch result {
+            case .success(let user):
+                baseUSER = user
+                print("baseUSER : ",baseUSER)
+
+            case .failure(let error):
+                Banner.showErrorBanner(with: error)
+            }
+        }
     }
     
 
@@ -181,15 +195,16 @@ extension SocialViewController : UITableViewDelegate, UITableViewDataSource {
                     LoadingScreen.show()
                 }
                 followAction( self.followingsArray![indexPath.row].userId) { [weak self] result in
-                   
                     DispatchQueue.main.async {
                         LoadingScreen.hide()
                     }
                     guard let self = self else { return }
                     switch result {
                     case .success(let message):
-                        Banner.showSuccessBanner(message: message)
+                        self.updateBaseUser()
                         self.initalUI()
+                        Banner.showSuccessBanner(message: message)
+                        
                         
                     case .failure(let error):
                         Banner.showErrorBanner(with: error)
