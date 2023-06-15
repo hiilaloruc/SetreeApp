@@ -40,4 +40,10 @@ struct LocalStorage {
         }
         return nil
     }
+    
+    static func removeItem(key: String) {
+           let userDefaults = UserDefaults.standard
+           userDefaults.removeObject(forKey: key)
+           userDefaults.synchronize()
+       }
 }

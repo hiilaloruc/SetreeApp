@@ -42,15 +42,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 case .success(let user):
                     baseUSER = user
                     print("baseUSER : ",baseUSER)
-                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    self.window?.rootViewController = storyboard.instantiateInitialViewController()
-                                
+                    if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                       let delegate = windowScene.delegate as? SceneDelegate,
+                       let mainWindow = delegate.window {
+                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                        mainWindow.rootViewController = storyboard.instantiateInitialViewController()
+                    }
+
                     
-                    let banner = GrowingNotificationBanner(title: "Dont need to login :)", subtitle: "Your session has not expired.", style: .info)
-                    banner.show()
+                    /*let banner = GrowingNotificationBanner(title: "Dont need to login :)", subtitle: "Your session has not expired.", style: .info)
+                    banner.show()*/
                      
                 case .failure(let error):
-                    LocalStorage.setItem("baseTOKEN", value:0)
+                    LocalStorage.removeItem(key: "baseToken")
+                    Banner.showInfoBanner(message: "You need to login, your session has expired.")
                     let storyBoard = UIStoryboard.init(name: "Auth" , bundle: nil)
                     self.window?.rootViewController = storyBoard.instantiateInitialViewController()
                     

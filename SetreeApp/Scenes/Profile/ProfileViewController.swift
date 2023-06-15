@@ -60,13 +60,21 @@ class ProfileViewController: UIViewController, UIPickerViewDataSource, UIPickerV
                 let formattedDate = dateFormatter.string(from: date)
                 self.createdAtLabel.text = ("Account created at: \(formattedDate)" )
             }
-
+            
+            
+           let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapOutOfKeyboard(_:)))
+           view.addGestureRecognizer(tapGesture)
             
             
             
            
         }
     }
+    
+     @objc func handleTapOutOfKeyboard(_ sender: UITapGestureRecognizer) {
+         // hide keybooard
+         view.endEditing(true)
+     }
     
     func getFormattedTime(time:String) -> String {
         let dateFormatter = DateFormatter()
@@ -120,25 +128,28 @@ class ProfileViewController: UIViewController, UIPickerViewDataSource, UIPickerV
         }
     }
     
-  /*  @IBAction func clickedEditImage(_ sender: Any){
-        print("clickedEditImage..")
+    @IBAction func clickedLogOut(_ sender: Any){
+        print("clickedLogOut..")
+        let alertVC = UIAlertController(title: "Log out", message: "Are you sure you want to proceed with the logout?", preferredStyle: .alert)
+
+        alertVC.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { (action) in
+            print("Cancelled")
+            self.dismiss(animated: false, completion: nil)
+        }))
         
-        if let image = UIImage(named: "dog"){
-            cloudinaryService?.uploadProfileImage(image: image) { result in
-                switch result {
-                case .success(let uploadResult):
-                    print("Profil resmi başarıyla yüklendi. Genel Kimlik (public ID): \(uploadResult.publicId)")
-                    // Yükleme başarılı
-                case .failure(let error):
-                    print("Profil resmi yüklenirken bir hata oluştu: \(error)")
-                    // Yükleme başarısız
-                }
-            }
-        }
-        
+        alertVC.addAction(UIAlertAction(title: "Log out", style: .destructive, handler: { (action) in
+            //UserDefaults.standard.removeObject(forKey: "baseTOKEN")
+            LocalStorage.removeItem(key: "baseTOKEN")
+            Banner.showInfoBanner(message: "You need to login to continue using your account.")
+            let vc = UIStoryboard.init(name: "Auth" , bundle: nil).instantiateInitialViewController()!
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true, completion: nil)
+        }))
+        present(alertVC, animated: false, completion: nil)
+
 
     }
-    */
+    
     @IBAction func clickedEditImage(_ sender: Any) {
         print("clickedEditImage..")
         
