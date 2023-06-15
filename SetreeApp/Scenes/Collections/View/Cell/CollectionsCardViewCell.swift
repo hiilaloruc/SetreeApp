@@ -29,11 +29,11 @@ class CollectionsCardViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+        self.isUserInteractionEnabled = true
     }
     
     @IBAction func clickedCell(_ sender: Any) {
-        print("jj: cell clicked")
+        print("\(titleLabel.text): cell clicked")
         self.tappedCell?()
     }
 }

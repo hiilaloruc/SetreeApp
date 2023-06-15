@@ -12,6 +12,7 @@ import Kingfisher
 enum collectionsType{
     case hashtag
     case normal
+    case favorites
 }
 
 
@@ -22,6 +23,7 @@ class CollectionsViewController: UIViewController, UICollectionViewDelegate, UIC
     
     internal var type: collectionsType = .normal
     internal var tag: String?
+    internal var likedCollectionsOwnerId : Int?
     internal var collectionsArray : [Collection]?{
         didSet{
             collectionsView.reloadData()
@@ -83,6 +85,24 @@ class CollectionsViewController: UIViewController, UICollectionViewDelegate, UIC
                     }
                 }
             }
+        case .favorites:
+            if let likedCollectionsOwnerId = self.likedCollectionsOwnerId {
+                DispatchQueue.main.async {
+                    LoadingScreen.show()
+                }
+                collectionService?.getLikedCollections(userid: likedCollectionsOwnerId){ result in
+                    DispatchQueue.main.async {
+                        LoadingScreen.hide()
+                    }
+                    switch result {
+                    case .success(let collections):
+                        self.collectionsArray = collections
+                    case .failure(let error):
+                        Banner.showErrorBanner(with: error)
+                    }
+                }
+            }
+            
         }
             
        

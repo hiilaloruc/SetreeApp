@@ -396,14 +396,27 @@
                                                     </collectionViewCell>
                                                 </cells>
                                             </collectionView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lists" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qpk-fS-glu">
-                                                <rect key="frame" x="13" y="490" width="40" height="21.666666666666686"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Collections" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qpk-fS-glu">
+                                                <rect key="frame" x="13" y="490" width="94" height="31"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UoR-IU-7LY">
+                                                <rect key="frame" x="223.33333333333337" y="490" width="146.66666666666663" height="31"/>
+                                                <color key="tintColor" name="oldReddishColor"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="heart.fill" catalog="system" title=" Show Favorites" cornerStyle="dynamic">
+                                                    <backgroundConfiguration key="background">
+                                                        <color key="strokeColor" name="oldReddishColor"/>
+                                                    </backgroundConfiguration>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="ShowMyFavoritesClicked:" destination="tAE-7W-kx5" eventType="touchUpInside" id="cXI-6V-E67"/>
+                                                </connections>
+                                            </button>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="3Qf-QR-ikg">
-                                                <rect key="frame" x="15" y="521.66666666666663" width="345" height="339"/>
+                                                <rect key="frame" x="15" y="531" width="345" height="339"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="339" id="pZT-xY-Ncc"/>
@@ -641,13 +654,16 @@
                                             <constraint firstAttribute="trailing" secondItem="dZk-cq-Wyn" secondAttribute="trailing" id="Rpb-XF-7Lj"/>
                                             <constraint firstItem="3Qf-QR-ikg" firstAttribute="leading" secondItem="B5F-ra-EYa" secondAttribute="leading" constant="15" id="Rug-lh-FnT"/>
                                             <constraint firstItem="6Jb-m3-ayv" firstAttribute="top" secondItem="vr7-Gp-U6E" secondAttribute="bottom" constant="7" id="Vkc-Rd-aXA"/>
+                                            <constraint firstItem="UoR-IU-7LY" firstAttribute="centerY" secondItem="Qpk-fS-glu" secondAttribute="centerY" id="WDw-7d-vrR"/>
                                             <constraint firstItem="dZk-cq-Wyn" firstAttribute="leading" secondItem="B5F-ra-EYa" secondAttribute="leading" id="brQ-5b-HmC"/>
                                             <constraint firstItem="eb8-uP-9QU" firstAttribute="top" secondItem="dZk-cq-Wyn" secondAttribute="bottom" constant="7" id="cSO-aT-Fg0"/>
                                             <constraint firstItem="eb8-uP-9QU" firstAttribute="leading" secondItem="B5F-ra-EYa" secondAttribute="leading" constant="13" id="eU1-vG-NFW"/>
                                             <constraint firstItem="dZk-cq-Wyn" firstAttribute="top" secondItem="ony-hr-nmP" secondAttribute="bottom" constant="20" id="fZd-d7-waC"/>
                                             <constraint firstItem="Qpk-fS-glu" firstAttribute="top" secondItem="w6Z-li-gGc" secondAttribute="bottom" constant="15" id="iTj-Pc-NxZ"/>
                                             <constraint firstItem="ony-hr-nmP" firstAttribute="top" secondItem="eFq-1D-R61" secondAttribute="bottom" constant="20" id="iUZ-yL-W5c"/>
+                                            <constraint firstItem="UoR-IU-7LY" firstAttribute="bottom" secondItem="Qpk-fS-glu" secondAttribute="bottom" id="jwp-mZ-yeq"/>
                                             <constraint firstAttribute="trailing" secondItem="vr7-Gp-U6E" secondAttribute="trailing" constant="12" id="mGs-Gs-sEJ"/>
+                                            <constraint firstAttribute="trailing" secondItem="UoR-IU-7LY" secondAttribute="trailing" constant="5" id="nk0-va-TgH"/>
                                             <constraint firstItem="6Jb-m3-ayv" firstAttribute="leading" secondItem="B5F-ra-EYa" secondAttribute="leading" constant="13" id="o1r-Zf-Hcx"/>
                                             <constraint firstItem="Qpk-fS-glu" firstAttribute="leading" secondItem="B5F-ra-EYa" secondAttribute="leading" constant="13" id="qS0-pw-shi"/>
                                             <constraint firstItem="eFq-1D-R61" firstAttribute="top" secondItem="B5F-ra-EYa" secondAttribute="top" id="ssc-bx-uAf"/>
@@ -689,6 +705,7 @@
                         <outlet property="listCountLabel" destination="QEN-PN-Gz5" id="zfa-PL-3JL"/>
                         <outlet property="nameLabel" destination="vaL-CP-LXY" id="EPi-8I-riZ"/>
                         <outlet property="scrollView" destination="eug-Qw-aUJ" id="EnD-Od-m2Z"/>
+                        <outlet property="showFavoritesBtn" destination="UoR-IU-7LY" id="uJB-qw-S3r"/>
                         <outlet property="topContainerView" destination="eFq-1D-R61" id="SFd-VX-Hcp"/>
                         <outlet property="userImageView" destination="SOR-hX-sHk" id="rqm-KX-VRQ"/>
                         <outlet property="userListsCollectionView" destination="3Qf-QR-ikg" id="Htn-zE-vIM"/>
@@ -1201,7 +1218,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Collections" id="ebh-rk-t74">
                         <barButtonItem key="rightBarButtonItem" title="Item" style="plain" id="mbs-yw-QVd">
-                            <view key="customView" contentMode="scaleToFill" id="MiB-Zh-34m">
+                            <view key="customView" hidden="YES" contentMode="scaleToFill" id="MiB-Zh-34m">
                                 <rect key="frame" x="315" y="6" width="44" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -1840,7 +1857,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w73-SB-4le">
                                 <rect key="frame" x="10" y="411" width="140" height="31"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Change Password"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Change Password">
+                                    <backgroundConfiguration key="background"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <action selector="clickedChangePassword:" destination="XMF-3l-Zgg" eventType="touchUpInside" id="E1H-gA-JTM"/>
                                 </connections>
@@ -1945,11 +1964,11 @@
             </objects>
             <point key="canvasLocation" x="2159" y="93"/>
         </scene>
-        <!--List-->
+        <!--Collections-->
         <scene sceneID="SZW-IZ-0YX">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4FZ-TD-6wf" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="List" image="note.text.badge.plus" catalog="system" id="kDh-7O-Uyn"/>
+                    <tabBarItem key="tabBarItem" title="Collections" image="note.text.badge.plus" catalog="system" id="kDh-7O-Uyn"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="0OV-Nj-hGb">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
@@ -2085,6 +2104,9 @@
         <image name="xmark.octagon" catalog="system" width="128" height="112"/>
         <namedColor name="mainRoyalBlueColor">
             <color red="0.53700000047683716" green="0.61599999666213989" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="oldReddishColor">
+            <color red="0.9309999942779541" green="0.52999997138977051" blue="0.51800000667572021" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="softDarkblue">
             <color red="0.29899999499320984" green="0.44499999284744263" blue="0.66699999570846558" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>

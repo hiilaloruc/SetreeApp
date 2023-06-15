@@ -22,6 +22,7 @@ class UserViewController: UIViewController, UICollectionViewDelegate,UICollectio
     @IBOutlet weak var userListsCollectionView: UICollectionView!
     @IBOutlet weak var lastCollectionHeight: NSLayoutConstraint!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var showFavoritesBtn: UIButton!
     
     
    //internal var isFollowed: Bool = true
@@ -304,6 +305,15 @@ class UserViewController: UIViewController, UICollectionViewDelegate,UICollectio
         }
     }
     
+    @IBAction func ShowMyFavoritesClicked(_ sender: Any) {
+        if let vc = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "CollectionsViewController") as? CollectionsViewController{
+            vc.type = .favorites
+            vc.likedCollectionsOwnerId = self.userId ?? baseUSER?.userId
+            vc.title = "Favorites"
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
     
     private func followCollectionViewCell(collectionView: UICollectionView, indexPath: IndexPath, followArray: [User]) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FollowersSliderCollectionViewCell", for: indexPath) as! FollowersSliderCollectionViewCell
@@ -384,6 +394,18 @@ class UserViewController: UIViewController, UICollectionViewDelegate,UICollectio
                     }
                 }
             return cell
+        }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView == userListsCollectionView {
+            userListsCollectionView.isUserInteractionEnabled = false
+        }
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if scrollView == userListsCollectionView {
+            userListsCollectionView.isUserInteractionEnabled = true
         }
     }
     

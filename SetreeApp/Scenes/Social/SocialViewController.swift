@@ -290,8 +290,8 @@ extension SocialViewController: UITextFieldDelegate {
         
         let trimmedKeyword = keyword.replacingOccurrences(of: " ", with: "")
         
-        // Check if the trimmed keyword length is greater than 2
-        if trimmedKeyword.count > 2 {
+        // Check if the trimmed keyword length is greater than 1
+        if trimmedKeyword.count > 1 {
             // Call the search service with the updated keyword
             searchService?.search(keyword: keyword) { result in
                 switch result {
