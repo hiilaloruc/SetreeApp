@@ -11,52 +11,111 @@ import SimpleRoulette
 
 class WheelViewController: UIViewController {
     @IBOutlet weak var WheelUIView: UIView!
-    let rModel : RouletteModel = .init(parts: [
-        PartData(
-            index: 0,
-            content: .label("1"),
-            area: .flex(1),
-            fillColor: Color(UIColor.softOrange)
-        ),
-        PartData(
-            index: 1,
-            content: .label("2"),
-            area: .flex(1),
-            fillColor: Color(UIColor.softPink)
-        ),
-        PartData(
-            index: 2,
-            content: .label("3"),
-            area: .flex(1),
-            fillColor: Color(UIColor.softLilac)
-        ),
-        PartData(
-            index: 3,
-            content: .label("4"),
-            area: .flex(1),
-            fillColor: Color(UIColor.softGreen)
-        ),
-        PartData(
-            index: 4,
-            content: .label("5"),
-            area: .flex(1),
-            fillColor: Color(UIColor.mainRoyalBlueColor)
-        ),
-        PartData(
-            index: 5,
-            content: .label("6"),
-            area: .flex(1),
-            fillColor: Color(UIColor.softDarkblue)
-        ),
-    ])
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        let hostingController = UIHostingController(rootView: WheelView(model: rModel))
-                addChild(hostingController)
-                hostingController.view.frame = WheelUIView.bounds
-                WheelUIView.addSubview(hostingController.view)
-                hostingController.didMove(toParent: self)
+    @IBOutlet weak var wheelTitle: UILabel!
+    @IBOutlet weak var selectGoalTypeBtn: UIButton!
 
+    private weak var goalService : GoalService?{
+        return GoalService()
+    }
+    internal var goalsArr : [Goal]? {
+        didSet{
+            self.setPopupButton()
+        }
+    }
+    //hierarchy -> get goalsArr -> setPopupButton() -> onclick -> getGoalDetail -> configureWheel()
+    var goalsArray = ["Go stay in Poland for at least  2 weeks",
+                      "Join a workshop as a part of a team",
+                      "Learn a new programming language",
+                      "Membership to a gym a gym a gym",
+                      "Have a dog/catdog /catdog/cat",
+                      "Start a dairy a dairy a dairy a dairy"]
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        initUI()
+
+    }
+    
+    func initUI(){
+        if let user = baseUSER{
+            goalService?.getGoals(){ result in
+                switch result {
+                case .success(let goals):
+                    self.goalsArr = goals
+                    
+                    
+                case .failure(let error):
+                    Banner.showErrorBanner(with: error)
+
+                }
+            }
+        }
+    }
+    
+    func configureWheel(goalItemsArr: [GoalItem]){
+        if goalItemsArr.count < 2{
+            Banner.showInfoBanner(message: "Insufficient items(less than 2) in the selected goal. Please select another one.")
+        }else{
+            let hostingController = UIHostingController(rootView: WheelView(model: RouletteModel.init(parts: CreateWheelModel(goalItemsArr: goalItemsArr))))
+                    addChild(hostingController)
+                    hostingController.view.frame = WheelUIView.bounds
+                    WheelUIView.addSubview(hostingController.view)
+                    hostingController.didMove(toParent: self)
+        }
+        DispatchQueue.main.async {
+            LoadingScreen.hide()
+        }
+    }
+    
+    
+    
+    
+     func goalSelected(goalId: Int) {
+        DispatchQueue.main.async {
+            LoadingScreen.show()
+        }
+        self.goalService?.getGoalDetail(goalId: goalId){ result in
+            switch result {
+            case .success(let goalObj ):
+                self.configureWheel(goalItemsArr: goalObj.goalItems ?? [])
+            case .failure(let error):
+                Banner.showErrorBanner(with: error)
+                
+            }
+        }
+    }
+    
+    func setPopupButton() {
+        var menuChildren: [UIAction] = []
+        
+        if let goalsArr = self.goalsArr, goalsArr.count > 2 {
+            for goal in goalsArr {
+                let action = UIAction(title: goal.title, handler: { [weak self] _ in
+                    self?.goalSelected(goalId: goal.goalId)
+                })
+                menuChildren.append(action)
+            }
+            goalSelected(goalId: goalsArr[0].goalId)
+        }
+        selectGoalTypeBtn.menu = UIMenu(children: menuChildren)
+        selectGoalTypeBtn.showsMenuAsPrimaryAction = true
+        selectGoalTypeBtn.changesSelectionAsPrimaryAction = true
+       
+    }
+
+    
+    func CreateWheelModel(goalItemsArr : [GoalItem]) -> [PartData] {
+        var rModelParts: [PartData] = []
+        for (index, goalItem) in goalItemsArr.enumerated() {
+            let content = Content.label(String(index))
+            let title = goalItem.content
+            let colorString = collectionCardColorsArr[index % collectionCardColorsArr.count]
+            let color = Color(UIColor(named: colorString)!)
+            let partData = PartData(index: index, content: content, title: title, area: .flex(1), fillColor: color)
+            rModelParts.append(partData)
+           
+        }
+        return rModelParts
     }
     
 

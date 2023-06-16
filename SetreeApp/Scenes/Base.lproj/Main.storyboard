@@ -7,6 +7,7 @@
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="UIMenu" message="Requires Xcode 11 or later." minToolsVersion="11.0" requiredIntegratedClassName="UICommandDiff"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -1632,7 +1633,7 @@
                                 <attributedString key="attributedText">
                                     <fragment content="Wheel Spinner">
                                         <attributes>
-                                            <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="NSColor" red="1" green="0.92533555778564791" blue="0.95420405479999304" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <font key="NSFont" size="35" name="Futura-Bold"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
@@ -1646,57 +1647,78 @@
                                     <constraint firstAttribute="height" constant="60" id="3Xv-KZ-6VD"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
+                                <color key="textColor" red="1" green="0.90510391174633564" blue="0.93248663681744481" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" changesSelectionAsPrimaryAction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pgd-b4-5eX">
+                                <rect key="frame" x="30" y="215.33333333333334" width="315" height="31"/>
+                                <menu key="menu" id="dca-wE-pj1">
+                                    <children>
+                                        <command title="Item 1" id="xGb-ZT-YWF"/>
+                                        <command title="Item 2" id="IO5-DY-Rxb"/>
+                                    </children>
+                                </menu>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <buttonConfiguration key="configuration" style="plain" imagePlacement="trailing" imagePadding="10">
+                                    <imageReference key="image" image="arrowtriangle.down.fill" catalog="system" symbolScale="small"/>
+                                    <backgroundConfiguration key="background">
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="strokeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </backgroundConfiguration>
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Button">
+                                            <attributes>
+                                                <font key="NSFont" size="13" name="Futura-Medium"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                    <color key="baseForegroundColor" name="mainRoyalBlueColor"/>
+                                </buttonConfiguration>
+                            </button>
+                            <view clipsSubviews="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="eAk-sg-Tvu">
+                                <rect key="frame" x="25" y="266.33333333333331" width="350" height="399.99999999999994"/>
+                                <color key="backgroundColor" name="mainRoyalBlueColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="400" id="kcw-kF-OOL"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Goal" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pzx-zc-qNu">
+                                <rect key="frame" x="30.000000000000007" y="190.66666666666666" width="79.666666666666686" height="19.666666666666657"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="XV2-VN-Mi2">
-                                <rect key="frame" x="20" y="596" width="335" height="133"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="133" id="MCa-AR-adS"/>
-                                </constraints>
-                                <string key="text">1 : Go stay in Poland for at least  2 weeks
-2 : Join a workshop as a part of a team
-3 : Learn a new programming language
-4 : Membership to a gym
-5 : Have a dog/cat
-6 :  Start a dairy
-</string>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eAk-sg-Tvu">
-                                <rect key="frame" x="77.666666666666686" y="190.66666666666666" width="220" height="405.33333333333337"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="220" id="OlB-rj-wA7"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="gTX-F8-BlE"/>
                         <color key="backgroundColor" name="mainRoyalBlueColor"/>
                         <constraints>
                             <constraint firstItem="uXn-s6-8Cz" firstAttribute="leading" secondItem="gTX-F8-BlE" secondAttribute="leading" constant="40" id="2OV-qu-emA"/>
-                            <constraint firstItem="eAk-sg-Tvu" firstAttribute="centerX" secondItem="cN1-Kt-G2j" secondAttribute="centerX" id="6qj-QT-1tP"/>
+                            <constraint firstItem="Pgd-b4-5eX" firstAttribute="leading" secondItem="gTX-F8-BlE" secondAttribute="leading" constant="30" id="98W-T7-Bzc"/>
+                            <constraint firstItem="Pgd-b4-5eX" firstAttribute="top" secondItem="Pzx-zc-qNu" secondAttribute="bottom" constant="5" id="ADY-PY-FVN"/>
                             <constraint firstItem="wSm-fp-KNR" firstAttribute="leading" secondItem="gTX-F8-BlE" secondAttribute="leading" constant="40" id="D7T-dk-L6f"/>
                             <constraint firstItem="wSm-fp-KNR" firstAttribute="top" secondItem="gTX-F8-BlE" secondAttribute="top" constant="20" id="HZA-IK-esb"/>
                             <constraint firstItem="uXn-s6-8Cz" firstAttribute="top" secondItem="wSm-fp-KNR" secondAttribute="bottom" constant="6" id="KYk-zN-ZCY"/>
-                            <constraint firstItem="XV2-VN-Mi2" firstAttribute="centerX" secondItem="cN1-Kt-G2j" secondAttribute="centerX" id="Kw3-BO-VeS"/>
-                            <constraint firstItem="gTX-F8-BlE" firstAttribute="bottom" secondItem="XV2-VN-Mi2" secondAttribute="bottom" id="MsA-8w-yFm"/>
-                            <constraint firstItem="eAk-sg-Tvu" firstAttribute="top" secondItem="uXn-s6-8Cz" secondAttribute="bottom" constant="15" id="d6N-Iu-ujS"/>
-                            <constraint firstItem="XV2-VN-Mi2" firstAttribute="leading" secondItem="gTX-F8-BlE" secondAttribute="leading" constant="20" id="jkO-EC-i0E"/>
-                            <constraint firstItem="gTX-F8-BlE" firstAttribute="trailing" secondItem="XV2-VN-Mi2" secondAttribute="trailing" constant="20" id="qAd-gJ-nIY"/>
-                            <constraint firstItem="XV2-VN-Mi2" firstAttribute="top" secondItem="eAk-sg-Tvu" secondAttribute="bottom" id="tIJ-pX-ICw"/>
+                            <constraint firstItem="eAk-sg-Tvu" firstAttribute="leading" secondItem="gTX-F8-BlE" secondAttribute="leading" constant="25" id="N5W-Gc-3G1"/>
+                            <constraint firstItem="Pzx-zc-qNu" firstAttribute="top" secondItem="uXn-s6-8Cz" secondAttribute="bottom" constant="15" id="Vlr-UB-HJX"/>
+                            <constraint firstItem="eAk-sg-Tvu" firstAttribute="trailing" secondItem="gTX-F8-BlE" secondAttribute="trailing" id="Wys-rs-hiJ"/>
+                            <constraint firstItem="Pgd-b4-5eX" firstAttribute="leading" secondItem="Pzx-zc-qNu" secondAttribute="leading" id="XzX-Vx-keb"/>
+                            <constraint firstItem="gTX-F8-BlE" firstAttribute="trailing" secondItem="Pgd-b4-5eX" secondAttribute="trailing" constant="30" id="aNI-Ev-dJg"/>
+                            <constraint firstItem="eAk-sg-Tvu" firstAttribute="top" secondItem="Pgd-b4-5eX" secondAttribute="bottom" constant="20" id="xdE-jZ-gvQ"/>
                             <constraint firstItem="gTX-F8-BlE" firstAttribute="trailing" secondItem="uXn-s6-8Cz" secondAttribute="trailing" constant="50" id="xsm-DK-OYH"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Wheel" image="timelapse" catalog="system" id="xKo-ca-GHW"/>
                     <connections>
                         <outlet property="WheelUIView" destination="eAk-sg-Tvu" id="AHf-px-xdS"/>
+                        <outlet property="selectGoalTypeBtn" destination="Pgd-b4-5eX" id="YQP-AM-mcQ"/>
+                        <outlet property="wheelTitle" destination="wSm-fp-KNR" id="qZf-62-KgR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Tu-Oy-0pI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1785" y="808"/>
+            <point key="canvasLocation" x="1784.8" y="807.63546798029563"/>
         </scene>
         <!--Profile-->
         <scene sceneID="VA6-tu-p2h">
@@ -2111,6 +2133,7 @@
     </designables>
     <resources>
         <image name="arrow.down.heart" catalog="system" width="128" height="109"/>
+        <image name="arrowtriangle.down.fill" catalog="system" width="128" height="124"/>
         <image name="eye.fill" catalog="system" width="128" height="78"/>
         <image name="health" width="1976" height="1266"/>
         <image name="heart.fill" catalog="system" width="128" height="109"/>
