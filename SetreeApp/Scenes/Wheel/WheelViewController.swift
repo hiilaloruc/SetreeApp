@@ -23,12 +23,6 @@ class WheelViewController: UIViewController {
         }
     }
     //hierarchy -> get goalsArr -> setPopupButton() -> onclick -> getGoalDetail -> configureWheel()
-    var goalsArray = ["Go stay in Poland for at least  2 weeks",
-                      "Join a workshop as a part of a team",
-                      "Learn a new programming language",
-                      "Membership to a gym a gym a gym",
-                      "Have a dog/catdog /catdog/cat",
-                      "Start a dairy a dairy a dairy a dairy"]
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)

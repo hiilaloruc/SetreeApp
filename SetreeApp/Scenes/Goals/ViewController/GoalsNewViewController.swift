@@ -32,8 +32,8 @@ class GoalsNewViewController: UIViewController {
         return GoalService()
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib.init(nibName: "GoalCardTableViewCell", bundle: nil), forCellReuseIdentifier: "GoalCardTableViewCell")

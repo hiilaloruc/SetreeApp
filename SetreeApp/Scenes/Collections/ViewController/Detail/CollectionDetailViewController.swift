@@ -97,10 +97,12 @@ class CollectionDetailViewController: UIViewController {
                 }
             }
         }
-
-        
        
         
+        self.getCollectionItemsArr()
+    }
+    
+    func getCollectionItemsArr(){
         DispatchQueue.main.async {
             LoadingScreen.show()
         }
@@ -310,9 +312,6 @@ extension CollectionDetailViewController: UITableViewDelegate, UITableViewDataSo
                     }
                     
                     
-                    vc.createImage = {  imgUrl in
-                        print("imgUrl: \(imgUrl)")
-                    }
                     self.present(UINavigationController(rootViewController:vc), animated: true)
                 }
             }
@@ -367,10 +366,9 @@ extension CollectionDetailViewController: UITableViewDelegate, UITableViewDataSo
 
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let deleteAction = UITableViewRowAction(style: .destructive, title: "Sil") { (action, indexPath) in
-            // silme işlemini gerçekleştir
-            
-            print("silme işlemini gerçekleştir satır \(indexPath.row) , item: \(self.collectionItemsArray![indexPath.row].content)")
+        let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
+
+            print("perform delete operation, row \(indexPath.row) , item: \(self.collectionItemsArray![indexPath.row].content)")
             DispatchQueue.main.async {
                 LoadingScreen.show()
             }
@@ -387,8 +385,42 @@ extension CollectionDetailViewController: UITableViewDelegate, UITableViewDataSo
             }
             
         }
-        return [deleteAction]
+        
+        let updateAction = UITableViewRowAction(style: .normal, title: "Edit") { (action, indexPath) in
+
+            print("perform update operation, row: \(indexPath.row), item: \(self.collectionItemsArray![indexPath.row].content)")
+            if let vc = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "CollectionitemCreateViewController") as? CollectionitemCreateViewController{
+                let itemTypeString = self.collectionItemsArray![indexPath.row].type
+                if let itemType = CollectionItemType(rawValue: itemTypeString) {
+                    vc.itemType = itemType
+                    vc.itemToUpdate = self.collectionItemsArray![indexPath.row]
+                }
+                
+                vc.createTextOrTitle = {  type, content in
+                    print("Type: \(type), Content: \(content)")
+                    
+                    self.collectionService?.updateCollectionItem(content: content, collectionItemId: self.collectionItemsArray![indexPath.row].collectionItemId) {result in
+                        switch result {
+                        case .success(let collectionItem):
+                            Banner.showSuccessBanner(message: "Item successfully updated")
+                            self.getCollectionItemsArr()
+                            
+                        case .failure(let error):
+                            Banner.showErrorBanner(with: error)
+                        }
+                    }
+                }
+                
+                self.present(UINavigationController(rootViewController:vc), animated: true)
+            }
+            
+            
+          }
+          
+          return [ updateAction,deleteAction]
     }
+    
+    
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
@@ -399,6 +431,9 @@ extension CollectionDetailViewController: UITableViewDelegate, UITableViewDataSo
         if editingStyle == .delete {
             // silme işlemini gerçekleştir
             print("silme işlemini gerçekleştir2")
+        }else if editingStyle == .insert {
+            // Güncelleme işlemini gerçekleştir
+            print("Güncelleme işlemini gerçekleştir2")
         }
     }
     

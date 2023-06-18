@@ -369,7 +369,7 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <subviews>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="health" translatesAutoresizingMaskIntoConstraints="NO" id="Qgn-6D-LCc">
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Qgn-6D-LCc">
                                                                     <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="45" id="nep-GT-uDk"/>
@@ -612,7 +612,7 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <subviews>
-                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="health" translatesAutoresizingMaskIntoConstraints="NO" id="cYR-tz-1U8">
+                                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cYR-tz-1U8">
                                                                     <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="45" id="Gjg-hn-mUt"/>
@@ -792,7 +792,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="335" height="70"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="health" translatesAutoresizingMaskIntoConstraints="NO" id="syN-7X-EAg">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="syN-7X-EAg">
                                                     <rect key="frame" x="0.0" y="5" width="60" height="60"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="60" id="0Vb-Jg-0Wc"/>
@@ -1409,7 +1409,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Htn-tD-iKk">
                                                 <rect key="frame" x="0.0" y="1" width="373" height="250"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="health" translatesAutoresizingMaskIntoConstraints="NO" id="rM7-jb-wmT">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rM7-jb-wmT">
                                                         <rect key="frame" x="0.0" y="0.0" width="373" height="250"/>
                                                     </imageView>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="hfm-Rv-6uS">
@@ -1740,7 +1740,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P5c-2U-dHY">
                                 <rect key="frame" x="152.66666666666666" y="44" width="70" height="70"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="health" translatesAutoresizingMaskIntoConstraints="NO" id="m5b-1L-TTf">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="m5b-1L-TTf">
                                         <rect key="frame" x="1.3333333333333428" y="1.6666666666666643" width="67" height="67"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="67" id="3xe-jR-h8U"/>
@@ -2135,7 +2135,6 @@
         <image name="arrow.down.heart" catalog="system" width="128" height="109"/>
         <image name="arrowtriangle.down.fill" catalog="system" width="128" height="124"/>
         <image name="eye.fill" catalog="system" width="128" height="78"/>
-        <image name="health" width="1976" height="1266"/>
         <image name="heart.fill" catalog="system" width="128" height="109"/>
         <image name="note.text.badge.plus" catalog="system" width="128" height="108"/>
         <image name="person.2" catalog="system" width="128" height="81"/>

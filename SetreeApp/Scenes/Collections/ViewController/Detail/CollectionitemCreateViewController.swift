@@ -22,6 +22,7 @@ class CollectionitemCreateViewController: UIViewController, UIImagePickerControl
             }
         }
     }
+    internal var itemToUpdate : CollectionItem?
     
     private weak var cloudinaryService : CloudinaryService? {
         return CloudinaryService()
@@ -43,7 +44,7 @@ class CollectionitemCreateViewController: UIViewController, UIImagePickerControl
     @IBOutlet weak var lineView: UIView!
     @IBOutlet weak var textViewHeightConstraint: NSLayoutConstraint!
     internal var createTextOrTitle: ((String, String) -> Void)?
-    internal var createImage: ((String) -> Void)?
+    //internal var createImage: ((String) -> Void)?
 
     
 
@@ -51,7 +52,7 @@ class CollectionitemCreateViewController: UIViewController, UIImagePickerControl
         super.viewDidLoad()
         textView.delegate = self
         updateUI()
-        let createButton = UIBarButtonItem(title: "Add", style: .done, target: self, action: #selector(createButtonTapped))
+        let createButton = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(createButtonTapped))
         navigationItem.rightBarButtonItem = createButton
         
     }
@@ -144,6 +145,18 @@ class CollectionitemCreateViewController: UIViewController, UIImagePickerControl
             self.imageView.isHidden = false
             self.imageBtn.backgroundColor = UIColor.mainRoyalBlueColor
             self.imageBtn.tintColor = .systemGray6
+        }
+        if let itemToUpdate = itemToUpdate {
+            titleBtn.isUserInteractionEnabled = false
+            textBtn.isUserInteractionEnabled = false
+            imageBtn.isUserInteractionEnabled = false
+            
+            if itemType == .title || itemType == .text {
+                self.textView.text =  itemToUpdate.content
+                updateTextViewHeight()
+            }else{ //image
+                self.imageView.kf.setImage(with: URL(string: itemToUpdate.content))
+            }
         }
     }
     

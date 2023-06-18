@@ -203,6 +203,30 @@ public class CollectionService {
         }
     }
     
+    internal func updateCollectionItem(content: String, collectionItemId: Int ,completion: @escaping (Result<CollectionItem, Error>) -> Void) {
+        let url = "\(rootUrl)/updateCollectionItem"
+
+        // Alamofire : POST request
+        AF.request(url, method: .post, parameters: [
+            "content":content,
+            "id": collectionItemId
+        ], encoding: JSONEncoding.default, headers:headers()).responseDecodable(of: CreateCollectionItemResponse<CollectionItem>.self) { response in
+            print("response:", response)
+            switch response.result {
+                case .success(let response):
+                if response.succeded, let collectionItem = response.collectionItem {
+                        completion(.success(collectionItem))
+                    } else {
+                        let errorMessage = "Collection Item couldn't be updated."
+                        let error = NSError(domain: "", code: 0, userInfo: [NSLocalizedDescriptionKey: errorMessage])
+                        completion(.failure(error))
+                    }
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+        }
+    }
+    
     internal func getCollectionsByTag(tag: String, completion: @escaping (Result<[Collection], Error>) -> Void) {
         let url = "\(rootUrl)/getCollectionsByTag/\(tag)"
         print("Request Url: ", url)

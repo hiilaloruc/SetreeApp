@@ -7,6 +7,7 @@
 
 import UIKit
 import NotificationBannerSwift
+import SwiftUI
 let genders = ["Male", "Female", "Other"]
 
 class ProfileViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
